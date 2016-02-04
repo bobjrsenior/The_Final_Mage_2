@@ -4,8 +4,16 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    /// <summary>
+    /// Holds the objects rigidbody (used for physics)
+    /// </summary>
     Rigidbody2D rbody;
-    public float speed = 1f;
+
+    /// <summary>
+    /// The speed at which this object moves in Units/Second
+    /// </summary>
+    public float speed = 1.0f;
 
 
     void Start()
@@ -14,11 +22,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
-        Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//Gets our X and Y axis from raw input
+        //Gets the direction you want to move based on input
+        Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        rbody.MovePosition(rbody.position + movement_vector * speed * Time.deltaTime);
+        //Move in the direction in speed Units/Second
+        //Time.fixedDeltaTime smooths it to Units/Second instead of Units/Frame
+        rbody.MovePosition(rbody.position + movement_vector * speed * Time.fixedDeltaTime);
+        
     }
 }
