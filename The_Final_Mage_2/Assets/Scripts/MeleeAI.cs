@@ -25,7 +25,9 @@ public class MeleeAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+
+        self = GetComponent<Enemy>();
+
         //Sets our rigidBody to our own rigidBody2D component.
         selfRigid = GetComponent<Rigidbody2D>();
 
