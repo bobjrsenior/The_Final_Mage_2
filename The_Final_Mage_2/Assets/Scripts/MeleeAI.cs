@@ -29,11 +29,15 @@ public class MeleeAI : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-        //Moves the object this script is attached to toward the player. THIS WILL HAVE TO BE CHANGED OR MODIFIED HEAVILY TO WORK BETTER.
-        transform.position = Vector2.MoveTowards(self.position, player.position, enemySpeed * Time.fixedDeltaTime);
-
+        //Get the direction to the player
+        Vector2 direction = player.transform.position - transform.position;
+        //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+        direction.Normalize();
+        
+        //Move towards player at enemySpeed units/second   
+        self.MovePosition(self.position + direction * enemySpeed * Time.fixedDeltaTime);
 
 	}
 }
