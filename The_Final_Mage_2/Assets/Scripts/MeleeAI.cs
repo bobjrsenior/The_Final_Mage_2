@@ -48,7 +48,7 @@ public class MeleeAI : MonoBehaviour {
 			direction.Normalize();
 
 			//Move towards player at enemySpeed units/second
-			self.MovePosition(self.position + direction * enemySpeed * Time.fixedDeltaTime);
+			selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
 
 		}
 	}
