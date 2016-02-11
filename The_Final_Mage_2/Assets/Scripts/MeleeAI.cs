@@ -11,7 +11,12 @@ public class MeleeAI : MonoBehaviour {
     /// <summary>
     /// The rigidBody2D object attached to the enemy.
     /// </summary>
-    private Rigidbody2D self;
+    private Rigidbody2D selfRigid;
+
+    /// <summary>
+    /// The enemy script attached to the object this script is attached to.
+    /// </summary>
+    private Enemy self;
 
     /// <summary>
     /// The rigidBody2D object attached to the player.
@@ -21,23 +26,30 @@ public class MeleeAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        //Sets the self rigidbody2D object to the one this script is attached to.
-        self = GetComponent<Rigidbody2D>();
-        
+        self = GetComponent<Enemy>();
+
+        //Sets our rigidBody to our own rigidBody2D component.
+        selfRigid = GetComponent<Rigidbody2D>();
+
         //Sets the player rigidbody2D object to the gameObject that the playerMovement script is attached to(AKA, the player)
         player = GameObject.FindObjectOfType<PlayerMovement>().GetComponent<Rigidbody2D>();
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        //Get the direction to the player
-        Vector2 direction = player.transform.position - transform.position;
-        //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-        direction.Normalize();
-        
-        //Move towards player at enemySpeed units/second   
-        self.MovePosition(self.position + direction * enemySpeed * Time.fixedDeltaTime);
 
+        //If we are in the players detection zone(and therefore, allowed to move)
+        if (self.inRadius == true)
+        {			
+            //Get the direction to the player
+			Vector2 direction = player.transform.position - transform.position;
+			//Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+			direction.Normalize();
+
+			//Move towards player at enemySpeed units/second
+			self.MovePosition(self.position + direction * enemySpeed * Time.fixedDeltaTime);
+
+		}
 	}
 }

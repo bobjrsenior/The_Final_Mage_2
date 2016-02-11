@@ -16,8 +16,12 @@ public class RoomWarp : MonoBehaviour
     {
         if (other.gameObject.name == "Player")//Only trigger the collider is attached to a game object named "Player".
         {
-            other.gameObject.transform.position = warpTarget.transform.position;//Moves the player to our warp target
-            Camera.main.transform.position = new Vector3(cameraTarget.position.x, cameraTarget.position.y, -10); //Moves the camera to the camera target. We add the -10 to the Z axis to move the camera back from the game field in the 3d view. 
+            if (other.isTrigger == false)//If the collider is not a trigger (Or, in simpler terms, if we are detecting player collision and not the radius that governs whether enemies can move or not)
+            {
+                other.gameObject.transform.position = warpTarget.transform.position;//Moves the player to our warp target
+                Camera.main.transform.position = new Vector3(cameraTarget.position.x, cameraTarget.position.y, -10); //Moves the camera to the camera target. We add the -10 to the Z axis to move the camera back from the game field in the 3d view. 
+
+            }
         }
     }
 }
