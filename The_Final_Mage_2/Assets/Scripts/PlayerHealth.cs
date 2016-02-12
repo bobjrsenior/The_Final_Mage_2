@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public bool isDead;
 
-    public Animator anim;
-    public PlayerMovement playerMovement;
+    private Animator anim;
+    private PlayerMovement playerMovement;
     // Use this for initialization
     void Start () {
 

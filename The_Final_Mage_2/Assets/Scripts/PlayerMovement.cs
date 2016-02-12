@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Holds the objects rigidbody (used for physics)
     /// </summary>
-    Rigidbody2D rbody;
+    private Rigidbody2D rbody;
 
     /// <summary>
     /// The speed at which this object moves in Units/Second
@@ -18,12 +18,13 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// The animator for the player character.
     /// </summary>
-    Animator anim;
+    private Animator anim;
 
     /// <summary>
     /// The boolean that controls whether or not the player can move.
     /// </summary>
     public bool canMove;
+
 
 
     void Start()
