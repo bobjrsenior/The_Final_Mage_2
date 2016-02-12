@@ -19,7 +19,7 @@ public class PlayerRadius : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //This moves the object attached to the PlayerRadius script to the same position as the player at every frame, ensuring the radius is always centered on the player.
-        transform.position = player.GetComponent<Rigidbody2D>().position;
+        GetComponent<Rigidbody2D>().MovePosition(player.GetComponent<Rigidbody2D>().position);
 
 	}
 
