@@ -8,6 +8,16 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public bool inRadius = false;
 
+    /// <summary>
+    /// This will be used to tell that the enemy is of melee type.
+    /// </summary>
+    public bool meleeType = false;
+
+    /// <summary>
+    /// This will be ued to tell that the enemy is of ranged type.
+    /// </summary>
+    public bool rangedType = false;
+
 	// Use this for initialization
 	void Start () {
 	
