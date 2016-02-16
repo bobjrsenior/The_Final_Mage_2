@@ -25,6 +25,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public bool canMove;
 
+    /// <summary>
+    /// Our last X input
+    /// </summary>
+    public float inputX;
+
+    /// <summary>
+    /// Our last Y input
+    /// </summary>
+    public float inputY;
+
 
 
     void Start()
@@ -48,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isWalking", true);//Tell the animator that we are trying to walk.
             anim.SetFloat("input_x", movement_vector.x);
             anim.SetFloat("input_y", movement_vector.y);
+
+            //Stores our last input
+            inputX = movement_vector.x;
+            inputY = movement_vector.y;
             //Move in the direction in speed Units/Second
             //Time.fixedDeltaTime smooths it to Units/Second instead of Units/Frame
             rbody.MovePosition(rbody.position + movement_vector * speed * Time.fixedDeltaTime);

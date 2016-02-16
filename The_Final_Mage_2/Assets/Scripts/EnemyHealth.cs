@@ -42,6 +42,7 @@ public class EnemyHealth : MonoBehaviour {
         {
             //We die
             isDead = true;
+            //Stop the enemy from moving anymore so that it will remain stationary during its death animation.
             enemyAI.lockMovement = true;
         }
         else
