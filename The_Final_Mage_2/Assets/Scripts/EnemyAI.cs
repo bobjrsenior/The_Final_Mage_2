@@ -52,7 +52,6 @@ public class EnemyAI : MonoBehaviour {
                 //If the enemy is allowed to move...
                 if (noMove == false)
                 {
-                    Debug.Log(noMove);
                     //Get the direction to the player
                     Vector2 direction = player.transform.position - transform.position;
                     //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
