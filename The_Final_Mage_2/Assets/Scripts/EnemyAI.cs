@@ -24,9 +24,14 @@ public class EnemyAI : MonoBehaviour {
     private Rigidbody2D player;
 
     /// <summary>
-    /// Tells the enemy whether or not it is allowed to move (for melee types to prevent pushing the player around)
+    /// Allows this script itself to prevent enemy movement (For stopping melee type enemies when they are next to the player)
     /// </summary>
-    public bool noMove;
+    private bool noMove;
+
+    /// <summary>
+    /// Allows an outside source to lock all movement from this enemy.
+    /// </summary>
+    public bool lockMovement;
 
 	// Use this for initialization
 	void Start () {
@@ -43,59 +48,79 @@ public class EnemyAI : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        //If the enemy is a melee type enemy
-        if (self.meleeType == true)
+        //If movement is locked on this enemy
+        if (lockMovement == true)
         {
-            //If we are in the players detection zone(and therefore, allowed to move)
-            if (self.inRadius == true)
-            {
-                //If the enemy is allowed to move...
-                if (noMove == false)
-                {
-                    //Get the direction to the player
-                    Vector2 direction = player.transform.position - transform.position;
-                    //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-                    direction.Normalize();
-
-                    //Move towards player at enemySpeed units/second
-                    selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
-                }
-            }
+            //Keep them where they are
+            selfRigid.MovePosition(selfRigid.position);
         }
-        else if (self.rangedType == true)
+        else
         {
-            //If we are in the players detection zone(and therefore, allowed to move)
-            if (self.inRadius == true)
+            //Determine the AI type and call the correct type of movement action for that type.
+            if (self.meleeType == true)
             {
-                //Get the direction to the player
-                Vector2 direction = player.transform.position - transform.position;
-
-                //If the distance between our player and the enemy attached to this script is less than two...
-                if (Vector2.Distance(player.transform.position, selfRigid.position) > 2.1)
-                {
-                    //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-                    direction.Normalize();
-
-                    //Move towards player at enemySpeed units/second
-                    selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
-                }
-                //If the distance to the player is between 2.1 and 2
-                else if (Vector2.Distance(player.transform.position, selfRigid.position) <= 2.1 && Vector2.Distance(player.transform.position, selfRigid.position) >= 2)
-                {
-                    //Remain where we are.
-                    selfRigid.MovePosition(selfRigid.position);
-                }
-                else
-                {
-                    //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-                    direction.Normalize();
-
-                    //Move away from the player at enemySpeed units/second
-                    selfRigid.MovePosition(selfRigid.position - direction * enemySpeed * Time.fixedDeltaTime);
-                }
+                meleeMovementAction();
+            }
+            else if (self.rangedType == true)
+            {
+                rangedMovementAction();
             }
         }
 	}
+
+    private void meleeMovementAction()
+    {
+        //If we are in the players detection zone(and therefore, allowed to move)
+        if (self.inRadius == true)
+        {
+            //If the enemy is allowed to move...
+            if (noMove == false)
+            {
+                //Get the direction to the player
+                Vector2 direction = player.transform.position - transform.position;
+                //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+                direction.Normalize();
+
+                //Move towards player at enemySpeed units/second
+                selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
+            }
+        }
+    }
+
+    private void rangedMovementAction()
+    {
+        //If we are in the players detection zone(and therefore, allowed to move)
+        if (self.inRadius == true)
+        {
+            //Get the direction to the player
+            Vector2 direction = player.transform.position - transform.position;
+
+            //If the distance between our player and the enemy attached to this script is less than two...
+            if (Vector2.Distance(player.transform.position, selfRigid.position) > 2.1)
+            {
+                //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+                direction.Normalize();
+
+                //Move towards player at enemySpeed units/second
+                selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
+            }
+            //If the distance to the player is between 2.1 and 2
+            else if (Vector2.Distance(player.transform.position, selfRigid.position) <= 2.1 && Vector2.Distance(player.transform.position, selfRigid.position) >= 2)
+            {
+                //Remain where we are.
+                selfRigid.MovePosition(selfRigid.position);
+            }
+            else
+            {
+                //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+                direction.Normalize();
+
+                //Move away from the player at enemySpeed units/second
+                selfRigid.MovePosition(selfRigid.position - direction * enemySpeed * Time.fixedDeltaTime);
+            }
+        }
+    }
+
 
     void OnCollisionStay2D(Collision2D other)
     {
