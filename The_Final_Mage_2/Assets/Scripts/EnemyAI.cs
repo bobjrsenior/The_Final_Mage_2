@@ -33,6 +33,11 @@ public class EnemyAI : MonoBehaviour {
     /// </summary>
     public bool lockMovement;
 
+    /// <summary>
+    /// How much damage does the melee attack do?
+    /// </summary>
+    public float meleeDamage;
+
 	// Use this for initialization
 	void Start () {
 
@@ -121,6 +126,18 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (self.meleeType == true)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                PlayerHealth playerHP = other.GetComponent<PlayerHealth>();
+
+                playerHP.damage(meleeDamage);
+            }
+        }
+    }
 
     void OnCollisionStay2D(Collision2D other)
     {

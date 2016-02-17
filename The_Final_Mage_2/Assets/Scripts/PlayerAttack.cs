@@ -98,10 +98,13 @@ public class PlayerAttack : MonoBehaviour {
                     debugger.Log("Player melee attack collided with " + rayHit.collider.name);
                     //If the ray's tag is an enemy
                     if(rayHit.collider.CompareTag("Enemy"))
-                    { 
+                    {
                         //Get and damage the enemy by our melee damage
+                        Rigidbody2D enemyRigid = rayHit.collider.GetComponent<Rigidbody2D>();
                         EnemyHealth enemyHP = rayHit.collider.GetComponent<EnemyHealth>();
                         enemyHP.damage(meleeDamage);
+                        //Knockback effect of melee.
+                        enemyRigid.AddForce(attack_vector * 1000);
                     }
                 }
                 //Handle our delays
