@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
     /// <summary>
-    /// The value that holds our player health.
+    /// The value that holds our current player health.
     /// </summary>
     public float health;
 
@@ -12,6 +12,15 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public float maxHealth;
 
+    /// <summary>
+    /// The maximum mana that we could attain
+    /// </summary>
+    public float maxMana;
+
+    /// <summary>
+    /// The value that holds our current player mana.
+    /// </summary>
+    public float mana;
     /// <summary>
     /// A boolean that corresponds to whether the player is dead or not.
     /// </summary>
@@ -27,11 +36,17 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public float delayTime;
 
+    public float healthRegenTime;
+
+    public bool regenCooldown;
+
+    DebugUtility debugger;
     private Animator anim;
     private PlayerMovement playerMovement;
     // Use this for initialization
     void Start () {
 
+        debugger = FindObjectOfType<DebugUtility>();
         //Always want to start with the player alive
         isDead = false;
         //Always want to start where we can be damaged.
@@ -42,6 +57,12 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (regenCooldown == false)
+        {
+            StartCoroutine(healthRegen());
+        }
+
 	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
         if(Input.GetKeyDown(KeyCode.G))
         {
@@ -117,5 +138,19 @@ public class PlayerHealth : MonoBehaviour {
         //Will wait for delayTime seconds.
         yield return new WaitForSeconds(delayTime);
         canDamage = true;
+    }
+
+    /// <summary>
+    /// Delays for healthRegenTime seconds and then heals us by 1 point of health.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator healthRegen()
+    {
+        debugger.Log("Starting health regen now.");
+        regenCooldown = true;
+        yield return new WaitForSeconds(healthRegenTime);
+        heal(1);
+        regenCooldown = false;
+        debugger.Log("Health regeneration complete.");
     }
 }

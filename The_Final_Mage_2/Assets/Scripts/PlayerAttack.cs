@@ -14,6 +14,22 @@ public class PlayerAttack : MonoBehaviour {
     public bool canMelee;
 
     /// <summary>
+    /// True if we are melee type, false otherwise
+    /// </summary>
+    public bool meleeType;
+    /// <summary>
+    /// True if we are range type, false otherwise
+    /// </summary>
+    public bool rangeType;
+    /// <summary>
+    /// True if we have swapped, false when the cooldown ends.
+    /// </summary>
+    public bool swapped;
+    /// <summary>
+    /// True if we have swapped, false when the cooldown ends.
+    /// </summary>
+    public float swapCooldownTime;
+    /// <summary>
     /// Lets us control debugging so we do not have to delete the debug code.
     /// </summary>
     DebugUtility debugger;
@@ -22,6 +38,8 @@ public class PlayerAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        //Start in melee type
+        meleeType = true;
         debugger = FindObjectOfType<DebugUtility>();
         canMelee = true;
         anim = transform.GetComponent<Animator>();
@@ -31,7 +49,11 @@ public class PlayerAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    
-        if (canMelee == true)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            switchType();
+        }
+        if (canMelee == true && meleeType == true)
         {
             //Melee attack
             if (Input.GetKeyDown(KeyCode.Space))
@@ -63,5 +85,31 @@ public class PlayerAttack : MonoBehaviour {
     {
         yield return new WaitForSeconds(.2f);
         anim.SetBool("isMelee", false);
+    }
+
+    public void switchType()
+    {
+        if (meleeType == true && swapped == false)
+        {
+            meleeType = false;
+            rangeType = true;
+            debugger.Log("Swapped to range type.");
+            StartCoroutine(swapCooldown());
+        }
+        else if (rangeType == true && swapped == false)
+        {
+            rangeType = false;
+            meleeType = true;
+            debugger.Log("Swapped to melee type.");
+            StartCoroutine(swapCooldown());
+        }
+    }
+
+    private IEnumerator swapCooldown()
+    {
+        swapped = true;
+        yield return new WaitForSeconds(swapCooldownTime);
+        swapped = false;
+        debugger.Log("Swap enabled again.");
     }
 }
