@@ -56,9 +56,23 @@ public class PlayerAttack : MonoBehaviour {
         if (canMelee == true && meleeType == true)
         {
             //Melee attack
-            if (Input.GetKeyDown(KeyCode.Space))
+            Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
+            if (attack_vector != Vector2.zero)
             {
                 anim.SetBool("isMelee", true);
+                anim.SetFloat("attackX", attack_vector.x);
+                anim.SetFloat("attackY", attack_vector.y);
+
+                if (attack_vector.x > 0)
+                {
+                    //NOTE: THESE VALUES ARE ONLY DIFFERENT TO MAINTAIN THE SIZE OF THE TEST SPRITE. IN THE FINAL PRODUCT, THEY SHOULD ALL WORK AT 1F.
+                    transform.localScale = new Vector3(2.33f, 2.27f, 1f);
+                }
+                else if (attack_vector.x < 0)//Handles flipping player sprites to face left
+                {
+                    transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
+                }
+
                 StartCoroutine(delayMelee());
                 StartCoroutine(meleeCooldown());
             }
