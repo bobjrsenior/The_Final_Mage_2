@@ -12,11 +12,17 @@ public class PlayerAttack : MonoBehaviour {
     /// Whether or not we can melee attack.
     /// </summary>
     public bool canMelee;
+
+    /// <summary>
+    /// Lets us control debugging so we do not have to delete the debug code.
+    /// </summary>
+    DebugUtility debugger;
     Animator anim;
     PlayerMovement movement;
 	// Use this for initialization
 	void Start () {
 
+        debugger = FindObjectOfType<DebugUtility>();
         canMelee = true;
         anim = transform.GetComponent<Animator>();
         movement = transform.GetComponent<PlayerMovement>();
