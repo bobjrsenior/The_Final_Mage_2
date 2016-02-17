@@ -9,6 +9,10 @@ public class PlayerAttack : MonoBehaviour {
     public float meleeDelay;
 
     /// <summary>
+    /// the cooldown for melee attacks
+    /// </summary>
+    public float meleeCool;
+    /// <summary>
     /// Whether or not we can melee attack.
     /// </summary>
     public bool canMelee;
@@ -29,6 +33,18 @@ public class PlayerAttack : MonoBehaviour {
     /// True if we have swapped, false when the cooldown ends.
     /// </summary>
     public float swapCooldownTime;
+    /// <summary>
+    /// How much damage does our melee attack do?
+    /// </summary>
+    public float meleeDamage;
+
+    /// <summary>
+    /// Whether or not we are attacking.
+    /// </summary>
+    public bool isAttacking;
+
+
+    RaycastHit2D rayHit = new RaycastHit2D();
     /// <summary>
     /// Lets us control debugging so we do not have to delete the debug code.
     /// </summary>
@@ -62,6 +78,7 @@ public class PlayerAttack : MonoBehaviour {
                 anim.SetBool("isMelee", true);
                 anim.SetFloat("attackX", attack_vector.x);
                 anim.SetFloat("attackY", attack_vector.y);
+                isAttacking = true;
 
                 if (attack_vector.x > 0)
                 {
@@ -73,6 +90,21 @@ public class PlayerAttack : MonoBehaviour {
                     transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
                 }
 
+                //Draws a ray from the player in the direction we are attacking, extending at a distance of .5f units, shifting the layer's bit from layer 9.
+                rayHit = Physics2D.Raycast(transform.position, attack_vector, .5f, 1 << 9);
+                //If our ray has collided
+                if (rayHit.collider != null)
+                {
+                    debugger.Log("Player melee attack collided with " + rayHit.collider.name);
+                    //If the ray's tag is an enemy
+                    if(rayHit.collider.CompareTag("Enemy"))
+                    { 
+                        //Get and damage the enemy by our melee damage
+                        EnemyHealth enemyHP = rayHit.collider.GetComponent<EnemyHealth>();
+                        enemyHP.damage(meleeDamage);
+                    }
+                }
+                //Handle our delays
                 StartCoroutine(delayMelee());
                 StartCoroutine(meleeCooldown());
             }
@@ -97,10 +129,14 @@ public class PlayerAttack : MonoBehaviour {
     /// <returns></returns>
     IEnumerator meleeCooldown()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(meleeCool);
         anim.SetBool("isMelee", false);
+        isAttacking = false;
     }
 
+    /// <summary>
+    /// Switches between melee and range type/
+    /// </summary>
     public void switchType()
     {
         if (meleeType == true && swapped == false)
@@ -119,6 +155,10 @@ public class PlayerAttack : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles the cooldown between swap attacks.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator swapCooldown()
     {
         swapped = true;

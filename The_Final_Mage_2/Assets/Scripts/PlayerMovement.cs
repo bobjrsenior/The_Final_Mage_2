@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float inputY;
 
-
+    PlayerAttack playAttack;
 
     void Start()
     {   
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         anim = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
+        playAttack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -73,15 +74,19 @@ public class PlayerMovement : MonoBehaviour
             //We do not update the input_x and input_y here because we want them to retain their last input so that we will continue facing the same direction.
         }
 
-        //Handles flipping player sprites to face right.
-        if (movement_vector.x > 0)
+        //If we are not attacking...
+        if (playAttack.isAttacking == false)
         {
-            //NOTE: THESE VALUES ARE ONLY DIFFERENT TO MAINTAIN THE SIZE OF THE TEST SPRITE. IN THE FINAL PRODUCT, THEY SHOULD ALL WORK AT 1F.
-            transform.localScale = new Vector3(2.33f, 2.27f, 1f);
-        }
-        else if (movement_vector.x < 0)//Handles flipping player sprites to face left
-        {
-            transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
+            //Handles flipping player sprites to face right.
+            if (movement_vector.x > 0)
+            {
+                //NOTE: THESE VALUES ARE ONLY DIFFERENT TO MAINTAIN THE SIZE OF THE TEST SPRITE. IN THE FINAL PRODUCT, THEY SHOULD ALL WORK AT 1F.
+                transform.localScale = new Vector3(2.33f, 2.27f, 1f);
+            }
+            else if (movement_vector.x < 0)//Handles flipping player sprites to face left
+            {
+                transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
+            }
         }
 
     }
