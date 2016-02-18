@@ -135,10 +135,21 @@ public class EnemyAI : MonoBehaviour {
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                //Stop the enemy from moving if they are doing damage to us.
+                lockMovement = true;
                 PlayerHealth playerHP = other.GetComponent<PlayerHealth>();
 
                 playerHP.damage(meleeDamage);
             }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //Allow the enemy to move again since they are no longer damaging us.
+            lockMovement = false;
         }
     }
 

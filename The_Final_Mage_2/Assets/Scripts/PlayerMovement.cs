@@ -80,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             anim.SetBool("isWalking", false);
-            rbody.MovePosition(rbody.position + movement_vector * speed * Time.fixedDeltaTime);
             //We do not update the input_x and input_y here because we want them to retain their last input so that we will continue facing the same direction.
         }
 
