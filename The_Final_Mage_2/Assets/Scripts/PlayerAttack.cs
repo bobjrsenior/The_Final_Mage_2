@@ -109,7 +109,7 @@ public class PlayerAttack : MonoBehaviour {
                         if (rayHit.collider == null)
                         {
                             //Knockback effect of melee.
-                            enemyRigid.AddForce(attack_vector * 1000);
+                            enemyRigid.AddForce(attack_vector * 400);
                         }
                     }
                 }

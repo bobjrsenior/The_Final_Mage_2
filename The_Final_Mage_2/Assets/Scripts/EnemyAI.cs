@@ -38,11 +38,13 @@ public class EnemyAI : MonoBehaviour {
     /// </summary>
     public float meleeDamage;
 
+    PlayerHealth playerHP;
     DebugUtility debugger;
 
 	// Use this for initialization
 	void Start () {
 
+        playerHP = FindObjectOfType<PlayerHealth>();
         debugger = FindObjectOfType<DebugUtility>();
         self = GetComponent<Enemy>();
 
@@ -57,7 +59,7 @@ public class EnemyAI : MonoBehaviour {
 	void FixedUpdate () {
 
         //If movement is locked on this enemy
-        if (lockMovement == true)
+        if (lockMovement == true || playerHP.isDead == true)
         {
             //Keep them where they are
             selfRigid.MovePosition(selfRigid.position);
@@ -137,7 +139,6 @@ public class EnemyAI : MonoBehaviour {
             {
                 //Stop the enemy from moving if they are doing damage to us.
                 lockMovement = true;
-                PlayerHealth playerHP = other.GetComponent<PlayerHealth>();
 
                 playerHP.damage(meleeDamage);
             }

@@ -54,6 +54,7 @@ public class EnemyHealth : MonoBehaviour {
         if (isDead == true)
         {
             //Destroy this object on death. NOTE: This is only temporary until we give enemies death animations.
+            scoreEvent();
             Destroy(transform.gameObject);
         }
     }
@@ -85,6 +86,20 @@ public class EnemyHealth : MonoBehaviour {
         else
         {
             health = health + amount;
+        }
+    }
+
+    private void scoreEvent()
+    {
+        Scoring score = FindObjectOfType<Scoring>();
+        Enemy self = transform.GetComponent<Enemy>();
+        if (self.meleeType == true)
+        {
+            score.score = score.score + score.meleeScore;
+        }
+        else if (self.rangedType == true)
+        {
+            score.score = score.score + score.meleeScore;
         }
     }
 }

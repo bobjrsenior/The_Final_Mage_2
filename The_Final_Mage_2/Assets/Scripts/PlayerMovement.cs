@@ -80,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             anim.SetBool("isWalking", false);
+            //Stops our movement.
+            rbody.MovePosition(rbody.position);
             //We do not update the input_x and input_y here because we want them to retain their last input so that we will continue facing the same direction.
         }
 
