@@ -58,22 +58,32 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //Health regen over time.
         if (regenCooldown == false)
         {
             StartCoroutine(healthRegen());
         }
+        if (health == 0)
+        {
+            playerMovement.canMove = false;
+        }
+        else
+        {
+            playerMovement.canMove = true;
+        }
+        
 
 	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            damage(1);
-        }
+        //if(Input.GetKeyDown(KeyCode.G))
+       // {
+       //     damage(1);
+       // }
 
         //FOR TESTING PURPOSES ONLY, WILL HEAL YOU BY 1 IF YOU PRESS H
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            heal(1);
-        }
+          if (Input.GetKeyDown(KeyCode.H))
+          {
+              heal(1);
+          }
 
         //If our health ever hits 0
         if (health == 0)
@@ -149,8 +159,12 @@ public class PlayerHealth : MonoBehaviour {
         debugger.Log("Starting health regen now.");
         regenCooldown = true;
         yield return new WaitForSeconds(healthRegenTime);
-        heal(1);
-        regenCooldown = false;
+        if (health != 0)
+        {
+            heal(1);
+        }
         debugger.Log("Health regeneration complete.");
+        regenCooldown = false;
+        
     }
 }

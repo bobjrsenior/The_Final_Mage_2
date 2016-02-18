@@ -6,6 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
 
     /// <summary>
+    /// Whether or not we the rigidbody must stay awake or not.
+    /// </summary>
+    public bool doNotSleep;
+
+    /// <summary>
     /// Holds the objects rigidbody (used for physics)
     /// </summary>
     private Rigidbody2D rbody;
@@ -49,7 +54,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        //If we do not want the rigidbody to sleep, make sure it is awake.
+        if (doNotSleep == true)
+        {
+            rbody.WakeUp();
+        }
+        
         //Gets the direction you want to move based on input
         Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 

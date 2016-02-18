@@ -38,9 +38,12 @@ public class EnemyAI : MonoBehaviour {
     /// </summary>
     public float meleeDamage;
 
+    DebugUtility debugger;
+
 	// Use this for initialization
 	void Start () {
 
+        debugger = FindObjectOfType<DebugUtility>();
         self = GetComponent<Enemy>();
 
         //Sets our rigidBody to our own rigidBody2D component.
@@ -141,9 +144,14 @@ public class EnemyAI : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D other)
     {
+
         //This only applies to melee types, so if we are a ranged type, we will not worry about this.
         if (self.rangedType == false)
         {
+            PlayerMovement playerMove = FindObjectOfType<PlayerMovement>();
+
+            //Ensure the players rigidBody stays awake.
+            playerMove.doNotSleep = true;
             //Debug.Log("Collision Detected with " + other.gameObject.name);
             //If we have collided with the player
             if (other.gameObject.tag == "Player")
@@ -161,6 +169,10 @@ public class EnemyAI : MonoBehaviour {
         //If we are no longer colliding with the player
         if (other.gameObject.tag == "Player")
         {
+            PlayerMovement playerMove = FindObjectOfType<PlayerMovement>();
+
+            //Let the players rigidBody go back to sleep.
+            playerMove.doNotSleep = false;
             //Restore the update functions ability to move the enemy.
             noMove = false;
         }
