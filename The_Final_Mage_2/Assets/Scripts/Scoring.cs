@@ -37,8 +37,9 @@ public class Scoring : MonoBehaviour {
     /// Controls our degeneration cooldown time.
     /// </summary>
     private bool degenerationCooldown;
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         score = initialScore;
 	}
@@ -52,6 +53,12 @@ public class Scoring : MonoBehaviour {
         }
 	}
 
+    //Temporary means to track score.
+    void OnGUI()
+    {
+        GUI.color = Color.yellow;
+        GUI.Box(new Rect(0, 0, 100, 20), "Score: " + score);
+    }
     private IEnumerator degenerate()
     {
         degenerationCooldown = true;
