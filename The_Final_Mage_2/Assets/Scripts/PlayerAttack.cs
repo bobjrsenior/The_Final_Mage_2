@@ -120,7 +120,20 @@ public class PlayerAttack : MonoBehaviour {
         }
         
 	}
-
+    //TEMPORARY FOR DISPLAYING TYPE
+    void OnGUI()
+    {
+        GUI.color = Color.yellow;
+        if (meleeType == true)
+        {
+            GUI.Box(new Rect(0, 40, 100, 25), "Type: Melee");
+        }
+        else
+        {
+            GUI.Box(new Rect(0, 40, 100, 25), "Type: Ranged");
+        }
+        
+    }
     /// <summary>
     /// Delays us from attacking again after a melee for a specified amount of seconds.
     /// </summary>
