@@ -95,15 +95,17 @@ public class EnemyHealth : MonoBehaviour {
         Scoring score = FindObjectOfType<Scoring>();
         Enemy self = transform.GetComponent<Enemy>();
         DifficultyManager difficulty = FindObjectOfType<DifficultyManager>();
+
         if (self.meleeType == true)
         {
-            //Score bonus increases with additional floors reached.
-            score.score = (score.score + score.meleeScore) * (difficulty.floor / 2);
+            //Score bonus increases with additional floors reached. Should be 1 for the first floor, 2 for floors 2 and 3, and 3 for floor 4.
+            int bonusModifier = (score.meleeScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2));
+            score.score = score.score + bonusModifier;
         }
         else if (self.rangedType == true)
         {
-            //Score bonus increases with additional floors reached.
-            score.score = (score.score + score.rangedScore) * (difficulty.floor / 2);
+            int bonusModifier = (score.rangedScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2));
+            score.score = score.score + ((score.rangedScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2)));
         }
     }
 }
