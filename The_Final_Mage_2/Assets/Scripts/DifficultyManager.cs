@@ -16,27 +16,47 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// Our base standard melee health.
     /// </summary>
-    public float standardMeleeHP;
+    public float enemyStandardMeleeHP;
 
     /// <summary>
     /// Our base standard ranged health.
     /// </summary>
-    public float standardRangedHP;
+    public float enemyStandardRangedHP;
 
     /// <summary>
     /// Our base standard melee damage
     /// </summary>
-    public float standardMeleeDamage;
+    public float enemyStandardMeleeDamage;
 
     /// <summary>
     /// Our base standard range damage
     /// </summary>
-    public float standardRangeDamage;
+    public float enemyStandardRangeDamage;
 
     /// <summary>
     /// Have we set our stats for the enemies on this floor?
     /// </summary>
     public bool statsSet;
+
+    /// <summary>
+    /// The players standard health
+    /// </summary>
+    public float playerStandardHealth;
+
+    /// <summary>
+    /// The players standard max health
+    /// </summary>
+    public float playerStandardMaxHealth;
+
+    /// <summary>
+    /// The players standard melee damage.
+    /// </summary>
+    public float playerStandardMeleeDam;
+
+    /// <summary>
+    /// The players standard ranged damage.
+    /// </summary>
+    public float playerStandardRangedDam;
 
 	// Use this for initialization
 	void Start () {
@@ -44,6 +64,7 @@ public class DifficultyManager : MonoBehaviour {
         //Start on floor 1.
         floor = 1;
         newFloor = true;
+        setPlayerStats();
 	}
 	
 	// Update is called once per frame
@@ -73,21 +94,32 @@ public class DifficultyManager : MonoBehaviour {
             if (enemies[x].meleeType == true)
             {
                 //No additional floor modifiers on health and attack power for the time being.
-                enemyHP.maxHealth = standardMeleeHP;
-                enemyHP.health = standardMeleeHP;
+                enemyHP.maxHealth = enemyStandardMeleeHP;
+                enemyHP.health = enemyStandardMeleeHP;
 
-                enemyAI.meleeDamage = standardMeleeDamage;
+                enemyAI.meleeDamage = enemyStandardMeleeDamage;
             }
             else
             {
                 //No additional floor modifiers on health and attack power for the time being.
-                enemyHP.maxHealth = standardRangedHP;
-                enemyHP.health = standardRangedHP;
+                enemyHP.maxHealth = enemyStandardRangedHP;
+                enemyHP.health = enemyStandardRangedHP;
 
-                enemyAI.rangeDamage = standardRangeDamage;
+                enemyAI.rangeDamage = enemyStandardRangeDamage;
             }
 
         }
         statsSet = true;
+    }
+
+    private void setPlayerStats()
+    {
+        PlayerHealth playerHP = FindObjectOfType<PlayerHealth>();
+        PlayerAttack playerAttack = FindObjectOfType<PlayerAttack>();
+
+        playerHP.maxHealth = playerStandardMaxHealth;
+        playerHP.health = playerStandardHealth;
+        playerAttack.meleeDamage = playerStandardMeleeDam;
+        playerAttack.rangeDamage = playerStandardRangedDam;
     }
 }

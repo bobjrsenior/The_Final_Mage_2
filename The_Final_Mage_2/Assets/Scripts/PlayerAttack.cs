@@ -39,6 +39,11 @@ public class PlayerAttack : MonoBehaviour {
     public float meleeDamage;
 
     /// <summary>
+    /// How much damage does our ranged attack do?
+    /// </summary>
+    public float rangeDamage;
+
+    /// <summary>
     /// Whether or not we are attacking.
     /// </summary>
     public bool isAttacking;
