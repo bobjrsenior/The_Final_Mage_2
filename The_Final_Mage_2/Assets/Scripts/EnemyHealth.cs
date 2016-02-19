@@ -18,17 +18,14 @@ public class EnemyHealth : MonoBehaviour {
     /// </summary>
     public bool isDead;
 
-
-
+    DifficultyManager difficulty;
     private EnemyAI enemyAI;
     // Use this for initialization
     void Start()
     {
-        //The followings two declarations are generalized defaults for all enemies simply intact for testing purposes alone.
-        maxHealth = 3;
-        health = 3;
 
         //Always want to start with the enemy alive
+        difficulty = FindObjectOfType<DifficultyManager>();
         isDead = false;
         enemyAI = transform.GetComponent<EnemyAI>();
     }
@@ -36,20 +33,24 @@ public class EnemyHealth : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Only if we have finished setting the enemy stats do we want an enemy to take damage.
+        if (difficulty.statsSet == true)
+        {
+            //If our health ever hits 0
+            if (health == 0)
+            {
+                //We die
+                isDead = true;
+                //Stop the enemy from moving anymore so that it will remain stationary during its death animation.
+                enemyAI.lockMovement = true;
+            }
+            else
+            {
+                //If our health is not 0, we are alive.
+                isDead = false;
+            }
+        }
 
-        //If our health ever hits 0
-        if (health == 0)
-        {
-            //We die
-            isDead = true;
-            //Stop the enemy from moving anymore so that it will remain stationary during its death animation.
-            enemyAI.lockMovement = true;
-        }
-        else
-        {
-            //If our health is not 0, we are alive.
-            isDead = false;
-        }
 
         if (isDead == true)
         {
@@ -93,13 +94,16 @@ public class EnemyHealth : MonoBehaviour {
     {
         Scoring score = FindObjectOfType<Scoring>();
         Enemy self = transform.GetComponent<Enemy>();
+        DifficultyManager difficulty = FindObjectOfType<DifficultyManager>();
         if (self.meleeType == true)
         {
-            score.score = score.score + score.meleeScore;
+            //Score bonus increases with additional floors reached.
+            score.score = (score.score + score.meleeScore) * (difficulty.floor / 2);
         }
         else if (self.rangedType == true)
         {
-            score.score = score.score + score.meleeScore;
+            //Score bonus increases with additional floors reached.
+            score.score = (score.score + score.rangedScore) * (difficulty.floor / 2);
         }
     }
 }

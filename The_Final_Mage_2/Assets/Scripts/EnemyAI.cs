@@ -38,6 +38,11 @@ public class EnemyAI : MonoBehaviour {
     /// </summary>
     public float meleeDamage;
 
+    /// <summary>
+    /// How much damage does the ranged attack do?
+    /// </summary>
+    public float rangeDamage;
+
     PlayerHealth playerHP;
     DebugUtility debugger;
 

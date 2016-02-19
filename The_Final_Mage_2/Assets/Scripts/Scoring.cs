@@ -47,7 +47,7 @@ public class Scoring : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (degenerationCooldown == false)
+        if (degenerationCooldown == false && score != 0)
         {
             StartCoroutine(degenerate());
         }
