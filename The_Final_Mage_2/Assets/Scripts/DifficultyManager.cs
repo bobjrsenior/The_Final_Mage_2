@@ -84,11 +84,22 @@ public class DifficultyManager : MonoBehaviour {
         newFloor = false;
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
-        //For every enemy on the field.
+        //For every enemy in the gamespace
         for (int x = 0; x < enemies.Length; x++)
         {
             EnemyHealth enemyHP = enemies[x].GetComponent<EnemyHealth>();
             EnemyAI enemyAI = enemies[x].GetComponent<EnemyAI>();
+
+            //Randomly generates enemy type.
+            int type = Random.Range(0, 2);
+            if (type == 0)
+            {
+                enemies[x].meleeType = true;
+            }
+            else if (type == 1)
+            {
+                enemies[x].rangedType = true;
+            }
 
             //If the current enemy is a melee type
             if (enemies[x].meleeType == true)

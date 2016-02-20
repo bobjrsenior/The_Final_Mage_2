@@ -49,7 +49,8 @@ public class PlayerAttack : MonoBehaviour {
     public bool isAttacking;
 
 
-    RaycastHit2D rayHit = new RaycastHit2D();
+    RaycastHit2D[] rayHit;
+    RaycastHit2D rayHitWall;
     /// <summary>
     /// Lets us control debugging so we do not have to delete the debug code.
     /// </summary>
@@ -95,29 +96,35 @@ public class PlayerAttack : MonoBehaviour {
                     transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
                 }
 
-                //Draws a ray from the player in the direction we are attacking, extending at a distance of .5f units, shifting the layer's bit from layer 9.
-                rayHit = Physics2D.Raycast(transform.position, attack_vector, .5f, 1 << 9);
+                //Draws a ray in the form of a circle from the player in the direction we are attacking, extending at a distance of .5f units, shifting the layer's bit from layer 9.
+                rayHit = Physics2D.CircleCastAll(transform.position, .1f, attack_vector, .4f, 1 << 9);
                 //If our ray has collided
-                if (rayHit.collider != null)
+                for (int x = 0; x < rayHit.Length; x++)
                 {
-                    debugger.Log("Player melee attack collided with " + rayHit.collider.name);
-                    //If the ray's tag is an enemy
-                    if(rayHit.collider.CompareTag("Enemy"))
+                    if (rayHit[x].collider != null)
                     {
-                        //Get and damage the enemy by our melee damage
-                        Rigidbody2D enemyRigid = rayHit.collider.GetComponent<Rigidbody2D>();
-                        EnemyHealth enemyHP = rayHit.collider.GetComponent<EnemyHealth>();
-                        enemyHP.damage(meleeDamage);
-                        //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
-                        rayHit = Physics2D.Raycast(rayHit.collider.transform.position, attack_vector, .5f, 1 << 10);
 
-                        if (rayHit.collider == null)
+                        debugger.Log("Player melee attack collided with " + rayHit[x].collider.name);
+                        //If the ray's tag is an enemy
+                        if (rayHit[x].collider.CompareTag("Enemy"))
                         {
-                            //Knockback effect of melee.
-                            enemyRigid.AddForce(attack_vector * 400);
+                            //Get and damage the enemy by our melee damage
+                            Rigidbody2D enemyRigid = rayHit[x].collider.GetComponent<Rigidbody2D>();
+                            EnemyHealth enemyHP = rayHit[x].collider.GetComponent<EnemyHealth>();
+                            enemyHP.damage(meleeDamage);
+                            //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
+                            rayHitWall = Physics2D.Raycast(rayHit[x].collider.transform.position, attack_vector, .2f, 1 << 10);
+
+                            //If we did not touch a wall
+                            if (rayHitWall.collider == null)
+                            {
+                                //Knockback effect of melee.
+                                enemyRigid.AddForce(attack_vector * 200);
+                            }
                         }
                     }
                 }
+                
                 //Handle our delays
                 StartCoroutine(delayMelee());
                 StartCoroutine(meleeCooldown());
