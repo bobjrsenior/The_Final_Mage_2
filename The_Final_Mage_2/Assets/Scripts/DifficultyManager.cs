@@ -89,15 +89,17 @@ public class DifficultyManager : MonoBehaviour {
         {
             EnemyHealth enemyHP = enemies[x].GetComponent<EnemyHealth>();
             EnemyAI enemyAI = enemies[x].GetComponent<EnemyAI>();
-
+            
             //Randomly generates enemy type.
             int type = Random.Range(0, 2);
             if (type == 0)
             {
+                enemies[x].rangedType = false;
                 enemies[x].meleeType = true;
             }
             else if (type == 1)
             {
+                enemies[x].meleeType = false;
                 enemies[x].rangedType = true;
             }
 
