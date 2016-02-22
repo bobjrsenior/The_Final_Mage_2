@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class PlayerAttack : MonoBehaviour {
 
     /// <summary>
@@ -48,6 +49,11 @@ public class PlayerAttack : MonoBehaviour {
     /// </summary>
     public bool isAttacking;
 
+    /// <summary>
+    /// Array to hold all of our sounds for the player so they can be accessed.
+    /// </summary>
+    public AudioClip[] audioClip;
+
 
     RaycastHit2D[] rayHit;
     RaycastHit2D rayHitWall;
@@ -85,6 +91,7 @@ public class PlayerAttack : MonoBehaviour {
                 anim.SetFloat("attackX", attack_vector.x);
                 anim.SetFloat("attackY", attack_vector.y);
                 isAttacking = true;
+                PlaySound(0);
 
                 if (attack_vector.x > 0)
                 {
@@ -187,6 +194,16 @@ public class PlayerAttack : MonoBehaviour {
             debugger.Log("Swapped to melee type.");
             StartCoroutine(swapCooldown());
         }
+    }
+
+    /// <summary>
+    /// Plays a sound from the array when given an integer.
+    /// </summary>
+    /// <param name="clip"></param>
+    void PlaySound(int clip)
+    {
+        GetComponent<AudioSource>().clip = audioClip[clip];
+        GetComponent<AudioSource>().Play();
     }
 
     /// <summary>
