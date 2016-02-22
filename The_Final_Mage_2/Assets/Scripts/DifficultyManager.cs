@@ -58,6 +58,16 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public float playerStandardRangedDam;
 
+    /// <summary>
+    /// Melee sprite
+    /// </summary>
+    public Sprite meleeType;
+
+    /// <summary>
+    /// Range sprite
+    /// </summary>
+    public Sprite rangeType;
+
 	// Use this for initialization
 	void Start () {
 
@@ -96,11 +106,13 @@ public class DifficultyManager : MonoBehaviour {
             {
                 enemies[x].rangedType = false;
                 enemies[x].meleeType = true;
+                enemies[x].GetComponent<SpriteRenderer>().sprite = meleeType;
             }
             else if (type == 1)
             {
                 enemies[x].meleeType = false;
                 enemies[x].rangedType = true;
+                enemies[x].GetComponent<SpriteRenderer>().sprite = rangeType;
             }
 
             //If the current enemy is a melee type

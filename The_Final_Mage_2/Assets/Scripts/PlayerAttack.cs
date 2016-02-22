@@ -120,14 +120,9 @@ public class PlayerAttack : MonoBehaviour {
                             EnemyHealth enemyHP = rayHit[x].collider.GetComponent<EnemyHealth>();
                             enemyHP.damage(meleeDamage);
                             //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
-                            rayHitWall = Physics2D.Raycast(rayHit[x].collider.transform.position, attack_vector, .2f, 1 << 10);
 
-                            //If we did not touch a wall
-                            if (rayHitWall.collider == null)
-                            {
-                                //Knockback effect of melee.
-                                enemyRigid.AddForce(attack_vector * 200);
-                            }
+                            enemyRigid.AddForce(attack_vector * 200);
+
                         }
                     }
                 }
