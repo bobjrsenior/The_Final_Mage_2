@@ -85,8 +85,9 @@ public class PlayerAttack : MonoBehaviour {
     {
         pattack = this;
     }
-	// Use this for initialization	void Start () {
-
+    
+    // Use this for initialization
+    void Start () {
         //Start in melee type
         meleeType = true;
         debugger = FindObjectOfType<DebugUtility>();
