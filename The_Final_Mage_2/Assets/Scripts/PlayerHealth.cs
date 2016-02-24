@@ -5,40 +5,40 @@ public class PlayerHealth : MonoBehaviour {
     /// <summary>
     /// The value that holds our current player health.
     /// </summary>
-    public float health;
+    public float health = 5.0f;
 
     /// <summary>
     /// The maximum health that we could attain.
     /// </summary>
-    public float maxHealth;
+    public float maxHealth = 5.0f;
 
     /// <summary>
     /// The maximum mana that we could attain
     /// </summary>
-    public float maxMana;
+    public float maxMana = 5.0f;
 
     /// <summary>
     /// The value that holds our current player mana.
     /// </summary>
-    public float mana;
+    public float man = 5.0f;
     /// <summary>
     /// A boolean that corresponds to whether the player is dead or not.
     /// </summary>
-    public bool isDead;
+    public bool isDead = false;
 
     /// <summary>
     /// True if we can be damaged, false if we cannot be damaged.
     /// </summary>
-    public bool canDamage;
+    public bool canDamage = true;
 
     /// <summary>
     /// How long do we delay before our player can be damaged again after being hit?
     /// </summary>
-    public float delayTime;
+    public float delayTime = 1.0f;
 
-    public float healthRegenTime;
+    public float healthRegenTime = 20.0f;
 
-    public bool regenCooldown;
+    public bool regenCooldown = false;
 
     DebugUtility debugger;
     private Animator anim;

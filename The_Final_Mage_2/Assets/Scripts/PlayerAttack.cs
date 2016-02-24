@@ -63,7 +63,16 @@ public class PlayerAttack : MonoBehaviour {
     DebugUtility debugger;
     Animator anim;
     PlayerMovement movement;
-	// Use this for initialization
+    // Use this for initialization
+
+
+    public static PlayerAttack pAttack;
+
+    void Awake()
+    {
+        pAttack = this;
+    }
+
 	void Start () {
 
         //Start in melee type

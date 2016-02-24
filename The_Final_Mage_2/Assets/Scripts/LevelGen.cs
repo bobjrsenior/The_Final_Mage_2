@@ -4,25 +4,35 @@ using System.Collections.Generic;
 public class LevelGen : MonoBehaviour {
 
     /// <summary>
-    /// The current level
+    /// References the levels game manager
     /// </summary>
-    private int level = 1;
+    public DifficultyManager manager;
 
     /// <summary>
-    /// The current difficulty
+    /// Prefab of the enemy object
     /// </summary>
-    private int difficulty = 1;
+    public GameObject enemyPrefab;
 
     /// <summary>
-    /// The distance between rooms
+    /// The player's prefab gameobject
     /// </summary>
-    private float roomDistance = 15.0f;
+    public GameObject playerPrefab;
+
+    /// <summary>
+    /// The camera's prefab gameobject
+    /// </summary>
+    public GameObject cameraPrefab;
 
     /// <summary>
     /// An array of all the room prefabs that can spawn
     /// TODO: Standardize list order
     /// </summary>
     public GameObject[] rooms;
+
+    /// <summary>
+    /// The distance between rooms
+    /// </summary>
+    private float roomDistance = 15.0f;
 
     /// <summary>
     /// Default room size limit
@@ -34,15 +44,15 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     private int curMaxSize;
 
-	// Use this for initialization
-	void Start () {
-        generateLevel();
+
+
+
+
+    // Use this for initialization
+    void Awake () {
+        
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     /// <summary>
     /// Generates a new level based on the difficulty and level number
@@ -50,7 +60,7 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     public void generateLevel()
     {
-        curMaxSize =(int) (defaultMaxSize + (defaultMaxSize * 0.5f * (difficulty * level)));
+        curMaxSize =(int) (defaultMaxSize + (defaultMaxSize * 0.5f * (manager.difficulty * manager.floor)));
         Dictionary<Vector2, Room> map = new Dictionary<Vector2, Room>();
         Room room1 = new Room();
         room1.setPosition(Vector2.zero);
@@ -63,12 +73,17 @@ public class LevelGen : MonoBehaviour {
                 room1.addDoor(e);
                 totalRooms = addNode(map, room1.position, e, totalRooms);
             }
-        }
-        if(totalRooms == 1)
+        }//Make sure there are atleast 2 rooms
+        if(totalRooms == 2)
         {
             room1.addDoor(0);
         }
-        spawnLevel(map, room1);
+        //Find which room the keykard is (will be revised)
+        int keyCardIndex = Random.Range(1, totalRooms);
+        //Generate the rooms
+        spawnLevel(map, room1, keyCardIndex);
+        //Create the camera
+        Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
     }
 
     /// <summary>
@@ -76,12 +91,28 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     /// <param name="map">Dictionary of every room on the map</param>
     /// <param name="room">The current room to spawn</param>
-    private void spawnLevel(Dictionary<Vector2, Room> map, Room room)
+    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, int keyCountDown)
     {
+        --keyCountDown;
+
         //Remove the current room from the map to avoid duplicate spawning
         map.Remove(room.position);
         //Create the rrom
         Instantiate(rooms[room.getPrefabIndex()], room.position, Quaternion.identity);
+        if (!room.position.Equals(Vector2.zero))
+        {
+            generateEnemies(room.position);
+        }
+        else
+        {
+            Instantiate(playerPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
+        }
+
+        if (keyCountDown == 0)
+        {
+            //This room has the elevator's keycard
+        }
+
         //Go through each door for the room
         for(int e = 0; e < 4; ++e)
         {
@@ -92,10 +123,12 @@ public class LevelGen : MonoBehaviour {
                 if (map.TryGetValue(dirToPos(room.position, e), out nextRoom))
                 {
                     //Spawn corresponding room
-                    spawnLevel(map, nextRoom);
+                    spawnLevel(map, nextRoom, keyCountDown);
+                    
                 }
             }
         }
+       
     }
 
     /// <summary>
@@ -150,17 +183,24 @@ public class LevelGen : MonoBehaviour {
             if (!room.doors[e])
             {
                 //Check to see if this room wants another door based on an algorithm
-                if(Random.Range(Mathf.Log(difficulty * level), 10.0f + (0.5f * doorCount)) > 5.0f)
+                if(Random.Range(Mathf.Log(manager.difficulty * manager.floor), 10.0f + (0.5f * doorCount)) > 5.0f)
                 {
-                    ++doorCount;
-                    //If it wants another door, create on and a corresponding room
-                    room.addDoor(e);
-                    totalRooms = addNode(map, room.position, e, totalRooms);
-
-                    //Check that the new room didn't make us reach the room limit
-                    if (totalRooms > curMaxSize)
+                    Room temp;
+                    //Make it harder to punch into existing rooms
+                    if (!map.TryGetValue(dirToPos(room.position, e), out temp) || Random.Range(0.0f, 10.0f) > 2.0f)
                     {
-                        return totalRooms;
+
+
+                        ++doorCount;
+                        //If it wants another door, create on and a corresponding room
+                        room.addDoor(e);
+                        totalRooms = addNode(map, room.position, e, totalRooms);
+                        
+                        //Check that the new room didn't make us reach the room limit
+                        if (totalRooms > curMaxSize)
+                        {
+                            return totalRooms;
+                        }
                     }
                 }
             }
@@ -228,6 +268,22 @@ public class LevelGen : MonoBehaviour {
         else
         {
             return 2;
+        }
+    }
+
+    /// <summary>
+    /// Spawns enemies in a specified room location
+    /// </summary>
+    /// <param name="roomPosition"Location of the rooms to spawn enemies in></param>
+    private void generateEnemies(Vector2 roomPosition)
+    {
+        //Determine number of enemies to spawn based on floor number and difficulty
+        int numEnemies = (int) (Random.Range(0.0f, 4.0f + (0.5f * (manager.floor + (manager.floor * 0.25f * manager.difficulty)))));
+
+        //Spawn enemies in random place in room
+        for(int e = 0; e < numEnemies; ++e)
+        {
+            Instantiate(enemyPrefab, new Vector2(roomPosition.x + Random.Range(0.2f, 5.8f), roomPosition.y + Random.Range(-5.8f, -0.2f)), Quaternion.identity);
         }
     }
 }

@@ -6,7 +6,7 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// Which floor have we reached?
     /// </summary>
-    public int floor;
+    public int floor = 1;
 
     /// <summary>
     /// True when we go to a new floor, false otherwise.
@@ -14,49 +14,54 @@ public class DifficultyManager : MonoBehaviour {
     public bool newFloor;
 
     /// <summary>
+    /// The difficulty of the current game
+    /// </summary>
+    public int difficulty = 1;
+
+    /// <summary>
     /// Our base standard melee health.
     /// </summary>
-    public float enemyStandardMeleeHP;
+    public float enemyStandardMeleeHP = 4.0f;
 
     /// <summary>
     /// Our base standard ranged health.
     /// </summary>
-    public float enemyStandardRangedHP;
+    public float enemyStandardRangedHP = 5.0f;
 
     /// <summary>
     /// Our base standard melee damage
     /// </summary>
-    public float enemyStandardMeleeDamage;
+    public float enemyStandardMeleeDamage = 1.0f;
 
     /// <summary>
     /// Our base standard range damage
     /// </summary>
-    public float enemyStandardRangeDamage;
+    public float enemyStandardRangeDamage = 1.0f;
 
     /// <summary>
     /// Have we set our stats for the enemies on this floor?
     /// </summary>
-    public bool statsSet;
+    public bool statsSet = false;
 
     /// <summary>
     /// The players standard health
     /// </summary>
-    public float playerStandardHealth;
+    public float playerStandardHealth = 5.0f;
 
     /// <summary>
     /// The players standard max health
     /// </summary>
-    public float playerStandardMaxHealth;
+    public float playerStandardMaxHealth = 5.0f;
 
     /// <summary>
     /// The players standard melee damage.
     /// </summary>
-    public float playerStandardMeleeDam;
+    public float playerStandardMeleeDam = 0.5f;
 
     /// <summary>
     /// The players standard ranged damage.
     /// </summary>
-    public float playerStandardRangedDam;
+    public float playerStandardRangedDam = 1.0f;
 
     /// <summary>
     /// Melee sprite
@@ -68,9 +73,14 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public Sprite rangeType;
 
+    void Awake()
+    {
+       
+    }
+
 	// Use this for initialization
 	void Start () {
-
+        FindObjectOfType<LevelGen>().generateLevel();
         //Start on floor 1.
         floor = 1;
         newFloor = true;
@@ -141,7 +151,7 @@ public class DifficultyManager : MonoBehaviour {
     {
         PlayerHealth playerHP = FindObjectOfType<PlayerHealth>();
         PlayerAttack playerAttack = FindObjectOfType<PlayerAttack>();
-
+        
         playerHP.maxHealth = playerStandardMaxHealth;
         playerHP.health = playerStandardHealth;
         playerAttack.meleeDamage = playerStandardMeleeDam;
