@@ -76,6 +76,8 @@ public class PlayerAttack : MonoBehaviour {
     Animator anim;
     PlayerMovement movement;
 
+    private PlayerHealth pHealth;
+
     /// <summary>
     /// A playerattack object we can reference anywhere
     /// </summary>
@@ -90,6 +92,7 @@ public class PlayerAttack : MonoBehaviour {
     void Start () { 
         //Start in melee type
         meleeType = true;
+        pHealth = FindObjectOfType<PlayerHealth>();
         debugger = FindObjectOfType<DebugUtility>();
         canMelee = true;
         canRange = true;
@@ -171,10 +174,11 @@ public class PlayerAttack : MonoBehaviour {
                     transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
                 }
 
-                if (canRange == true)
+                if (canRange == true && pHealth.mana >= pHealth.manaCost)
                 {
                     StartCoroutine(delayRange());
                     shoot(attack_vector);
+                    pHealth.mana = pHealth.mana - pHealth.manaCost;
                 }
 
             }
@@ -212,6 +216,7 @@ public class PlayerAttack : MonoBehaviour {
         canRange = false;
         yield return new WaitForSeconds(rangeDelay);
         canRange = true;
+        isAttacking = false;
     }
 
     /// <summary>

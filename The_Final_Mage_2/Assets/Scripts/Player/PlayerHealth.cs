@@ -15,12 +15,12 @@ public class PlayerHealth : MonoBehaviour {
     /// <summary>
     /// The maximum mana that we could attain
     /// </summary>
-    public float maxMana = 5.0f;
+    public float maxMana = 100.0f;
 
     /// <summary>
     /// The value that holds our current player mana.
     /// </summary>
-    public float man = 5.0f;
+    public float mana = 100.0f;
     /// <summary>
     /// A boolean that corresponds to whether the player is dead or not.
     /// </summary>
@@ -38,8 +38,15 @@ public class PlayerHealth : MonoBehaviour {
 
     public float healthRegenTime = 20.0f;
 
-    public bool regenCooldown = false;
+    public float manaRegenTime = 5f;
 
+    public float manaRegenAmount = 5f;
+
+    public float manaCost = 5f;
+
+    public bool healthRegenCooldown = false;
+
+    public bool manaRegenCooldown = false;
     DebugUtility debugger;
     private Animator anim;
     private PlayerMovement playerMovement;
@@ -59,9 +66,16 @@ public class PlayerHealth : MonoBehaviour {
 	void Update () {
 
         //Health regen over time.
-        if (regenCooldown == false)
+        if (healthRegenCooldown == false)
         {
             StartCoroutine(healthRegen());
+        }
+        if (manaRegenCooldown == false)
+        {
+            if (mana < maxMana)
+            {
+                StartCoroutine(manaRegen());
+            }
         }
         if (health == 0)
         {
@@ -106,6 +120,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         GUI.color = Color.yellow;
         GUI.Box(new Rect(0, 20, 80, 20), "Health: " + health);
+        GUI.Box(new Rect(0, 60, 80, 20), "Mana: " + mana);
     }
     /// <summary>
     /// damages player by amount.
@@ -162,14 +177,26 @@ public class PlayerHealth : MonoBehaviour {
     private IEnumerator healthRegen()
     {
         debugger.Log("Starting health regen now.");
-        regenCooldown = true;
+        healthRegenCooldown = true;
         yield return new WaitForSeconds(healthRegenTime);
         if (health != 0)
         {
             heal(1);
         }
         debugger.Log("Health regeneration complete.");
-        regenCooldown = false;
+        healthRegenCooldown = false;
         
+    }
+
+    public IEnumerator manaRegen()
+    {
+        print("Mana cooldown now.");
+        manaRegenCooldown = true;
+        yield return new WaitForSeconds(manaRegenTime);
+        if (mana < maxMana)
+        {
+            mana = mana + manaRegenAmount;
+        }
+        manaRegenCooldown = false;
     }
 }
