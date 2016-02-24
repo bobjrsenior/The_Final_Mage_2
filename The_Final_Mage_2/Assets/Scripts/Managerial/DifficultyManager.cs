@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DifficultyManager : MonoBehaviour {
 
@@ -80,12 +81,17 @@ public class DifficultyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        FindObjectOfType<LevelGen>().generateLevel();
+        //Prevents an attempt at level generation in the test scene.
+        if (SceneManager.GetActiveScene().name.Equals("levelGen"))
+        {
+            FindObjectOfType<LevelGen>().generateLevel();
+        }
         //Start on floor 1.
         floor = 1;
         newFloor = true;
         setPlayerStats();
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

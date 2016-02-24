@@ -87,7 +87,7 @@ public class PlayerAttack : MonoBehaviour {
     }
 	// Use this for initialization	void Start () {
 
-    void start () { 
+    void Start () { 
         //Start in melee type
         meleeType = true;
         debugger = FindObjectOfType<DebugUtility>();
