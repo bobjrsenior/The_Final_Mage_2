@@ -8,7 +8,10 @@ public class PlayerAttack : MonoBehaviour {
     /// The length of time in seconds we will delay before we can use another melee attack.
     /// </summary>
     public float meleeDelay;
-
+    /// <summary>
+    /// The length of time in seconds we will delay before we can use another range attack.
+    /// </summary>
+    public float rangeDelay;
     /// <summary>
     /// the cooldown for melee attacks
     /// </summary>
@@ -17,7 +20,10 @@ public class PlayerAttack : MonoBehaviour {
     /// Whether or not we can melee attack.
     /// </summary>
     public bool canMelee;
-
+    /// <summary>
+    /// Whether or not we can range attack
+    /// </summary>
+    public bool canRange;
     /// <summary>
     /// True if we are melee type, false otherwise
     /// </summary>
@@ -45,6 +51,11 @@ public class PlayerAttack : MonoBehaviour {
     public float rangeDamage;
 
     /// <summary>
+    /// How fast does the ranged attack move?
+    /// </summary>
+    public float rangeSpeed;
+
+    /// <summary>
     /// Whether or not we are attacking.
     /// </summary>
     public bool isAttacking;
@@ -54,6 +65,7 @@ public class PlayerAttack : MonoBehaviour {
     /// </summary>
     public AudioClip[] audioClip;
 
+    public GameObject rangeProjectile;
 
     RaycastHit2D[] rayHit;
     RaycastHit2D rayHitWall;
@@ -63,6 +75,16 @@ public class PlayerAttack : MonoBehaviour {
     DebugUtility debugger;
     Animator anim;
     PlayerMovement movement;
+
+    /// <summary>
+    /// A playerattack object we can reference anywhere
+    /// </summary>
+    public static PlayerAttack pattack;
+
+    void Awake()
+    {
+        pattack = this;
+    }
 	// Use this for initialization
 	void Start () {
 
@@ -70,6 +92,7 @@ public class PlayerAttack : MonoBehaviour {
         meleeType = true;
         debugger = FindObjectOfType<DebugUtility>();
         canMelee = true;
+        canRange = true;
         anim = transform.GetComponent<Animator>();
         movement = transform.GetComponent<PlayerMovement>();
 	}
@@ -132,6 +155,31 @@ public class PlayerAttack : MonoBehaviour {
                 StartCoroutine(meleeCooldown());
             }
         }
+        else if (canRange == true && rangeType == true)
+        {
+            Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
+            if (attack_vector != Vector2.zero)
+            {
+                isAttacking = true;
+                if (attack_vector.x > 0)
+                {
+                    //NOTE: THESE VALUES ARE ONLY DIFFERENT TO MAINTAIN THE SIZE OF THE TEST SPRITE. IN THE FINAL PRODUCT, THEY SHOULD ALL WORK AT 1F.
+                    transform.localScale = new Vector3(2.33f, 2.27f, 1f);
+                }
+                else if (attack_vector.x < 0)//Handles flipping player sprites to face left
+                {
+                    transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
+                }
+
+                if (canRange == true)
+                {
+                    StartCoroutine(delayRange());
+                    shoot(attack_vector);
+                }
+
+            }
+                
+        }
         
 	}
     //TEMPORARY FOR DISPLAYING TYPE
@@ -157,6 +205,13 @@ public class PlayerAttack : MonoBehaviour {
         canMelee = false;
         yield return new WaitForSeconds(meleeDelay);
         canMelee = true;
+    }
+
+    IEnumerator delayRange()
+    {
+        canRange = false;
+        yield return new WaitForSeconds(rangeDelay);
+        canRange = true;
     }
 
     /// <summary>
@@ -211,5 +266,11 @@ public class PlayerAttack : MonoBehaviour {
         yield return new WaitForSeconds(swapCooldownTime);
         swapped = false;
         debugger.Log("Swap enabled again.");
+    }
+
+    private void shoot(Vector2 attack_vector)
+    {
+        GameObject rAttack = Instantiate(rangeProjectile, (Vector2)transform.position, Quaternion.identity) as GameObject;
+        rAttack.GetComponent<Rigidbody2D>().velocity = attack_vector * rangeSpeed * Time.fixedDeltaTime;
     }
 }
