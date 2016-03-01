@@ -87,51 +87,6 @@ public class LevelGen : MonoBehaviour {
     }
 
     /// <summary>
-    /// Take a map of a level and a current room, then, recursivly spawns the level
-    /// </summary>
-    /// <param name="map">Dictionary of every room on the map</param>
-    /// <param name="room">The current room to spawn</param>
-    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, int keyCountDown)
-    {
-        --keyCountDown;
-
-        //Remove the current room from the map to avoid duplicate spawning
-        map.Remove(room.position);
-        //Create the rrom
-        Instantiate(rooms[room.getPrefabIndex()], room.position, Quaternion.identity);
-        if (!room.position.Equals(Vector2.zero))
-        {
-            generateEnemies(room.position);
-        }
-        else
-        {
-            Instantiate(playerPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
-        }
-
-        if (keyCountDown == 0)
-        {
-            //This room has the elevator's keycard
-        }
-
-        //Go through each door for the room
-        for(int e = 0; e < 4; ++e)
-        {
-            //If there is a door in that direction and the corresponding room hasn't already been spawned
-            if (room.doors[e])
-            {
-                Room nextRoom;
-                if (map.TryGetValue(dirToPos(room.position, e), out nextRoom))
-                {
-                    //Spawn corresponding room
-                    spawnLevel(map, nextRoom, keyCountDown);
-                    
-                }
-            }
-        }
-       
-    }
-
-    /// <summary>
     /// Takes a map of the level and adds a new room based on a door from an old room
     /// Then sees if the new room wants any doors and spawns those rooms as well
     /// </summary>
@@ -211,6 +166,51 @@ public class LevelGen : MonoBehaviour {
         }
 
         return totalRooms;
+    }
+
+    /// <summary>
+    /// Take a map of a level and a current room, then, recursivly spawns the level
+    /// </summary>
+    /// <param name="map">Dictionary of every room on the map</param>
+    /// <param name="room">The current room to spawn</param>
+    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, int keyCountDown)
+    {
+        --keyCountDown;
+
+        //Remove the current room from the map to avoid duplicate spawning
+        map.Remove(room.position);
+        //Create the rrom
+        Instantiate(rooms[room.getPrefabIndex()], room.position, Quaternion.identity);
+        if (!room.position.Equals(Vector2.zero))
+        {
+            generateEnemies(room.position);
+        }
+        else
+        {
+            Instantiate(playerPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
+        }
+
+        if (keyCountDown == 0)
+        {
+            //This room has the elevator's keycard
+        }
+
+        //Go through each door for the room
+        for (int e = 0; e < 4; ++e)
+        {
+            //If there is a door in that direction and the corresponding room hasn't already been spawned
+            if (room.doors[e])
+            {
+                Room nextRoom;
+                if (map.TryGetValue(dirToPos(room.position, e), out nextRoom))
+                {
+                    //Spawn corresponding room
+                    spawnLevel(map, nextRoom, keyCountDown);
+
+                }
+            }
+        }
+
     }
 
     /// <summary>
@@ -326,10 +326,126 @@ public class Room
     /// <summary>
     /// Converts this room into it's correpsonding index in the room prefab array
     /// </summary>
-    /// <returns>The index that corresponds to gthis room in the room prefab array</returns>
+    /// <returns>The index that corresponds to this room in the room prefab array</returns>
     public int getPrefabIndex()
     {
-        //Placeholder
+        //If Up door
+        if (doors[0])
+        {
+            //If up and down door
+            if (doors[1])
+            {
+                //If up, down, and left door
+                if (doors[2])
+                {   
+                    //If up, down, left and right door
+                    if (doors[3])
+                    {
+                        return 14;
+                    }//If up, down and left door only
+                    else
+                    {
+                        return 13;
+                    }
+                }
+                else
+                {
+                    //If up, down, and right door only
+                    if (doors[3])
+                    {
+                        return 11;
+                    }//If up and down door only
+                    else
+                    {
+                        return 9;
+                    }
+                }
+            }
+            else
+            {
+                //If up and left door
+                if (doors[2])
+                {
+                    //If up, left, and right door only
+                    if (doors[3])
+                    {
+                        return 10;
+                    }//If up and left door only
+                    else
+                    {
+                        return 4;
+                    }
+                }
+                else
+                {
+                    //If up and right door only
+                    if (doors[3])
+                    {
+                        return 5;
+                    }//If up door only
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+        else
+        {
+            //If down door
+            if (doors[1])
+            {
+                //If down and left door
+                if (doors[2])
+                {
+                    //If down, left, and right door
+                    if (doors[3])
+                    {
+                        return 12;
+                    }//If down and left door only
+                    else
+                    {
+                        return 7;
+                    }
+                }
+                else
+                {
+                    //If down and right door only
+                    if (doors[3])
+                    {
+                        return 6;
+                    }//If down door only
+                    else
+                    {
+                        return 2;
+                    }
+                }
+            }
+            else
+            {
+                //If left door
+                if (doors[2])
+                {
+                    //If left and right door only
+                    if (doors[3])
+                    {
+                        return 8;
+                    }//If left door only
+                    else
+                    {
+                        return 3;
+                    }
+                }
+                else
+                {
+                    //If right door only
+                    if (doors[3])
+                    {
+                        return 1;
+                    }
+                }
+            }
+        }
         return 0;
     }
 }
