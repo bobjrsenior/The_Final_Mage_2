@@ -17,8 +17,6 @@ public class CameraScript : MonoBehaviour {
 
         cam = GetComponent<Camera>();
 
-        //Sets the camera's size to the desired size for our game.
-        cam.orthographicSize = cam.orthographicSize = (Screen.height / 85f);
         //Ensure that our camera warps to its initial position when it is first created.
         transform.position = new Vector3(3.0f, -3.0f, -10);
 
