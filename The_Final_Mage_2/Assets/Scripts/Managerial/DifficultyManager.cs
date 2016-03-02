@@ -74,6 +74,21 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public Sprite rangeType;
 
+    /// <summary>
+    /// The speed of an enemy ranged attack.
+    /// </summary>
+    public float enemyRangeSpeed;
+
+    /// <summary>
+    /// How long is the delay between enemy ranged attacks?
+    /// </summary>
+    public float enemyShootWaitTime;
+
+    /// <summary>
+    /// The ranged projectile prefab enemies shoot.
+    /// </summary>
+    public GameObject enemyRangeProjectile;
+
     void Awake()
     {
        
@@ -147,6 +162,9 @@ public class DifficultyManager : MonoBehaviour {
                 enemyHP.health = enemyStandardRangedHP;
 
                 enemyAI.rangeDamage = enemyStandardRangeDamage;
+                enemyAI.rangeSpeed = enemyRangeSpeed;
+                enemyAI.shootWaitTime = enemyShootWaitTime;
+                enemyAI.rangeProjectile = enemyRangeProjectile;
             }
 
         }

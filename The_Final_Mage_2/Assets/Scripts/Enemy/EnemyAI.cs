@@ -43,6 +43,23 @@ public class EnemyAI : MonoBehaviour {
     /// </summary>
     public float rangeDamage;
 
+    /// <summary>
+    /// Can the enemy shoot?
+    /// </summary>
+    public bool canShoot;
+
+    /// <summary>
+    /// How long do we wait before firing shots at the player?
+    /// </summary>
+    public float shootWaitTime;
+
+    /// <summary>
+    /// The speed of a ranged attack
+    /// </summary>
+    public float rangeSpeed;
+
+    public GameObject rangeProjectile;
+
     PlayerHealth playerHP;
     DebugUtility debugger;
 
@@ -107,6 +124,10 @@ public class EnemyAI : MonoBehaviour {
         //If we are in the players detection zone(and therefore, allowed to move)
         if (self.inRadius == true)
         {
+            if (canShoot == false)
+            {
+                StartCoroutine(timeToShoot());
+            }
             //Get the direction to the player
             Vector2 direction = player.transform.position - transform.position;
 
@@ -134,6 +155,22 @@ public class EnemyAI : MonoBehaviour {
                 selfRigid.MovePosition(selfRigid.position - direction * enemySpeed * Time.fixedDeltaTime);
             }
         }
+    }
+
+    private IEnumerator timeToShoot()
+    {
+        canShoot = true;
+        yield return new WaitForSeconds(shootWaitTime);
+        Shoot();
+        canShoot = false;
+    }
+
+    private void Shoot()
+    {
+        canShoot = false;
+        Vector2 attack_vector = ((Vector3)player.position - transform.position).normalized;
+        GameObject rAttack = Instantiate(rangeProjectile, (Vector2)transform.position, Quaternion.identity) as GameObject;
+        rAttack.GetComponent<Rigidbody2D>().velocity = attack_vector * rangeSpeed * Time.fixedDeltaTime;
     }
 
     void OnTriggerStay2D(Collider2D other)
