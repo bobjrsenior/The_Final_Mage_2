@@ -70,7 +70,6 @@ public class LevelGen : MonoBehaviour {
     void Awake () {
         
 	}
-	
 
     /// <summary>
     /// Generates a new level based on the difficulty and level number
@@ -78,112 +77,130 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     public void generateLevel()
     {
-        curMaxSize =(int) (defaultMaxSize + (defaultMaxSize * 0.5f * (manager.difficulty * manager.floor)));
+        //Figure out the max room count for this floor
+        curMaxSize = (int)(defaultMaxSize + (defaultMaxSize * 0.5f * (manager.difficulty * manager.floor)));
+
+        //Create a map for the floor
         Dictionary<Vector2, Room> map = new Dictionary<Vector2, Room>();
-        Room room1 = new Room();
-        room1.setPosition(Vector2.zero);
-        map.Add(room1.position, room1);
-        int totalRooms = 1;
-        for(int e = 0; e < 4; ++e)
-        {
-            if(Random.Range(0.0f, 10.0f) > 5.0f)
-            {
-                room1.addDoor(e);
-                totalRooms = addNode(map, room1.position, e, totalRooms);
-            }
-        }//Make sure there are atleast 2 rooms
-        if(totalRooms == 2)
-        {
-            room1.addDoor(0);
-        }
-        //Find which room the keykard is (will be revised)
-        int keyCardIndex = Random.Range(1, totalRooms);
-        //Generate the rooms
-        spawnLevel(map, room1, keyCardIndex);
+
+        //Queue of rooms that want to be added to the floor
+        List<Room> toBeGenerated = new List<Room>();
+
+        //Create the first room, set it's position and add it to the queue
+        Room firstRoom = new Room();
+        firstRoom.position = Vector2.zero;
+        toBeGenerated.Add(firstRoom);
+
+        //Start generating the rooms
+        addNode(map, toBeGenerated, 1);
+
+        //Spawn the rooms
+        spawnLevel(map, firstRoom, 5);
+
         //Create the camera
         Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
+
     }
 
     /// <summary>
-    /// Takes a map of the level and adds a new room based on a door from an old room
-    /// Then sees if the new room wants any doors and spawns those rooms as well
+    /// Generate the level recursively using breadth first generate
     /// </summary>
-    /// <param name="map">Dictionary of every room on the map</param>
-    /// <param name="oldPos">Position of the adjacent room spawning this one</param>
-    /// <param name="direction">Which door of the adjacent room points to this one</param>
-    /// <param name="totalRooms">The cuurent number of rooms on the map (used to prevent overspawn)</param>
-    /// <returns>The current total number of rooms on the map</returns>
-    private int addNode(Dictionary<Vector2, Room> map, Vector2 oldPos, int direction, int totalRooms)
+    /// <param name="map">Map of the entire level</param>
+    /// <param name="toBeGenerated">List (Queue) of rooms that are waiting to be added</param>
+    /// <param name="roomCount">Current number of rooms</param>
+    private void addNode(Dictionary<Vector2, Room> map, List<Room> toBeGenerated, int roomCount)
     {
-       
-        Room room;
-        //Get the new position
-        Vector2 position = dirToPos(oldPos, direction);
-
-        //If this room already exists, get it
-        if(!map.TryGetValue(position, out room))
+        //If no rooms want to be added, then we are done
+        if(toBeGenerated.Count == 0)
         {
-            //Otherwise, create a new one and add it to the map
-            ++totalRooms;
-            room = new Room();
-            room.setPosition(position);
-            map.Add(room.position, room);
+            return;
         }
+
+        //Grab to top room and remove it from toBeGenerated
+        Room current = toBeGenerated[0];
+        toBeGenerated.RemoveAt(0);
+
+        //If the room is already in the map
+        Room inMap;
+        if (map.TryGetValue(current.position, out inMap))
+        {
+            //Give it any new doors
+            for (int e = 0; e < current.doors.Length; ++e)
+            {
+                if (current.doors[e] && !inMap.doors[e])
+                {
+                    inMap.addDoor(e);
+                }
+            }
+        }//If the room isn't already in the map, we need to generate it
         else
         {
-            //Add the door to the adjacent room creating this one
-            room.addDoor(oppositeDirection(direction));
+            //Add it to the map
+            map.Add(current.position, current);
 
-            //If the room already exists, then we have already checke
-            return totalRooms;
-        }
+            //How many doors this room has
+            int doorCount = 0;
 
-        //Add the door to the adjacent room creating this one
-        room.addDoor(oppositeDirection(direction));
-        //Check if we are at the room limit
-        if(totalRooms > curMaxSize)
-        {
-            return totalRooms;
-        }
-
-        //How many doors this room has
-        int doorCount = 0;
-
-        //Go through each door for the room
-        for (int e = 0; e < 4; ++e)
-        {
-            //If a door here does not already exist
-            if (!room.doors[e])
+            //Buffs the chance of getting new rooms
+            float buff = 0;
+            //Buff the first room to make a spiderweb instead of a pole
+            if(roomCount == 0)
             {
-                //Check to see if this room wants another door based on an algorithm
-                if(Random.Range(Mathf.Log(manager.difficulty * manager.floor), 10.0f + (0.5f * doorCount)) > 5.0f)
+                buff = 0.5f;
+            }
+            //Go through each door for the room
+            for (int e = 0; e < 4; ++e)
+            {
+                //If we are at the max room count, break
+                if (roomCount == curMaxSize)
                 {
-                    Room temp;
-                    //Make it harder to punch into existing rooms
-                    if (!map.TryGetValue(dirToPos(room.position, e), out temp) || Random.Range(0.0f, 10.0f) > 2.0f)
+                    break;
+                }
+                //If a door here does not already exist
+                if (!current.doors[e])
+                {
+
+                    //Check to see if this room wants another door based on an algorithm
+                    if (Random.Range(Mathf.Log(manager.difficulty * manager.floor) / 10.0f + buff, 10.0f + Mathf.Log(manager.difficulty * manager.floor) + (0.5f * doorCount)) > 5.0f)
                     {
-
-
-                        ++doorCount;
-                        //If it wants another door, create on and a corresponding room
-                        room.addDoor(e);
-                        totalRooms = addNode(map, room.position, e, totalRooms);
-                        
-                        //Check that the new room didn't make us reach the room limit
-                        if (totalRooms > curMaxSize)
+                        Room temp;
+                        //Make it harder to punch into existing rooms
+                        if (!map.TryGetValue(dirToPos(current.position, e), out temp) || Random.Range(0.0f, 10.0f) > 2.0f)
                         {
-                            return totalRooms;
+                            //If the room in the given direction does exist, connect them
+                            if (temp != null)
+                            {
+                                temp.addDoor(oppositeDirection(e));
+                                current.addDoor(e);
+                            }//If the room in the given direction doesn't exist
+                            else if(roomCount < curMaxSize)
+                            {
+                                //Increment room count
+                                ++roomCount;
+                                
+                                //Create the new room and connect them
+                                Room newRoom = new Room();
+                                newRoom.position = dirToPos(current.position, e);
+                                newRoom.addDoor(oppositeDirection(e));
+                                current.addDoor(e);
+
+                                //Add the new room to the queue
+                                toBeGenerated.Add(newRoom);
+
+                                //If we are at the max room count, break
+                                if (roomCount == curMaxSize)
+                                {
+                                    break;
+                                }
+                            }
+
                         }
                     }
                 }
             }
-            else
-            {
-                ++doorCount;
-            }
         }
-
-        return totalRooms;
+        //Add the next room
+        addNode(map, toBeGenerated, roomCount);
     }
 
     /// <summary>
