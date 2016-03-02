@@ -45,7 +45,25 @@ public class LevelGen : MonoBehaviour {
     private int curMaxSize;
 
 
+    /// <summary>
+    /// Corresponds to the up direction in level generation
+    /// </summary>
+    const int UP = 0;
 
+    /// <summary>
+    /// Corresponds to the down direction in level generation
+    /// </summary>
+    const int DOWN = 1;
+
+    /// <summary>
+    /// Corresponds to the left direction in level generation
+    /// </summary>
+    const int LEFT = 2;
+
+    /// <summary>
+    /// Corresponds to the right direction in level generation
+    /// </summary>
+    const int RIGHT = 3;
 
 
     // Use this for initialization
@@ -221,18 +239,18 @@ public class LevelGen : MonoBehaviour {
     /// <returns>The new position</returns>
     private Vector2 dirToPos(Vector2 oldPos, int direction)
     {
-        if(direction == 0)
+        if(direction == UP)
         {
             oldPos.y += roomDistance;
         }
-        else if(direction == 1)
+        else if(direction == DOWN)
         {
             oldPos.y -= roomDistance;
         }
-        else if(direction == 2)
+        else if(direction == LEFT)
         {
             oldPos.x -= roomDistance;
-        }
+        }//RIGHT
         else
         {
             oldPos.x += roomDistance;
@@ -247,27 +265,22 @@ public class LevelGen : MonoBehaviour {
     /// <returns>The flipped directopm</returns>
     private int oppositeDirection(int direction)
     {
-        //Directions:
-        //0: Up
-        //1: Down
-        //2: Left
-        //3: Right
 
-        if (direction == 0)
+        if (direction == UP)
         {
-            return 1;
+            return DOWN;
         }
-        else if (direction == 1)
+        else if (direction == DOWN)
         {
-            return 0;
+            return UP;
         }
-        else if (direction == 2)
+        else if (direction == LEFT)
         {
-            return 3;
-        }
+            return RIGHT;
+        }//RIGHT
         else
         {
-            return 2;
+            return LEFT;
         }
     }
 
