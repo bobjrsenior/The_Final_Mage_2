@@ -157,14 +157,22 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// How long until the AI will shoot?
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator timeToShoot()
     {
         canShoot = true;
-        yield return new WaitForSeconds(shootWaitTime);
+        //Randomizes our wait time by subtracting the wait time by a random number between -2 to 0.
+        yield return new WaitForSeconds(shootWaitTime - (float)Random.Range(-2, 1));
         Shoot();
         canShoot = false;
     }
 
+    /// <summary>
+    /// The AI shoot function.
+    /// </summary>
     private void Shoot()
     {
         canShoot = false;
