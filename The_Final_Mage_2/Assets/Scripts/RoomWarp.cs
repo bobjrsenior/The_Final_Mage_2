@@ -3,14 +3,6 @@ using System.Collections;
 
 public class RoomWarp : MonoBehaviour
 {
-    /// <summary>
-    /// The target we want the player to warp to.
-    /// </summary>
-    public Transform warpTarget;
-    /// <summary>
-    /// The target we want the camera to warp to.
-    /// </summary>
-    public Transform cameraTarget;
 
     public void OnTriggerEnter2D(Collider2D other)//When a 2d collider enters our trigger zone
     {
@@ -18,9 +10,29 @@ public class RoomWarp : MonoBehaviour
         {
             if (other.isTrigger == false)//If the collider is not a trigger (Or, in simpler terms, if we are detecting player collision and not the radius that governs whether enemies can move or not)
             {
-                other.gameObject.transform.position = warpTarget.transform.position;//Moves the player to our warp target
-                Camera.main.transform.position = new Vector3(cameraTarget.position.x, cameraTarget.position.y, -10); //Moves the camera to the camera target. We add the -10 to the Z axis to move the camera back from the game field in the 3d view. 
 
+
+                //Top door
+                if(this.CompareTag("Up_Exit"))
+                {
+                    other.transform.Translate(0.0f, 15.0f - 5.0f, 0.0f);
+                    Camera.main.transform.Translate(0.0f, 15.0f, 0.0f);
+                }//Bottom door
+                else if(this.CompareTag("Down_Exit"))
+                {
+                    other.transform.Translate(0.0f, -15.0f + 5.0f, 0.0f);
+                    Camera.main.transform.Translate(0.0f, -15.0f, 0.0f);
+                }//Right door
+                else if(this.CompareTag("Left_Exit"))
+                {
+                    other.transform.Translate(-15.0f + 5.0f, 0.0f, 0.0f);
+                    Camera.main.transform.Translate(-15.0f, 0.0f, 0.0f);
+                }//Left door
+                else
+                {
+                    other.transform.Translate(15.0f - 5.0f, 0.0f, 0.0f);
+                    Camera.main.transform.Translate(15.0f, 0.0f, 0.0f);
+                }
             }
         }
     }
