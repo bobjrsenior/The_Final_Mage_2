@@ -144,9 +144,9 @@ public class LevelGen : MonoBehaviour {
             //Buffs the chance of getting new rooms
             float buff = 0;
             //Buff the first room to make a spiderweb instead of a pole
-            if(roomCount == 0)
+            if(roomCount == 1)
             {
-                buff = 0.5f;
+                buff = 3.0f;
             }
             //Go through each door for the room
             for (int e = 0; e < 4; ++e)
@@ -161,7 +161,7 @@ public class LevelGen : MonoBehaviour {
                 {
 
                     //Check to see if this room wants another door based on an algorithm
-                    if (Random.Range(Mathf.Log(manager.difficulty * manager.floor) / 10.0f + buff, 10.0f + Mathf.Log(manager.difficulty * manager.floor) + (0.5f * doorCount)) > 5.0f)
+                    if (Random.Range(Mathf.Log(manager.difficulty * manager.floor) + buff, 10.0f + Mathf.Log(manager.difficulty * manager.floor) + (0.5f * doorCount)) > 5.0f)
                     {
                         Room temp;
                         //Make it harder to punch into existing rooms
