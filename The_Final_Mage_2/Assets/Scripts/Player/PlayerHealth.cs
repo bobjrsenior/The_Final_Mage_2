@@ -47,13 +47,17 @@ public class PlayerHealth : MonoBehaviour {
     public bool healthRegenCooldown = false;
 
     public bool manaRegenCooldown = false;
-    DebugUtility debugger;
     private Animator anim;
+
+    public static PlayerHealth pHealth;
     private PlayerMovement playerMovement;
     // Use this for initialization
+    void Awake()
+    {
+        pHealth = this;
+    }
     void Start () {
 
-        debugger = FindObjectOfType<DebugUtility>();
         //Always want to start with the player alive
         isDead = false;
         //Always want to start where we can be damaged.
@@ -176,14 +180,12 @@ public class PlayerHealth : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator healthRegen()
     {
-        debugger.Log("Starting health regen now.");
         healthRegenCooldown = true;
         yield return new WaitForSeconds(healthRegenTime);
         if (health != 0)
         {
             heal(1);
         }
-        debugger.Log("Health regeneration complete.");
         healthRegenCooldown = false;
         
     }

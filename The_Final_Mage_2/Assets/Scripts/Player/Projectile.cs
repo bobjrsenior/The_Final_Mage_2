@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyHealth>().damage(PlayerAttack.pattack.rangeDamage);
+            other.gameObject.GetComponent<EnemyHealth>().damage(PlayerAttack.pAttack.rangeDamage);
             Destroy(transform.gameObject);
         }
         else if (other.gameObject.CompareTag("Walls"))

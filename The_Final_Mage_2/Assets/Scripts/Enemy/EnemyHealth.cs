@@ -18,15 +18,15 @@ public class EnemyHealth : MonoBehaviour {
     /// </summary>
     public bool isDead;
 
-    DifficultyManager difficulty;
+    Enemy self;
+
     private EnemyAI enemyAI;
     // Use this for initialization
     void Start()
     {
-
         //Always want to start with the enemy alive
-        difficulty = FindObjectOfType<DifficultyManager>();
         isDead = false;
+        self = transform.GetComponent<Enemy>();
         enemyAI = transform.GetComponent<EnemyAI>();
     }
 
@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour {
     void Update()
     {
         //Only if we have finished setting the enemy stats do we want an enemy to take damage.
-        if (difficulty.statsSet == true)
+        if (DifficultyManager.dManager.statsSet == true)
         {
             //If our health ever hits 0
             if (health == 0)
@@ -92,20 +92,16 @@ public class EnemyHealth : MonoBehaviour {
 
     private void scoreEvent()
     {
-        Scoring score = FindObjectOfType<Scoring>();
-        Enemy self = transform.GetComponent<Enemy>();
-        DifficultyManager difficulty = FindObjectOfType<DifficultyManager>();
-
         if (self.meleeType == true)
         {
             //Score bonus increases with additional floors reached. Should be 1 for the first floor, 2 for floors 2 and 3, and 3 for floor 4.
-            int bonusModifier = (score.meleeScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2));
-            score.score = score.score + bonusModifier;
+            int bonusModifier = (Scoring.scoreKeeper.meleeScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2));
+            Scoring.scoreKeeper.score += bonusModifier;
         }
         else if (self.rangedType == true)
         {
-            int bonusModifier = (score.rangedScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2));
-            score.score = score.score + ((score.rangedScore) * (Mathf.CeilToInt(((float)difficulty.floor + 1) / 2)));
+            int bonusModifier = (Scoring.scoreKeeper.rangedScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2));
+            Scoring.scoreKeeper.score += ((Scoring.scoreKeeper.rangedScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2)));
         }
     }
 }

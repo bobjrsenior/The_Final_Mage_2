@@ -89,9 +89,11 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public GameObject enemyRangeProjectile;
 
+    public static DifficultyManager dManager;
+
     void Awake()
     {
-       
+        dManager = this;
     }
 
 	// Use this for initialization

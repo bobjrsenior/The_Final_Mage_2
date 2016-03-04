@@ -69,35 +69,26 @@ public class PlayerAttack : MonoBehaviour {
 
     RaycastHit2D[] rayHit;
     RaycastHit2D rayHitWall;
-    /// <summary>
-    /// Lets us control debugging so we do not have to delete the debug code.
-    /// </summary>
-    DebugUtility debugger;
-    Animator anim;
-    PlayerMovement movement;
 
-    private PlayerHealth pHealth;
+    Animator anim;
 
     /// <summary>
     /// A playerattack object we can reference anywhere
     /// </summary>
-    public static PlayerAttack pattack;
+    public static PlayerAttack pAttack;
 
     void Awake()
     {
-        pattack = this;
+        pAttack = this;
     }
 	// Use this for initialization	void Start () {
 
     void Start () { 
         //Start in melee type
         meleeType = true;
-        pHealth = FindObjectOfType<PlayerHealth>();
-        debugger = FindObjectOfType<DebugUtility>();
         canMelee = true;
         canRange = true;
         anim = transform.GetComponent<Animator>();
-        movement = transform.GetComponent<PlayerMovement>();
 	}
 	
 	// Update is called once per frame
@@ -136,8 +127,7 @@ public class PlayerAttack : MonoBehaviour {
                 {
                     if (rayHit[x].collider != null)
                     {
-
-                        debugger.Log("Player melee attack collided with " + rayHit[x].collider.name);
+                        
                         //If the ray's tag is an enemy
                         if (rayHit[x].collider.CompareTag("Enemy"))
                         {
@@ -174,11 +164,11 @@ public class PlayerAttack : MonoBehaviour {
                     transform.localScale = new Vector3(-2.33f, 2.27f, 1f);
                 }
 
-                if (canRange == true && pHealth.mana >= pHealth.manaCost)
+                if (canRange == true && PlayerHealth.pHealth.mana >= PlayerHealth.pHealth.manaCost)
                 {
                     StartCoroutine(delayRange());
                     shoot(attack_vector);
-                    pHealth.mana = pHealth.mana - pHealth.manaCost;
+                    PlayerHealth.pHealth.mana = PlayerHealth.pHealth.mana - PlayerHealth.pHealth.manaCost;
                 }
 
             }
@@ -239,14 +229,12 @@ public class PlayerAttack : MonoBehaviour {
         {
             meleeType = false;
             rangeType = true;
-            debugger.Log("Swapped to range type.");
             StartCoroutine(swapCooldown());
         }
         else if (rangeType == true && swapped == false)
         {
             rangeType = false;
             meleeType = true;
-            debugger.Log("Swapped to melee type.");
             StartCoroutine(swapCooldown());
         }
     }
@@ -270,7 +258,6 @@ public class PlayerAttack : MonoBehaviour {
         swapped = true;
         yield return new WaitForSeconds(swapCooldownTime);
         swapped = false;
-        debugger.Log("Swap enabled again.");
     }
 
     private void shoot(Vector2 attack_vector)

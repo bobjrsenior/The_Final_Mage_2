@@ -40,15 +40,20 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float inputY;
 
-    PlayerAttack playAttack;
+    public static PlayerMovement pMovement;
 
+    public static Rigidbody2D playerRBody;
+
+    void Awake()
+    {
+        pMovement = this;
+    }
     void Start()
     {   
         //Default our canMove boolean to true at game start.
         canMove = true;
         anim = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
-        playAttack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -86,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If we are not attacking...
-        if (playAttack.isAttacking == false)
+        if (PlayerAttack.pAttack.isAttacking == false)
         {
             //Handles flipping player sprites to face right.
             if (movement_vector.x > 0)

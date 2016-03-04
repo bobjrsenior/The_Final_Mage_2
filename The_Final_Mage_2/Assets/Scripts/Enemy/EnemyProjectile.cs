@@ -8,7 +8,8 @@ public class EnemyProjectile : MonoBehaviour {
         print(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>().damage(PlayerAttack.pattack.rangeDamage);
+            //Damage the player by the enemies standard range damage.
+            PlayerHealth.pHealth.damage(DifficultyManager.dManager.enemyStandardRangeDamage);
             Destroy(transform.gameObject);
         }
         else if (other.gameObject.CompareTag("Walls"))

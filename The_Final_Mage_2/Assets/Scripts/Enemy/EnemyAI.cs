@@ -60,14 +60,10 @@ public class EnemyAI : MonoBehaviour {
 
     public GameObject rangeProjectile;
 
-    PlayerHealth playerHP;
-    DebugUtility debugger;
 
 	// Use this for initialization
 	void Start () {
 
-        playerHP = FindObjectOfType<PlayerHealth>();
-        debugger = FindObjectOfType<DebugUtility>();
         self = GetComponent<Enemy>();
 
         //Sets our rigidBody to our own rigidBody2D component.
@@ -81,7 +77,7 @@ public class EnemyAI : MonoBehaviour {
 	void FixedUpdate () {
 
         //If movement is locked on this enemy
-        if (lockMovement == true || playerHP.isDead == true)
+        if (lockMovement == true || PlayerHealth.pHealth.isDead == true)
         {
             //Keep them where they are
             selfRigid.MovePosition(selfRigid.position);
@@ -190,7 +186,7 @@ public class EnemyAI : MonoBehaviour {
                 //Stop the enemy from moving if they are doing damage to us.
                 lockMovement = true;
 
-                playerHP.damage(meleeDamage);
+                PlayerHealth.pHealth.damage(meleeDamage);
             }
         }
     }
@@ -210,10 +206,9 @@ public class EnemyAI : MonoBehaviour {
         //This only applies to melee types, so if we are a ranged type, we will not worry about this.
         if (self.rangedType == false)
         {
-            PlayerMovement playerMove = FindObjectOfType<PlayerMovement>();
 
             //Ensure the players rigidBody stays awake.
-            playerMove.doNotSleep = true;
+            PlayerMovement.pMovement.doNotSleep = true;
             //Debug.Log("Collision Detected with " + other.gameObject.name);
             //If we have collided with the player
             if (other.gameObject.tag == "Player")
@@ -231,10 +226,9 @@ public class EnemyAI : MonoBehaviour {
         //If we are no longer colliding with the player
         if (other.gameObject.tag == "Player")
         {
-            PlayerMovement playerMove = FindObjectOfType<PlayerMovement>();
 
             //Let the players rigidBody go back to sleep.
-            playerMove.doNotSleep = false;
+            PlayerMovement.pMovement.doNotSleep = true;
             //Restore the update functions ability to move the enemy.
             noMove = false;
         }

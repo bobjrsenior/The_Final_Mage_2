@@ -38,6 +38,13 @@ public class Scoring : MonoBehaviour {
     /// </summary>
     private bool degenerationCooldown;
 
+    public static Scoring scoreKeeper;
+
+
+    void Awake()
+    {
+        scoreKeeper = this;
+    }
     // Use this for initialization
     void Start () {
 
