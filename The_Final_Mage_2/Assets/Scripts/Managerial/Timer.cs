@@ -32,6 +32,24 @@ public class Timer : MonoBehaviour {
     public bool continuous;
 
     /// <summary>
+    /// Is the timer complete?
+    /// </summary>
+    public bool complete;
+    
+    /// <summary>
+    /// The basic constructor for a timer that sets up the initial time, start condition, and continuous nature of the timer.
+    /// </summary>
+    /// <param name="initTime">What is the initial time for the timer? This is what it will be reset to after reaching zero each time.</param>
+    /// <param name="start">Is the timer going to start as soon as it is made? True for yes, false otherwise.</param>
+    /// <param name="cont">Is the timer continuous? That is, will it start again as soon as it reaches zero? True for yes, false otherwise.</param>
+    public Timer(float initTime, bool start, bool cont)
+    {
+        initialTime = initTime;
+        time = initialTime;
+        started = start;
+        continuous = cont;
+    }
+    /// <summary>
     /// Sets the initial time for the timer.
     /// </summary>
     /// <param name="timeToSet">The time to set the initial timer to.</param>
@@ -49,18 +67,18 @@ public class Timer : MonoBehaviour {
         {
             //Counts down our timer based on game time.
             time = time - Time.deltaTime;
+            //If we are on a repeat timer, we must set it back to incomplete as soon as we start counting down again.
+            complete = false;
         }
         if (time <= 0)
         {
             //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
             resetTimer();
-            if (continuous == true)
+            complete = true;
+
+            if (continuous == false)
             {
-                enable();
-            }
-            else
-            {
-                disable();
+                started = false;
             }
         }
     }
@@ -74,44 +92,19 @@ public class Timer : MonoBehaviour {
         {
             //Counts down our timer based on game time.
             time = time - Time.fixedDeltaTime;
+            complete = false;
         }
         if (time <= 0)
         {
             //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
             resetTimer();
-            if (continuous == true)
+            complete = true;
+
+            if (continuous == false)
             {
-                enable();
-            }
-            else
-            {
-                disable();
+                started = false;
             }
         }
-    }
-
-    /// <summary>
-    /// Start the timer.
-    /// </summary>
-    public void enable()
-    {
-        started = true;
-    }
-
-    /// <summary>
-    /// Stop the timer. Saves its current time.
-    /// </summary>
-    public void disable()
-    {
-        started = false;
-    }
-
-    /// <summary>
-    /// Sets this as a continuous timer that will run over and over.
-    /// </summary>
-    public void setContinuous()
-    {
-        continuous = true;
     }
 
     /// <summary>
@@ -120,14 +113,5 @@ public class Timer : MonoBehaviour {
     public void resetTimer()
     {
         time = initialTime;
-    }
-
-    /// <summary>
-    /// Returns the current time.
-    /// </summary>
-    /// <returns>Returns the current time.</returns>
-    public float getCurrentTime()
-    {
-        return time;
     }
 }
