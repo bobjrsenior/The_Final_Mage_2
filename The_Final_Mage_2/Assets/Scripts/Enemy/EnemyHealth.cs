@@ -100,7 +100,6 @@ public class EnemyHealth : MonoBehaviour {
         }
         else if (self.rangedType == true)
         {
-            int bonusModifier = (Scoring.scoreKeeper.rangedScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2));
             Scoring.scoreKeeper.score += ((Scoring.scoreKeeper.rangedScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2)));
         }
     }

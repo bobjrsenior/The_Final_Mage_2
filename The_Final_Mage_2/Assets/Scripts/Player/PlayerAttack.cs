@@ -68,7 +68,6 @@ public class PlayerAttack : MonoBehaviour {
     public GameObject rangeProjectile;
 
     RaycastHit2D[] rayHit;
-    RaycastHit2D rayHitWall;
 
     Animator anim;
 
