@@ -5,7 +5,6 @@ public class EnemyProjectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
             //Damage the player by the enemies standard range damage.

@@ -66,6 +66,8 @@ public class EnemyAI : MonoBehaviour {
 
         self = GetComponent<Enemy>();
 
+        canShoot = true;
+
         //Sets our rigidBody to our own rigidBody2D component.
         selfRigid = GetComponent<Rigidbody2D>();
 
@@ -120,7 +122,7 @@ public class EnemyAI : MonoBehaviour {
         //If we are in the players detection zone(and therefore, allowed to move)
         if (self.inRadius == true)
         {
-            if (canShoot == false)
+            if (canShoot == true)
             {
                 StartCoroutine(timeToShoot());
             }
@@ -159,11 +161,11 @@ public class EnemyAI : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator timeToShoot()
     {
-        canShoot = true;
+        canShoot = false;
         //Randomizes our wait time by subtracting the wait time by a random number between -2 to 0.
         yield return new WaitForSeconds(shootWaitTime - (float)Random.Range(-2, 1));
         Shoot();
-        canShoot = false;
+        canShoot = true;
     }
 
     /// <summary>
@@ -177,42 +179,20 @@ public class EnemyAI : MonoBehaviour {
         rAttack.GetComponent<Rigidbody2D>().velocity = attack_vector * rangeSpeed * Time.fixedDeltaTime;
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (self.meleeType == true)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                //Stop the enemy from moving if they are doing damage to us.
-                lockMovement = true;
-
-                PlayerHealth.pHealth.damage(meleeDamage);
-            }
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //Allow the enemy to move again since they are no longer damaging us.
-            lockMovement = false;
-        }
-    }
-
     void OnCollisionStay2D(Collision2D other)
     {
-
         //This only applies to melee types, so if we are a ranged type, we will not worry about this.
-        if (self.rangedType == false)
+        if (self.meleeType == true)
         {
-
             //Ensure the players rigidBody stays awake.
             PlayerMovement.pMovement.doNotSleep = true;
             //Debug.Log("Collision Detected with " + other.gameObject.name);
             //If we have collided with the player
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.CompareTag("Player"))
             {
+                //Stop the enemy from moving if they are doing damage to us.
+                lockMovement = true;
+                PlayerHealth.pHealth.damage(meleeDamage);
                 //No more movement is allowed from the update function.
                 noMove = true;
                 //Ensures that the enemy will not move by moving their position to their current position.
@@ -226,11 +206,11 @@ public class EnemyAI : MonoBehaviour {
         //If we are no longer colliding with the player
         if (other.gameObject.tag == "Player")
         {
-
             //Let the players rigidBody go back to sleep.
-            PlayerMovement.pMovement.doNotSleep = true;
+            PlayerMovement.pMovement.doNotSleep = false;
             //Restore the update functions ability to move the enemy.
             noMove = false;
+            lockMovement = false;
         }
     }
 }

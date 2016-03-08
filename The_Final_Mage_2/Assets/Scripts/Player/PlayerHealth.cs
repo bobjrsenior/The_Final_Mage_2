@@ -134,9 +134,10 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (canDamage == true)
         {
+            //Prevent us from taking damage until the initial delay is complete.
+            canDamage = false;
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
-
             health = health - amount;
             if (health < 0)
             {
@@ -168,7 +169,6 @@ public class PlayerHealth : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator afterDamageDelay()
     {
-        canDamage = false;
         //Will wait for delayTime seconds.
         yield return new WaitForSeconds(delayTime);
         canDamage = true;

@@ -129,7 +129,6 @@ public class PlayerAttack : MonoBehaviour {
                 {
                     if (rayHit[x].collider != null)
                     {
-                        
                         //If the ray's tag is an enemy
                         if (rayHit[x].collider.CompareTag("Enemy"))
                         {
@@ -211,6 +210,8 @@ public class PlayerAttack : MonoBehaviour {
         }
         //Once the timer is done, we can melee again.
         canMelee = true;
+        //End the coroutine.
+        yield break;
     }
 
     IEnumerator delayRange()
