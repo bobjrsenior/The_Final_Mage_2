@@ -37,12 +37,12 @@ public class Timer : MonoBehaviour {
     public bool complete;
     
     /// <summary>
-    /// The basic constructor for a timer that sets up the initial time, start condition, and continuous nature of the timer.
+    /// The basic constructor for a timer that sets up the initial time, start condition, and continuous nature of the timer. Able to be called as a method to allow usage with monoBehavior.
     /// </summary>
     /// <param name="initTime">What is the initial time for the timer? This is what it will be reset to after reaching zero each time.</param>
     /// <param name="start">Is the timer going to start as soon as it is made? True for yes, false otherwise.</param>
     /// <param name="cont">Is the timer continuous? That is, will it start again as soon as it reaches zero? True for yes, false otherwise.</param>
-    public Timer(float initTime, bool start, bool cont)
+    public void initialize(float initTime, bool start, bool cont)
     {
         initialTime = initTime;
         time = initialTime;
@@ -110,7 +110,7 @@ public class Timer : MonoBehaviour {
     /// <summary>
     /// Resets the timer to its initial value.
     /// </summary>
-    public void resetTimer()
+    private void resetTimer()
     {
         time = initialTime;
     }

@@ -65,6 +65,8 @@ public class PlayerAttack : MonoBehaviour {
     /// </summary>
     public AudioClip[] audioClip;
 
+    private Timer meleeDelayTimer;
+
     public GameObject rangeProjectile;
 
     RaycastHit2D[] rayHit;
@@ -87,6 +89,8 @@ public class PlayerAttack : MonoBehaviour {
         meleeType = true;
         canMelee = true;
         canRange = true;
+        meleeDelayTimer = gameObject.AddComponent<Timer>();
+        meleeDelayTimer.initialize(meleeDelay, false, false);
         anim = transform.GetComponent<Animator>();
 	}
 	
@@ -195,7 +199,17 @@ public class PlayerAttack : MonoBehaviour {
     IEnumerator delayMelee()
     {
         canMelee = false;
-        yield return new WaitForSeconds(meleeDelay);
+        meleeDelayTimer.started = true;
+        while (canMelee == false)
+        {
+            //Countdown sequence for our timer.
+            meleeDelayTimer.countdownUpdate();
+            //Break out once the timer is complete.
+            if (meleeDelayTimer.complete == true)
+                break;
+            yield return null;
+        }
+        //Once the timer is done, we can melee again.
         canMelee = true;
     }
 
@@ -258,6 +272,10 @@ public class PlayerAttack : MonoBehaviour {
         swapped = false;
     }
 
+    /// <summary>
+    /// Shoots a projectile in the direction of the attack vector.
+    /// </summary>
+    /// <param name="attack_vector">The direction the projectile will move in.</param>
     private void shoot(Vector2 attack_vector)
     {
         GameObject rAttack = Instantiate(rangeProjectile, (Vector2)transform.position, Quaternion.identity) as GameObject;
