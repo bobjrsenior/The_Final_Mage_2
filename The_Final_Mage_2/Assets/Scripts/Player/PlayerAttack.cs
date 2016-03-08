@@ -90,7 +90,7 @@ public class PlayerAttack : MonoBehaviour {
         canMelee = true;
         canRange = true;
         meleeDelayTimer = gameObject.AddComponent<Timer>();
-        meleeDelayTimer.initialize(meleeDelay, false, false);
+        meleeDelayTimer.initialize(meleeDelay, false);
         anim = transform.GetComponent<Animator>();
 	}
 	

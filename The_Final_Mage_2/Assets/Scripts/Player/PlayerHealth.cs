@@ -36,9 +36,15 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public float delayTime = 1.0f;
 
+    public Timer delayTimer;
+
     public float healthRegenTime = 20.0f;
 
+    public Timer healthRegenTimer;
+
     public float manaRegenTime = 5f;
+
+    public Timer manaRegenTimer;
 
     public float manaRegenAmount = 5f;
 
@@ -47,10 +53,11 @@ public class PlayerHealth : MonoBehaviour {
     public bool healthRegenCooldown = false;
 
     public bool manaRegenCooldown = false;
+
     private Animator anim;
 
     public static PlayerHealth pHealth;
-    private PlayerMovement playerMovement;
+
     // Use this for initialization
     void Awake()
     {
@@ -62,19 +69,24 @@ public class PlayerHealth : MonoBehaviour {
         isDead = false;
         //Always want to start where we can be damaged.
         canDamage = true;
+        manaRegenTimer = gameObject.AddComponent<Timer>();
+        manaRegenTimer.initialize(manaRegenTime, false);
+        healthRegenTimer = gameObject.AddComponent<Timer>();
+        healthRegenTimer.initialize(healthRegenTime, false);
+        delayTimer = gameObject.AddComponent<Timer>();
+        delayTimer.initialize(delayTime, false);
         anim = GetComponent<Animator>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         //Health regen over time.
-        if (healthRegenCooldown == false)
+        if (healthRegenCooldown == false && PlayerHealth.pHealth.health != PlayerHealth.pHealth.maxHealth)
         {
             StartCoroutine(healthRegen());
         }
-        if (manaRegenCooldown == false)
+        if (manaRegenCooldown == false && PlayerHealth.pHealth.mana != PlayerHealth.pHealth.maxMana)
         {
             if (mana < maxMana)
             {
@@ -83,11 +95,11 @@ public class PlayerHealth : MonoBehaviour {
         }
         if (health == 0)
         {
-            playerMovement.canMove = false;
+            PlayerMovement.pMovement.canMove = false;
         }
         else
         {
-            playerMovement.canMove = true;
+            PlayerMovement.pMovement.canMove = true;
         }
         
 
@@ -109,14 +121,14 @@ public class PlayerHealth : MonoBehaviour {
             //We die
             anim.SetBool("isDead", true);
             isDead = true;
-            playerMovement.canMove = false;
+            PlayerMovement.pMovement.canMove = false;
         }
         else
         {
             //If our health is not 0, we are alive.
             anim.SetBool("isDead", false);
             isDead = false;
-            playerMovement.canMove = true;
+            PlayerMovement.pMovement.canMove = true;
         }
 	}
     //TEMPORARY FOR DISPLAYING HEALTH
@@ -134,8 +146,6 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (canDamage == true)
         {
-            //Prevent us from taking damage until the initial delay is complete.
-            canDamage = false;
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
             health = health - amount;
@@ -169,8 +179,17 @@ public class PlayerHealth : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator afterDamageDelay()
     {
+        //Prevent us from taking damage until the initial delay is complete.
+        canDamage = false;
+        delayTimer.started = true;
         //Will wait for delayTime seconds.
-        yield return new WaitForSeconds(delayTime);
+        while (canDamage == false)
+        {
+            delayTimer.countdownUpdate();
+            if (delayTimer.complete == true)
+                break;
+            yield return null;
+        }
         canDamage = true;
     }
 
@@ -181,7 +200,14 @@ public class PlayerHealth : MonoBehaviour {
     private IEnumerator healthRegen()
     {
         healthRegenCooldown = true;
-        yield return new WaitForSeconds(healthRegenTime);
+        healthRegenTimer.started = true;
+        while (healthRegenCooldown == true)
+        {
+            healthRegenTimer.countdownUpdate();
+            if (healthRegenTimer.complete == true)
+                break;
+            yield return null;
+        }
         if (health != 0)
         {
             heal(1);
@@ -192,9 +218,15 @@ public class PlayerHealth : MonoBehaviour {
 
     public IEnumerator manaRegen()
     {
-        print("Mana cooldown now.");
         manaRegenCooldown = true;
-        yield return new WaitForSeconds(manaRegenTime);
+        manaRegenTimer.started = true;
+        while (manaRegenCooldown == true)
+        {
+            manaRegenTimer.countdownUpdate();
+            if (manaRegenTimer.complete == true)
+                break;
+            yield return null;
+        }
         if (mana < maxMana)
         {
             mana = mana + manaRegenAmount;
