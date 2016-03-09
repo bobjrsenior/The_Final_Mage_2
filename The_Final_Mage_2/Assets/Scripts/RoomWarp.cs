@@ -6,12 +6,12 @@ public class RoomWarp : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)//When a 2d collider enters our trigger zone
     {
-        if (other.gameObject.name == "Player")//Only trigger the collider is attached to a game object named "Player".
+        if (other.CompareTag("Player"))//Only trigger the collider is attached to a game object named "Player".
         {
             if (other.isTrigger == false)//If the collider is not a trigger (Or, in simpler terms, if we are detecting player collision and not the radius that governs whether enemies can move or not)
             {
 
-
+                print("Hit Exit");
                 //Top door
                 if(this.CompareTag("Up_Exit"))
                 {
