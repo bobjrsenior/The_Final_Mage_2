@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
     /// <summary>
@@ -36,9 +37,17 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public float delayTime = 1.0f;
 
+    private Timer delayTimer;
+
     public float healthRegenTime = 20.0f;
 
+    private Timer healthRegenTimer;
+
     public float manaRegenTime = 5f;
+
+    private Timer manaRegenTimer;
+
+    private Timer gameOverTimer;
 
     public float manaRegenAmount = 5f;
 
@@ -47,12 +56,13 @@ public class PlayerHealth : MonoBehaviour {
     public bool healthRegenCooldown = false;
 
     public bool manaRegenCooldown = false;
+
     private Animator anim;
 
     public SoundScript soundSource;
 
     public static PlayerHealth pHealth;
-    private PlayerMovement playerMovement;
+
     // Use this for initialization
     void Awake()
     {
@@ -64,20 +74,33 @@ public class PlayerHealth : MonoBehaviour {
         isDead = false;
         //Always want to start where we can be damaged.
         canDamage = true;
+        manaRegenTimer = gameObject.AddComponent<Timer>();
+        manaRegenTimer.initialize(manaRegenTime, false);
+        healthRegenTimer = gameObject.AddComponent<Timer>();
+        healthRegenTimer.initialize(healthRegenTime, false);
+        delayTimer = gameObject.AddComponent<Timer>();
+        delayTimer.initialize(delayTime, false);
+        gameOverTimer = gameObject.AddComponent<Timer>();
+        gameOverTimer.initialize(2, false);
         anim = GetComponent<Animator>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         soundSource = FindObjectOfType<SoundScript>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        //Checks to see if we are currently in a game over scenario.
+        if (health == 0 && gameOverTimer.started == false)
+        {
+            StartCoroutine(gameOver());
+        }
         //Health regen over time.
-        if (healthRegenCooldown == false)
+        if (healthRegenCooldown == false && PlayerHealth.pHealth.health != PlayerHealth.pHealth.maxHealth)
         {
             StartCoroutine(healthRegen());
         }
-        if (manaRegenCooldown == false)
+        if (manaRegenCooldown == false && PlayerHealth.pHealth.mana != PlayerHealth.pHealth.maxMana)
         {
             if (mana < maxMana)
             {
@@ -86,11 +109,11 @@ public class PlayerHealth : MonoBehaviour {
         }
         if (health == 0)
         {
-            playerMovement.canMove = false;
+            PlayerMovement.pMovement.canMove = false;
         }
         else
         {
-            playerMovement.canMove = true;
+            PlayerMovement.pMovement.canMove = true;
         }
         
 
@@ -112,14 +135,14 @@ public class PlayerHealth : MonoBehaviour {
             //We die
             anim.SetBool("isDead", true);
             isDead = true;
-            playerMovement.canMove = false;
+            PlayerMovement.pMovement.canMove = false;
         }
         else
         {
             //If our health is not 0, we are alive.
             anim.SetBool("isDead", false);
             isDead = false;
-            playerMovement.canMove = true;
+            PlayerMovement.pMovement.canMove = true;
         }
 	}
     //TEMPORARY FOR DISPLAYING HEALTH
@@ -137,8 +160,6 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (canDamage == true && health > 0)
         {
-            //Prevent us from taking damage until the initial delay is complete.
-            canDamage = false;
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
             health = health - amount;
@@ -173,9 +194,18 @@ public class PlayerHealth : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator afterDamageDelay()
     {
+        //Prevent us from taking damage until the initial delay is complete.
+        canDamage = false;
+        delayTimer.started = true;
         //Will wait for delayTime seconds.
-        yield return new WaitForSeconds(delayTime);
+        while (delayTimer.complete == false)
+        {
+            delayTimer.countdownUpdate();
+            yield return null;
+        }
+        delayTimer.complete = false;
         canDamage = true;
+        yield break;
     }
 
     /// <summary>
@@ -185,24 +215,54 @@ public class PlayerHealth : MonoBehaviour {
     private IEnumerator healthRegen()
     {
         healthRegenCooldown = true;
-        yield return new WaitForSeconds(healthRegenTime);
+        healthRegenTimer.started = true;
+        while (healthRegenTimer.complete == false)
+        {
+            healthRegenTimer.countdownUpdate();
+            yield return null;
+        }
+        healthRegenTimer.complete = false;
         if (health != 0)
         {
             heal(1);
         }
         healthRegenCooldown = false;
-        
+        yield break;
     }
 
     public IEnumerator manaRegen()
     {
-        print("Mana cooldown now.");
         manaRegenCooldown = true;
-        yield return new WaitForSeconds(manaRegenTime);
+        manaRegenTimer.started = true;
+        while (manaRegenTimer.complete == false)
+        {
+            manaRegenTimer.countdownUpdate();
+            yield return null;
+        }
+        manaRegenTimer.complete = false;
         if (mana < maxMana)
         {
             mana = mana + manaRegenAmount;
         }
         manaRegenCooldown = false;
+        yield break;
+    }
+
+    /// <summary>
+    /// Delays a few seconds after death before throwing the player to the game over screen.
+    /// </summary>
+    private IEnumerator gameOver()
+    {
+        gameOverTimer.started = true;
+        while (gameOverTimer.complete == false)
+        {
+            gameOverTimer.countdownUpdate();
+            yield return null;
+        }
+        gameOverTimer.complete = false;
+        if (health == 0)
+        { 
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

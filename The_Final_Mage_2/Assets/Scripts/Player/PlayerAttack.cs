@@ -40,6 +40,7 @@ public class PlayerAttack : MonoBehaviour {
     /// True if we have swapped, false when the cooldown ends.
     /// </summary>
     public float swapCooldownTime;
+
     /// <summary>
     /// How much damage does our melee attack do?
     /// </summary>
@@ -64,6 +65,12 @@ public class PlayerAttack : MonoBehaviour {
 
     private Timer meleeDelayTimer;
 
+    private Timer swapCooldownTimer;
+
+    private Timer delayRangeTimer;
+
+    private Timer meleeCooldownTimer;
+
     public GameObject rangeProjectile;
 
     RaycastHit2D[] rayHit;
@@ -86,8 +93,14 @@ public class PlayerAttack : MonoBehaviour {
         meleeType = true;
         canMelee = true;
         canRange = true;
+        meleeCooldownTimer = gameObject.AddComponent<Timer>();
+        meleeCooldownTimer.initialize(meleeCool, false);
+        delayRangeTimer = gameObject.AddComponent<Timer>();
+        delayRangeTimer.initialize(rangeDelay, false);
+        swapCooldownTimer = gameObject.AddComponent<Timer>();
+        swapCooldownTimer.initialize(swapCooldownTime, false);
         meleeDelayTimer = gameObject.AddComponent<Timer>();
-        meleeDelayTimer.initialize(meleeDelay, false, false);
+        meleeDelayTimer.initialize(meleeDelay, false);
         anim = transform.GetComponent<Animator>();
         soundSource = FindObjectOfType<SoundScript>();
 	}
@@ -98,7 +111,7 @@ public class PlayerAttack : MonoBehaviour {
         {
             switchType();
         }
-        if (canMelee == true && meleeType == true)
+        if (canMelee == true && meleeType == true && PlayerHealth.pHealth.health != 0)
         {
             //Melee attack
             Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
@@ -147,11 +160,15 @@ public class PlayerAttack : MonoBehaviour {
                 StartCoroutine(meleeCooldown());
             }
         }
-        else if (canRange == true && rangeType == true)
+        else if (canRange == true && rangeType == true && PlayerHealth.pHealth.health != 0 && PlayerHealth
+            .pHealth.mana != 0)
         {
             Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
             if (attack_vector != Vector2.zero)
             {
+                anim.SetBool("isRange", true);
+                anim.SetFloat("attackX", attack_vector.x);
+                anim.SetFloat("attackY", attack_vector.y);
                 isAttacking = true;
                 if (attack_vector.x > 0)
                 {
@@ -213,12 +230,24 @@ public class PlayerAttack : MonoBehaviour {
         yield break;
     }
 
+    /// <summary>
+    /// Delays us from shooting a ranged attack again for a specified number of seconds.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator delayRange()
     {
         canRange = false;
-        yield return new WaitForSeconds(rangeDelay);
+        delayRangeTimer.started = true;
+        while (delayRangeTimer.complete == false)
+        {
+            delayRangeTimer.countdownUpdate();
+            yield return null;
+        }
+        delayRangeTimer.complete = false;
         canRange = true;
+        anim.SetBool("isRange", false);
         isAttacking = false;
+        yield break;
     }
 
     /// <summary>
@@ -227,9 +256,16 @@ public class PlayerAttack : MonoBehaviour {
     /// <returns></returns>
     IEnumerator meleeCooldown()
     {
-        yield return new WaitForSeconds(meleeCool);
+        meleeCooldownTimer.started = true;
+        while (meleeCooldownTimer.complete == false)
+        {
+            meleeCooldownTimer.countdownUpdate();
+            yield return null;
+        }
+        meleeCooldownTimer.complete = false;
         anim.SetBool("isMelee", false);
         isAttacking = false;
+        yield break;
     }
 
     /// <summary>
@@ -259,8 +295,15 @@ public class PlayerAttack : MonoBehaviour {
     private IEnumerator swapCooldown()
     {
         swapped = true;
-        yield return new WaitForSeconds(swapCooldownTime);
+        swapCooldownTimer.started = true;
+        while (swapCooldownTimer.complete == false)
+        {
+            swapCooldownTimer.countdownUpdate();
+            yield return null;
+        }
+        swapCooldownTimer.complete = false;
         swapped = false;
+        yield break;
     }
 
     /// <summary>

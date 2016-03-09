@@ -70,7 +70,6 @@ public class EnemyHealth : MonoBehaviour {
     /// <param name="amount"> The amount to damage the enemy by. </param>
     public void damage(float amount)
     {
-        print(amount);
         health = health - amount;
         if (health < 0)
         {

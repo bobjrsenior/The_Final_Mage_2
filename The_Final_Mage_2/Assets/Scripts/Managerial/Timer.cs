@@ -27,11 +27,6 @@ public class Timer : MonoBehaviour {
     public bool reset;
 
     /// <summary>
-    /// Should the timer repeat automatically after it has run?
-    /// </summary>
-    public bool continuous;
-
-    /// <summary>
     /// Is the timer complete?
     /// </summary>
     public bool complete;
@@ -42,12 +37,11 @@ public class Timer : MonoBehaviour {
     /// <param name="initTime">What is the initial time for the timer? This is what it will be reset to after reaching zero each time.</param>
     /// <param name="start">Is the timer going to start as soon as it is made? True for yes, false otherwise.</param>
     /// <param name="cont">Is the timer continuous? That is, will it start again as soon as it reaches zero? True for yes, false otherwise.</param>
-    public void initialize(float initTime, bool start, bool cont)
+    public void initialize(float initTime, bool start)
     {
         initialTime = initTime;
         time = initialTime;
         started = start;
-        continuous = cont;
     }
     /// <summary>
     /// Sets the initial time for the timer.
@@ -63,6 +57,7 @@ public class Timer : MonoBehaviour {
     /// </summary>
     public void countdownUpdate()
     {
+        complete = false;
         if (started == true)
         {
             //Counts down our timer based on game time.
@@ -72,14 +67,9 @@ public class Timer : MonoBehaviour {
         }
         if (time <= 0)
         {
-            //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
+            //If our timer has reached 0, disable it, reset it, and if it is set to automatically count down again, re enable it.
             resetTimer();
             complete = true;
-
-            if (continuous == false)
-            {
-                started = false;
-            }
         }
     }
 
@@ -97,13 +87,8 @@ public class Timer : MonoBehaviour {
         if (time <= 0)
         {
             //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
-            resetTimer();
             complete = true;
-
-            if (continuous == false)
-            {
-                started = false;
-            }
+            resetTimer();
         }
     }
 
@@ -113,5 +98,6 @@ public class Timer : MonoBehaviour {
     private void resetTimer()
     {
         time = initialTime;
+        started = false;
     }
 }
