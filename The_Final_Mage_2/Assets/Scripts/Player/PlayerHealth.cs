@@ -59,6 +59,8 @@ public class PlayerHealth : MonoBehaviour {
 
     private Animator anim;
 
+    public SoundScript soundSource;
+
     public static PlayerHealth pHealth;
 
     // Use this for initialization
@@ -81,6 +83,11 @@ public class PlayerHealth : MonoBehaviour {
         gameOverTimer = gameObject.AddComponent<Timer>();
         gameOverTimer.initialize(2, false);
         anim = GetComponent<Animator>();
+<<<<<<< HEAD
+=======
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        soundSource = FindObjectOfType<SoundScript>();
+>>>>>>> c1d025816228cd3585f09d6b8c0070949d9a8c02
 	}
 	
 	// Update is called once per frame
@@ -154,11 +161,12 @@ public class PlayerHealth : MonoBehaviour {
     /// <param name="amount"> The amount to damage the player by. </param>
     public void damage(float amount)
     {
-        if (canDamage == true)
+        if (canDamage == true && health > 0)
         {
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
             health = health - amount;
+            soundSource.PlaySound(2);
             if (health < 0)
             {
                 //Ensures that our health is never a negative value.

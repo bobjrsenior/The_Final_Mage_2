@@ -61,10 +61,7 @@ public class PlayerAttack : MonoBehaviour {
     /// </summary>
     public bool isAttacking;
 
-    /// <summary>
-    /// Array to hold all of our sounds for the player so they can be accessed.
-    /// </summary>
-    public AudioClip[] audioClip;
+    public SoundScript soundSource;
 
     private Timer meleeDelayTimer;
 
@@ -105,6 +102,7 @@ public class PlayerAttack : MonoBehaviour {
         meleeDelayTimer = gameObject.AddComponent<Timer>();
         meleeDelayTimer.initialize(meleeDelay, false);
         anim = transform.GetComponent<Animator>();
+        soundSource = FindObjectOfType<SoundScript>();
 	}
 	
 	// Update is called once per frame
@@ -123,7 +121,7 @@ public class PlayerAttack : MonoBehaviour {
                 anim.SetFloat("attackX", attack_vector.x);
                 anim.SetFloat("attackY", attack_vector.y);
                 isAttacking = true;
-                PlaySound(0);
+                soundSource.PlaySound(0);
 
                 if (attack_vector.x > 0)
                 {
@@ -183,6 +181,7 @@ public class PlayerAttack : MonoBehaviour {
                     StartCoroutine(delayRange());
                     shoot(attack_vector);
                     PlayerHealth.pHealth.mana = PlayerHealth.pHealth.mana - PlayerHealth.pHealth.manaCost;
+                    soundSource.PlaySound(1);
                 }
 
             }
@@ -283,16 +282,7 @@ public class PlayerAttack : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Plays a sound from the array when given an integer.
-    /// </summary>
-    /// <param name="clip"></param>
-    void PlaySound(int clip)
-    {
-        GetComponent<AudioSource>().clip = audioClip[clip];
-        GetComponent<AudioSource>().Play();
-    }
-
+   
     /// <summary>
     /// Handles the cooldown between swap attacks.
     /// </summary>
