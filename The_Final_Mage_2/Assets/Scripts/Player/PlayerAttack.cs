@@ -40,6 +40,8 @@ public class PlayerAttack : MonoBehaviour {
     /// True if we have swapped, false when the cooldown ends.
     /// </summary>
     public float swapCooldownTime;
+
+    private Timer swapCooldownTimer;
     /// <summary>
     /// How much damage does our melee attack do?
     /// </summary>
@@ -67,6 +69,10 @@ public class PlayerAttack : MonoBehaviour {
 
     private Timer meleeDelayTimer;
 
+    private Timer delayRangeTimer;
+
+    private Timer meleeCooldownTimer;
+
     public GameObject rangeProjectile;
 
     RaycastHit2D[] rayHit;
@@ -89,6 +95,12 @@ public class PlayerAttack : MonoBehaviour {
         meleeType = true;
         canMelee = true;
         canRange = true;
+        meleeCooldownTimer = gameObject.AddComponent<Timer>();
+        meleeCooldownTimer.initialize(meleeCool, false);
+        delayRangeTimer = gameObject.AddComponent<Timer>();
+        delayRangeTimer.initialize(rangeDelay, false);
+        swapCooldownTimer = gameObject.AddComponent<Timer>();
+        swapCooldownTimer.initialize(swapCooldownTime, false);
         meleeDelayTimer = gameObject.AddComponent<Timer>();
         meleeDelayTimer.initialize(meleeDelay, false);
         anim = transform.GetComponent<Animator>();
@@ -217,7 +229,13 @@ public class PlayerAttack : MonoBehaviour {
     IEnumerator delayRange()
     {
         canRange = false;
-        yield return new WaitForSeconds(rangeDelay);
+        delayRangeTimer.started = true;
+        while (delayRangeTimer.complete == false)
+        {
+            delayRangeTimer.countdownUpdate();
+            yield return null;
+        }
+        delayRangeTimer.complete = false;
         canRange = true;
         isAttacking = false;
     }
@@ -228,7 +246,13 @@ public class PlayerAttack : MonoBehaviour {
     /// <returns></returns>
     IEnumerator meleeCooldown()
     {
-        yield return new WaitForSeconds(meleeCool);
+        meleeCooldownTimer.started = true;
+        while (meleeCooldownTimer.complete == false)
+        {
+            meleeCooldownTimer.countdownUpdate();
+            yield return null;
+        }
+        meleeCooldownTimer.complete = false;
         anim.SetBool("isMelee", false);
         isAttacking = false;
     }
@@ -269,7 +293,13 @@ public class PlayerAttack : MonoBehaviour {
     private IEnumerator swapCooldown()
     {
         swapped = true;
-        yield return new WaitForSeconds(swapCooldownTime);
+        swapCooldownTimer.started = true;
+        while (swapCooldownTimer.complete == false)
+        {
+            swapCooldownTimer.countdownUpdate();
+            yield return null;
+        }
+        swapCooldownTimer.complete = false;
         swapped = false;
     }
 

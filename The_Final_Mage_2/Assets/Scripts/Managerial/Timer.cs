@@ -57,6 +57,7 @@ public class Timer : MonoBehaviour {
     /// </summary>
     public void countdownUpdate()
     {
+        complete = false;
         if (started == true)
         {
             //Counts down our timer based on game time.

@@ -183,13 +183,12 @@ public class PlayerHealth : MonoBehaviour {
         canDamage = false;
         delayTimer.started = true;
         //Will wait for delayTime seconds.
-        while (canDamage == false)
+        while (delayTimer.complete == false)
         {
             delayTimer.countdownUpdate();
-            if (delayTimer.complete == true)
-                break;
             yield return null;
         }
+        delayTimer.complete = false;
         canDamage = true;
     }
 
@@ -201,13 +200,12 @@ public class PlayerHealth : MonoBehaviour {
     {
         healthRegenCooldown = true;
         healthRegenTimer.started = true;
-        while (healthRegenCooldown == true)
+        while (healthRegenTimer.complete == false)
         {
             healthRegenTimer.countdownUpdate();
-            if (healthRegenTimer.complete == true)
-                break;
             yield return null;
         }
+        healthRegenTimer.complete = false;
         if (health != 0)
         {
             heal(1);
@@ -220,13 +218,12 @@ public class PlayerHealth : MonoBehaviour {
     {
         manaRegenCooldown = true;
         manaRegenTimer.started = true;
-        while (manaRegenCooldown == true)
+        while (manaRegenTimer.complete == false)
         {
             manaRegenTimer.countdownUpdate();
-            if (manaRegenTimer.complete == true)
-                break;
             yield return null;
         }
+        manaRegenTimer.complete = false;
         if (mana < maxMana)
         {
             mana = mana + manaRegenAmount;
