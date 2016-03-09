@@ -83,11 +83,8 @@ public class PlayerHealth : MonoBehaviour {
         gameOverTimer = gameObject.AddComponent<Timer>();
         gameOverTimer.initialize(2, false);
         anim = GetComponent<Animator>();
-<<<<<<< HEAD
-=======
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         soundSource = FindObjectOfType<SoundScript>();
->>>>>>> c1d025816228cd3585f09d6b8c0070949d9a8c02
+
 	}
 	
 	// Update is called once per frame
