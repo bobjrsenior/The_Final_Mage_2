@@ -41,7 +41,6 @@ public class PlayerAttack : MonoBehaviour {
     /// </summary>
     public float swapCooldownTime;
 
-    private Timer swapCooldownTimer;
     /// <summary>
     /// How much damage does our melee attack do?
     /// </summary>
@@ -68,6 +67,8 @@ public class PlayerAttack : MonoBehaviour {
     public AudioClip[] audioClip;
 
     private Timer meleeDelayTimer;
+
+    private Timer swapCooldownTimer;
 
     private Timer delayRangeTimer;
 
@@ -112,7 +113,7 @@ public class PlayerAttack : MonoBehaviour {
         {
             switchType();
         }
-        if (canMelee == true && meleeType == true)
+        if (canMelee == true && meleeType == true && PlayerHealth.pHealth.health != 0)
         {
             //Melee attack
             Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
@@ -161,7 +162,7 @@ public class PlayerAttack : MonoBehaviour {
                 StartCoroutine(meleeCooldown());
             }
         }
-        else if (canRange == true && rangeType == true)
+        else if (canRange == true && rangeType == true && PlayerHealth.pHealth.health != 0)
         {
             Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
             if (attack_vector != Vector2.zero)
@@ -226,6 +227,10 @@ public class PlayerAttack : MonoBehaviour {
         yield break;
     }
 
+    /// <summary>
+    /// Delays us from shooting a ranged attack again for a specified number of seconds.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator delayRange()
     {
         canRange = false;
@@ -238,6 +243,7 @@ public class PlayerAttack : MonoBehaviour {
         delayRangeTimer.complete = false;
         canRange = true;
         isAttacking = false;
+        yield break;
     }
 
     /// <summary>
@@ -255,6 +261,7 @@ public class PlayerAttack : MonoBehaviour {
         meleeCooldownTimer.complete = false;
         anim.SetBool("isMelee", false);
         isAttacking = false;
+        yield break;
     }
 
     /// <summary>
@@ -301,6 +308,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         swapCooldownTimer.complete = false;
         swapped = false;
+        yield break;
     }
 
     /// <summary>

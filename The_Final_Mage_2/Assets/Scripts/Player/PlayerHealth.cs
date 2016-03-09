@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
     /// <summary>
@@ -36,15 +37,17 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     public float delayTime = 1.0f;
 
-    public Timer delayTimer;
+    private Timer delayTimer;
 
     public float healthRegenTime = 20.0f;
 
-    public Timer healthRegenTimer;
+    private Timer healthRegenTimer;
 
     public float manaRegenTime = 5f;
 
-    public Timer manaRegenTimer;
+    private Timer manaRegenTimer;
+
+    private Timer gameOverTimer;
 
     public float manaRegenAmount = 5f;
 
@@ -75,12 +78,19 @@ public class PlayerHealth : MonoBehaviour {
         healthRegenTimer.initialize(healthRegenTime, false);
         delayTimer = gameObject.AddComponent<Timer>();
         delayTimer.initialize(delayTime, false);
+        gameOverTimer = gameObject.AddComponent<Timer>();
+        gameOverTimer.initialize(2, false);
         anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        //Checks to see if we are currently in a game over scenario.
+        if (health == 0 && gameOverTimer.started == false)
+        {
+            StartCoroutine(gameOver());
+        }
         //Health regen over time.
         if (healthRegenCooldown == false && PlayerHealth.pHealth.health != PlayerHealth.pHealth.maxHealth)
         {
@@ -190,6 +200,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         delayTimer.complete = false;
         canDamage = true;
+        yield break;
     }
 
     /// <summary>
@@ -211,7 +222,7 @@ public class PlayerHealth : MonoBehaviour {
             heal(1);
         }
         healthRegenCooldown = false;
-        
+        yield break;
     }
 
     public IEnumerator manaRegen()
@@ -229,5 +240,24 @@ public class PlayerHealth : MonoBehaviour {
             mana = mana + manaRegenAmount;
         }
         manaRegenCooldown = false;
+        yield break;
+    }
+
+    /// <summary>
+    /// Delays a few seconds after death before throwing the player to the game over screen.
+    /// </summary>
+    private IEnumerator gameOver()
+    {
+        gameOverTimer.started = true;
+        while (gameOverTimer.complete == false)
+        {
+            gameOverTimer.countdownUpdate();
+            yield return null;
+        }
+        gameOverTimer.complete = false;
+        if (health == 0)
+        { 
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

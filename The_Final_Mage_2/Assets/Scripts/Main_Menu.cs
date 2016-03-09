@@ -12,9 +12,9 @@ public class Main_Menu : MonoBehaviour {
         SceneManager.LoadScene(startLevel);
 	}
 
-	//public void levelSelect()
-//	{
-//
-//	}
+    public void levelLoad()
+    {
+        SceneManager.LoadScene(levelSelect);
+    }
 
 }

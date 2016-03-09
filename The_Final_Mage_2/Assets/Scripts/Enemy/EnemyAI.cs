@@ -60,6 +60,7 @@ public class EnemyAI : MonoBehaviour {
 
     public GameObject rangeProjectile;
 
+    private Timer timeToShootTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -68,6 +69,8 @@ public class EnemyAI : MonoBehaviour {
 
         canShoot = true;
 
+        timeToShootTimer = gameObject.AddComponent<Timer>();
+        timeToShootTimer.initialize(shootWaitTime, false);
         //Sets our rigidBody to our own rigidBody2D component.
         selfRigid = GetComponent<Rigidbody2D>();
 
@@ -162,8 +165,15 @@ public class EnemyAI : MonoBehaviour {
     private IEnumerator timeToShoot()
     {
         canShoot = false;
-        //Randomizes our wait time by subtracting the wait time by a random number between -2 to 0.
-        yield return new WaitForSeconds(shootWaitTime - (float)Random.Range(-2, 1));
+        timeToShootTimer.started = true;
+        //Randomizes our wait time by subtracting the wait time by a random number between -2 to 0. 
+        timeToShootTimer.time = shootWaitTime - (float)Random.Range(-2, 1);
+        while (timeToShootTimer.complete == false)
+        {
+            timeToShootTimer.countdownUpdate();
+            yield return null;
+        }
+        timeToShootTimer.complete = false;
         Shoot();
         canShoot = true;
     }

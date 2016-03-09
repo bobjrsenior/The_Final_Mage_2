@@ -67,7 +67,7 @@ public class Timer : MonoBehaviour {
         }
         if (time <= 0)
         {
-            //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
+            //If our timer has reached 0, disable it, reset it, and if it is set to automatically count down again, re enable it.
             resetTimer();
             complete = true;
         }
@@ -87,8 +87,8 @@ public class Timer : MonoBehaviour {
         if (time <= 0)
         {
             //If our timer has reached 0, disable it, reset it, an if it is set to automatically count down again, re enable it.
-            resetTimer();
             complete = true;
+            resetTimer();
         }
     }
 
@@ -98,5 +98,6 @@ public class Timer : MonoBehaviour {
     private void resetTimer()
     {
         time = initialTime;
+        started = false;
     }
 }
