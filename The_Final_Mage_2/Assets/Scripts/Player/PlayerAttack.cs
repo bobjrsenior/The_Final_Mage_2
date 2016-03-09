@@ -160,11 +160,15 @@ public class PlayerAttack : MonoBehaviour {
                 StartCoroutine(meleeCooldown());
             }
         }
-        else if (canRange == true && rangeType == true && PlayerHealth.pHealth.health != 0)
+        else if (canRange == true && rangeType == true && PlayerHealth.pHealth.health != 0 && PlayerHealth
+            .pHealth.mana != 0)
         {
             Vector2 attack_vector = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
             if (attack_vector != Vector2.zero)
             {
+                anim.SetBool("isRange", true);
+                anim.SetFloat("attackX", attack_vector.x);
+                anim.SetFloat("attackY", attack_vector.y);
                 isAttacking = true;
                 if (attack_vector.x > 0)
                 {
@@ -241,6 +245,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         delayRangeTimer.complete = false;
         canRange = true;
+        anim.SetBool("isRange", false);
         isAttacking = false;
         yield break;
     }
