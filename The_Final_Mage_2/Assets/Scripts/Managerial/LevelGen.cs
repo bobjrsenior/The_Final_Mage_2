@@ -4,6 +4,11 @@ using System.Collections.Generic;
 public class LevelGen : MonoBehaviour {
 
     /// <summary>
+    /// The current level generator
+    /// </summary>
+    public static LevelGen gen;
+
+    /// <summary>
     /// References the levels game manager
     /// </summary>
     public DifficultyManager manager;
@@ -30,6 +35,11 @@ public class LevelGen : MonoBehaviour {
     public GameObject[] rooms;
 
     /// <summary>
+    /// A map of the current floor
+    /// </summary>
+    private Dictionary<Vector2, Room> map = new Dictionary<Vector2, Room>();
+
+    /// <summary>
     /// The distance between rooms
     /// </summary>
     private float roomDistance = 15.0f;
@@ -43,7 +53,6 @@ public class LevelGen : MonoBehaviour {
     /// Current room size limit
     /// </summary>
     private int curMaxSize;
-
 
     /// <summary>
     /// Corresponds to the up direction in level generation
@@ -68,8 +77,93 @@ public class LevelGen : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        
+        if(gen != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        gen = this;
+
 	}
+
+    void OnApplicationQuit()
+    {
+        gen = null;
+    }
+
+    /// <summary>
+    /// Is the current room unlocked?
+    /// </summary>
+    /// <param name="position">Position of the door (will be normalized to the room pos)</param>
+    /// <returns>Whether or not the room is unlocked</returns>
+    public bool unlocked(Vector2 position)
+    {
+        //Snap position to the enclosed room
+        if (position.x > 0)
+        {
+            position.x -= position.x % roomDistance;
+        }
+        else
+        {
+            position.x -= (15 - (Mathf.Abs(position.x) % roomDistance));
+        }
+
+        if (position.y > 0)
+        {
+            position.y -= position.y % roomDistance;
+            position.y += 15;
+        }
+        else
+        {
+            position.y -= (15 - (Mathf.Abs(position.y) % roomDistance));
+            position.y += roomDistance;
+        }
+
+        Room room;
+        //Get that room and check it
+        if (map.TryGetValue(position, out room))
+        {
+            return room.unlocked;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Kills an enemy in the specified room
+    /// </summary>
+    /// <param name="position"Position of the enemy (will be normalized to the room pos)></param>
+    /// <returns>Is the room unlocked?</returns>
+    public bool enemyDied(Vector2 position)
+    {
+        //Snap position to the enclosed room
+        if (position.x > 0)
+        {
+            position.x -= position.x % roomDistance;
+        }
+        else
+        {
+            position.x -= (15 - (Mathf.Abs(position.x) % roomDistance));
+        }
+
+        if (position.y > 0)
+        {
+            position.y -= position.y % roomDistance;
+            position.y += 15;
+        }
+        else
+        {
+            position.y -= (15 - (Mathf.Abs(position.y) % roomDistance));
+            position.y += roomDistance;
+        }
+
+        Room room;
+        //Get that room and update it
+        if(map.TryGetValue(position, out room))
+        {
+            return room.removeEnemies(1);
+        }
+        return false;
+    }
 
     /// <summary>
     /// Generates a new level based on the difficulty and level number
@@ -81,7 +175,7 @@ public class LevelGen : MonoBehaviour {
         curMaxSize = (int)(defaultMaxSize + (defaultMaxSize * 0.5f * (manager.difficulty * manager.floor)));
 
         //Create a map for the floor
-        Dictionary<Vector2, Room> map = new Dictionary<Vector2, Room>();
+        map.Clear();
 
         //Queue of rooms that want to be added to the floor
         List<Room> toBeGenerated = new List<Room>();
@@ -94,8 +188,12 @@ public class LevelGen : MonoBehaviour {
         //Start generating the rooms
         addNode(map, toBeGenerated, 1);
 
+        List<Room> spawned = new List<Room>();
+
         //Spawn the rooms
-        spawnLevel(map, firstRoom, 5);
+        spawnLevel(map, firstRoom, spawned, 5);
+
+        spawned.Clear();
 
         //Create the camera
         Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
@@ -208,17 +306,18 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     /// <param name="map">Dictionary of every room on the map</param>
     /// <param name="room">The current room to spawn</param>
-    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, int keyCountDown)
+    /// <param name="spawned">A list of already spawned rooms</param>
+    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, List<Room> spawned, int keyCountDown)
     {
+
         --keyCountDown;
 
-        //Remove the current room from the map to avoid duplicate spawning
-        map.Remove(room.position);
-        //Create the rrom
+        spawned.Add(room);
+        //Create the room
         Instantiate(rooms[room.getPrefabIndex()], room.position, Quaternion.identity);
         if (!room.position.Equals(Vector2.zero))
         {
-            generateEnemies(room.position);
+            generateEnemies(room);
         }
         else
         {
@@ -237,10 +336,10 @@ public class LevelGen : MonoBehaviour {
             if (room.doors[e])
             {
                 Room nextRoom;
-                if (map.TryGetValue(dirToPos(room.position, e), out nextRoom))
+                if (map.TryGetValue(dirToPos(room.position, e), out nextRoom) && !spawned.Contains(nextRoom))
                 {
                     //Spawn corresponding room
-                    spawnLevel(map, nextRoom, keyCountDown);
+                    spawnLevel(map, nextRoom, spawned, keyCountDown);
 
                 }
             }
@@ -305,15 +404,20 @@ public class LevelGen : MonoBehaviour {
     /// Spawns enemies in a specified room location
     /// </summary>
     /// <param name="roomPosition"Location of the rooms to spawn enemies in></param>
-    private void generateEnemies(Vector2 roomPosition)
+    private void generateEnemies(Room room)
     {
         //Determine number of enemies to spawn based on floor number and difficulty
         int numEnemies = (int) (Random.Range(0.0f, 4.0f + (0.5f * (manager.floor + (manager.floor * 0.25f * manager.difficulty)))));
 
+        if (numEnemies > 0)
+        {
+            room.addEnemies(numEnemies);
+        }
+
         //Spawn enemies in random place in room
         for(int e = 0; e < numEnemies; ++e)
         {
-            Instantiate(enemyPrefab, new Vector2(roomPosition.x + Random.Range(0.2f, 5.8f), roomPosition.y + Random.Range(-5.8f, -0.2f)), Quaternion.identity);
+            Instantiate(enemyPrefab, new Vector2(room.position.x + Random.Range(0.2f, 5.8f), room.position.y + Random.Range(-5.8f, -0.2f)), Quaternion.identity);
         }
     }
 }
@@ -336,6 +440,16 @@ public class Room
     public Vector2 position;
 
     /// <summary>
+    /// The current number of enemies in the room
+    /// </summary>
+    private int enemies = 0;
+
+    /// <summary>
+    /// Are this room's doors unlocked?
+    /// </summary>
+    public bool unlocked = true;
+
+    /// <summary>
     /// Set the rooms position
     /// </summary>
     /// <param name="position">Position of the room</param>
@@ -351,6 +465,33 @@ public class Room
     public void addDoor(int direction)
     {
         doors[direction] = true;
+    }
+
+    /// <summary>
+    /// Adds enemies to the room
+    /// </summary>
+    /// <param name="amount">Amount of enemies to add</param>
+    public void addEnemies(int amount)
+    {
+        enemies += amount;
+        unlocked = false;
+    }
+
+    /// <summary>
+    /// Removes enemies from the roo,
+    /// </summary>
+    /// <param name="amount">Amount of enemies to remove</param>
+    /// <returns>Are the doors unlocked?</returns>
+    public bool removeEnemies(int amount)
+    {
+        enemies -= amount;
+        Debug.Log(enemies);
+        if(enemies <= 0)
+        {
+            enemies = 0;
+            unlocked = true;
+        }
+        return unlocked;
     }
 
     /// <summary>

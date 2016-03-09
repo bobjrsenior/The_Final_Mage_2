@@ -56,6 +56,10 @@ public class EnemyHealth : MonoBehaviour {
         {
             //Destroy this object on death. NOTE: This is only temporary until we give enemies death animations.
             scoreEvent();
+            if (LevelGen.gen != null)
+            {
+                LevelGen.gen.enemyDied(transform.position);
+            }
             Destroy(transform.gameObject);
         }
     }
