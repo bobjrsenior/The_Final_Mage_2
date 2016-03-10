@@ -89,35 +89,84 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public GameObject enemyRangeProjectile;
 
+    public bool gotKeyCard = false;
+
+
     public static DifficultyManager dManager;
+
 
     void Awake()
     {
-        dManager = this;
+        if(dManager != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            dManager = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            floor = 1;
+            setUpFloor();
+        }
+        
     }
 
 	// Use this for initialization
 	void Start () {
-        //Prevents an attempt at level generation in the test scene.
-        if (SceneManager.GetActiveScene().name.Equals("levelGen"))
-        {
-            FindObjectOfType<LevelGen>().generateLevel();
-        }
         //Start on floor 1.
-        floor = 1;
-        newFloor = true;
-        setPlayerStats();
+        
 
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (newFloor == true)
+    void OnLevelWasLoaded(int level)
+    {
+        if (dManager.Equals(this))
         {
-            setEnemyStats();
+            setUpFloor();
         }
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
 	}
+
+    /// <summary>
+    /// Setup the current floor
+    /// </summary>
+    private void setUpFloor()
+    {
+        gotKeyCard = false;
+        if (SceneManager.GetActiveScene().name.Equals("LevelGen"))
+        {
+            LevelGen.gen.generateLevel();
+        }
+        setPlayerStats();
+        setEnemyStats();
+    }
+
+    /// <summary>
+    /// Called when a floor has been completed
+    /// </summary>
+    public void wonFloor()
+    {
+        if (gotKeyCard)
+        {
+            ++floor;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        }
+    }
+
+    /// <summary>
+    /// Called when you have retrieved a keycard
+    /// </summary>
+    public void retrievedKeyCard()
+    {
+        gotKeyCard = true;
+    }
 
     /// <summary>
     /// Sets the enemy stats to the appropriate values.
