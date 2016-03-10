@@ -10,10 +10,8 @@ public class RoomWarp : MonoBehaviour
         {
             if (other.isTrigger == false)//If the collider is not a trigger (Or, in simpler terms, if we are detecting player collision and not the radius that governs whether enemies can move or not)
             {
-                if (LevelGen.gen != null)
-                {
-                    print("Is the room unlocked: " + LevelGen.gen.unlocked(transform.position));
-                }
+
+                print("Hit Exit");
                 //Top door
                 if(this.CompareTag("Up_Exit"))
                 {
