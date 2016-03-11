@@ -47,7 +47,7 @@ public class LevelGen : MonoBehaviour {
     /// <summary>
     /// The distance between rooms
     /// </summary>
-    private float roomDistance = 15.0f;
+    public float roomDistance = 15.0f;
 
     /// <summary>
     /// Default room size limit
@@ -111,17 +111,17 @@ public class LevelGen : MonoBehaviour {
         }
         else
         {
-            position.x -= (15 - (Mathf.Abs(position.x) % roomDistance));
+            position.x -= (roomDistance - (Mathf.Abs(position.x) % roomDistance));
         }
 
         if (position.y > 0)
         {
             position.y -= position.y % roomDistance;
-            position.y += 15;
+            position.y += roomDistance;
         }
         else
         {
-            position.y -= (15 - (Mathf.Abs(position.y) % roomDistance));
+            position.y -= (roomDistance - (Mathf.Abs(position.y) % roomDistance));
             position.y += roomDistance;
         }
 
@@ -148,17 +148,17 @@ public class LevelGen : MonoBehaviour {
         }
         else
         {
-            position.x -= (15 - (Mathf.Abs(position.x) % roomDistance));
+            position.x -= (roomDistance - (Mathf.Abs(position.x) % roomDistance));
         }
 
         if (position.y > 0)
         {
             position.y -= position.y % roomDistance;
-            position.y += 15;
+            position.y += roomDistance;
         }
         else
         {
-            position.y -= (15 - (Mathf.Abs(position.y) % roomDistance));
+            position.y -= (roomDistance - (Mathf.Abs(position.y) % roomDistance));
             position.y += roomDistance;
         }
 
