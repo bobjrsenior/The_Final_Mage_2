@@ -24,6 +24,16 @@ public class LevelGen : MonoBehaviour {
     public GameObject cameraPrefab;
 
     /// <summary>
+    /// The elevator's prefab
+    /// </summary>
+    public GameObject elevatorPrefab;
+
+    /// <summary>
+    /// The keycard's prefab
+    /// </summary>
+    public GameObject keycardPrefab;
+
+    /// <summary>
     /// An array of all the room prefabs that can spawn
     /// TODO: Standardize list order
     /// </summary>
@@ -182,12 +192,14 @@ public class LevelGen : MonoBehaviour {
         toBeGenerated.Add(firstRoom);
 
         //Start generating the rooms
-        addNode(map, toBeGenerated, 1);
+        int roomCount = addNode(map, toBeGenerated, 1);
 
         List<Room> spawned = new List<Room>();
 
+        int keyCountdown = Random.Range(1, roomCount);
+
         //Spawn the rooms
-        spawnLevel(map, firstRoom, spawned, 5);
+        spawnLevel(map, firstRoom, spawned, keyCountdown);
 
         spawned.Clear();
 
@@ -202,12 +214,12 @@ public class LevelGen : MonoBehaviour {
     /// <param name="map">Map of the entire level</param>
     /// <param name="toBeGenerated">List (Queue) of rooms that are waiting to be added</param>
     /// <param name="roomCount">Current number of rooms</param>
-    private void addNode(Dictionary<Vector2, Room> map, List<Room> toBeGenerated, int roomCount)
+    private int addNode(Dictionary<Vector2, Room> map, List<Room> toBeGenerated, int roomCount)
     {
         //If no rooms want to be added, then we are done
         if(toBeGenerated.Count == 0)
         {
-            return;
+            return roomCount;
         }
 
         //Grab to top room and remove it from toBeGenerated
@@ -294,7 +306,7 @@ public class LevelGen : MonoBehaviour {
             }
         }
         //Add the next room
-        addNode(map, toBeGenerated, roomCount);
+        return addNode(map, toBeGenerated, roomCount);
     }
 
     /// <summary>
@@ -318,11 +330,13 @@ public class LevelGen : MonoBehaviour {
         else
         {
             Instantiate(playerPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
+            Instantiate(elevatorPrefab, new Vector2(room.position.x + 2.0f, room.position.y - 2.0f), Quaternion.identity);
         }
 
         if (keyCountDown == 0)
         {
             //This room has the elevator's keycard
+            Instantiate(keycardPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
         }
 
         //Go through each door for the room

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Keycard : MonoBehaviour {
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (coll.collider.CompareTag("Player"))
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
             DifficultyManager.dManager.retrievedKeyCard();
             Destroy(this.gameObject);
