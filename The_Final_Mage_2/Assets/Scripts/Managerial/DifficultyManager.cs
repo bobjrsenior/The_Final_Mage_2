@@ -44,6 +44,8 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public bool statsSet = false;
 
+    public bool pStatsSet;
+
     /// <summary>
     /// The players standard health
     /// </summary>
@@ -116,7 +118,8 @@ public class DifficultyManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Start on floor 1.
-        
+
+        setPlayerStats();
 
     }
 
@@ -132,6 +135,7 @@ public class DifficultyManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+
 	}
 
     /// <summary>
@@ -144,7 +148,6 @@ public class DifficultyManager : MonoBehaviour {
         {
             LevelGen.gen.generateLevel();
         }
-        setPlayerStats();
         setEnemyStats();
     }
 
@@ -224,12 +227,10 @@ public class DifficultyManager : MonoBehaviour {
 
     private void setPlayerStats()
     {
-        PlayerHealth playerHP = FindObjectOfType<PlayerHealth>();
-        PlayerAttack playerAttack = FindObjectOfType<PlayerAttack>();
-        
-        playerHP.maxHealth = playerStandardMaxHealth;
-        playerHP.health = playerStandardHealth;
-        playerAttack.meleeDamage = playerStandardMeleeDam;
-        playerAttack.rangeDamage = playerStandardRangedDam;
+        PlayerHealth.pHealth.maxHealth = playerStandardMaxHealth;
+        PlayerHealth.pHealth.health = playerStandardHealth;
+        PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
+        PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
+        pStatsSet = true;
     }
 }
