@@ -109,22 +109,18 @@ public class DifficultyManager : MonoBehaviour {
             dManager = this;
             DontDestroyOnLoad(this.gameObject);
 
+            //Start on floor 1
             floor = 1;
+
             setUpFloor();
         }
         
     }
 
-	// Use this for initialization
-	void Start () {
-        //Start on floor 1.
-
-        setPlayerStats();
-
-    }
 
     void OnLevelWasLoaded(int level)
     {
+        
         if (dManager.Equals(this))
         {
             setUpFloor();
@@ -148,6 +144,7 @@ public class DifficultyManager : MonoBehaviour {
         {
             LevelGen.gen.generateLevel();
         }
+        setPlayerStats();
         setEnemyStats();
     }
 
