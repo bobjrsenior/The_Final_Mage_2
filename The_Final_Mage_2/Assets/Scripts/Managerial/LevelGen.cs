@@ -196,8 +196,7 @@ public class LevelGen : MonoBehaviour {
 
         List<Room> spawned = new List<Room>();
 
-        int keyCountdown = Random.Range(1, roomCount);
-
+        int keyCountdown = Random.Range(1, roomCount - 1);
         //Spawn the rooms
         spawnLevel(map, firstRoom, spawned, keyCountdown);
 
@@ -315,10 +314,8 @@ public class LevelGen : MonoBehaviour {
     /// <param name="map">Dictionary of every room on the map</param>
     /// <param name="room">The current room to spawn</param>
     /// <param name="spawned">A list of already spawned rooms</param>
-    private void spawnLevel(Dictionary<Vector2, Room> map, Room room, List<Room> spawned, int keyCountDown)
+    private int spawnLevel(Dictionary<Vector2, Room> map, Room room, List<Room> spawned, int keyCountDown)
     {
-
-        --keyCountDown;
 
         spawned.Add(room);
         //Create the room
@@ -349,12 +346,12 @@ public class LevelGen : MonoBehaviour {
                 if (map.TryGetValue(dirToPos(room.position, e), out nextRoom) && !spawned.Contains(nextRoom))
                 {
                     //Spawn corresponding room
-                    spawnLevel(map, nextRoom, spawned, keyCountDown);
+                    keyCountDown = spawnLevel(map, nextRoom, spawned, --keyCountDown);
 
                 }
             }
         }
-
+        return keyCountDown;
     }
 
     /// <summary>
