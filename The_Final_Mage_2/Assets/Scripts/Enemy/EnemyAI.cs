@@ -6,7 +6,7 @@ public class EnemyAI : MonoBehaviour {
     /// <summary>
     /// The move speed for the enemy.
     /// </summary>
-    public float enemySpeed = 1f;
+    public float enemySpeed;
 
     /// <summary>
     /// The rigidBody2D object attached to the enemy.

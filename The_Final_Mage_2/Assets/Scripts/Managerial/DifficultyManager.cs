@@ -10,6 +10,16 @@ public class DifficultyManager : MonoBehaviour {
     public int floor = 1;
 
     /// <summary>
+    /// How fast do the enemies move?
+    /// </summary>
+    public float enemySpeed;
+
+    /// <summary>
+    /// How fast do ranged enemies move?
+    /// </summary>
+    public float rangeEnemyMoveSpeed;
+
+    /// <summary>
     /// True when we go to a new floor, false otherwise.
     /// </summary>
     public bool newFloor;
@@ -206,6 +216,7 @@ public class DifficultyManager : MonoBehaviour {
                 //No additional floor modifiers on health and attack power for the time being.
                 enemyHP.maxHealth = enemyStandardMeleeHP;
                 enemyHP.health = enemyStandardMeleeHP;
+                enemyAI.enemySpeed = enemySpeed;
 
                 enemyAI.meleeDamage = enemyStandardMeleeDamage;
             }
@@ -215,6 +226,8 @@ public class DifficultyManager : MonoBehaviour {
                 enemyHP.maxHealth = enemyStandardRangedHP;
                 enemyHP.health = enemyStandardRangedHP;
 
+                //Ranged types always move at 1f speed to allow players to reach them for melee attacks.
+                enemyAI.enemySpeed = rangeEnemyMoveSpeed;
                 enemyAI.rangeDamage = enemyStandardRangeDamage;
                 enemyAI.rangeSpeed = enemyRangeSpeed;
                 enemyAI.shootWaitTime = enemyShootWaitTime;

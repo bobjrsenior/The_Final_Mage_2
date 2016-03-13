@@ -149,7 +149,7 @@ public class PlayerAttack : MonoBehaviour {
                             enemyHP.damage(meleeDamage);
                             //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
 
-                            enemyRigid.AddForce(attack_vector * 200);
+                            enemyRigid.AddForce(attack_vector * 300);
 
                         }
                     }
