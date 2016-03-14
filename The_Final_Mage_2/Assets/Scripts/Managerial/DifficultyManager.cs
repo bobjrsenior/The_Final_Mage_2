@@ -101,13 +101,20 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public GameObject enemyRangeProjectile;
 
+    /// <summary>
+    /// Whether or not the player has the keycard
+    /// </summary>
     public bool gotKeyCard = false;
 
+    /// <summary>
+    /// The index the level is on
+    /// </summary>
+    private int buildIndex;
 
     public static DifficultyManager dManager;
 
 
-    void Awake()
+    void Start()
     {
         if(dManager != null)
         {
@@ -121,7 +128,7 @@ public class DifficultyManager : MonoBehaviour {
 
             //Start on floor 1
             floor = 1;
-
+            buildIndex = SceneManager.GetActiveScene().buildIndex;
             setUpFloor();
         }
         
@@ -131,7 +138,7 @@ public class DifficultyManager : MonoBehaviour {
     void OnLevelWasLoaded(int level)
     {
         
-        if (dManager.Equals(this))
+        if (dManager != null && dManager.Equals(this) && buildIndex == SceneManager.GetActiveScene().buildIndex)
         {
             setUpFloor();
         }
