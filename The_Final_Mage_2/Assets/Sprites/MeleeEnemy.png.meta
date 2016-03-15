@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: 1a7e2f4f7190665478d320793f1fa383
+timeCreated: 1458011816
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MeleeEnemy_0
+    21300002: MeleeEnemy_1
+    21300004: MeleeEnemy_2
+    21300006: MeleeEnemy_3
+    21300008: MeleeEnemy_4
+    21300010: MeleeEnemy_5
+    21300012: MeleeEnemy_6
+    21300014: MeleeEnemy_7
+    21300016: MeleeEnemy_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MeleeEnemy_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 33
+        width: 350
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 175, y: 30.5}
+        - {x: 175, y: 51.5}
+        - {x: 110, y: 43.5}
+        - {x: 85, y: 102.5}
+        - {x: 42, y: 148.5}
+        - {x: -32, y: 148.5}
+        - {x: -79, y: 89.5}
+        - {x: -82, y: 86.5}
+        - {x: -91, y: 31.5}
+        - {x: -173, y: 63.5}
+        - {x: -175, y: 60.5}
+        - {x: -175, y: 38.5}
+        - {x: -96, y: 14.5}
+        - {x: -113, y: -133.5}
+        - {x: -102, y: -142.5}
+        - {x: -79, y: -148.5}
+        - {x: 88, y: -148.5}
+        - {x: 110, y: -147.5}
+        - {x: 117, y: -135.5}
+        - {x: 102, y: 15.5}
+        - {x: 172, y: 27.5}
+    - name: MeleeEnemy_1
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 29
+        width: 255
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 127.5, y: 35.5}
+        - {x: 127.5, y: 57.5}
+        - {x: 122.5, y: 57.5}
+        - {x: 112.5, y: 52.5}
+        - {x: 112.5, y: 50.5}
+        - {x: 88.5, y: 86.5}
+        - {x: 66.5, y: 96.5}
+        - {x: 34.5, y: 148.5}
+        - {x: -32.5, y: 148.5}
+        - {x: -33.5, y: 147.5}
+        - {x: -74.5, y: 104.5}
+        - {x: -103.5, y: 75.5}
+        - {x: -127.5, y: 50.5}
+        - {x: -127.5, y: 11.5}
+        - {x: -109.5, y: -2.5}
+        - {x: -119.5, y: -134.5}
+        - {x: -100.5, y: -145.5}
+        - {x: -77.5, y: -148.5}
+        - {x: 88.5, y: -148.5}
+        - {x: 107.5, y: -140.5}
+        - {x: 113.5, y: -135.5}
+        - {x: 109.5, y: 14.5}
+    - name: MeleeEnemy_3
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 20
+        width: 236
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 118, y: -92.5}
+        - {x: 103, y: 1.5}
+        - {x: 118, y: 3.5}
+        - {x: 118, y: 19.5}
+        - {x: 109, y: 27.5}
+        - {x: 97, y: 85.5}
+        - {x: 75, y: 96.5}
+        - {x: 43, y: 95.5}
+        - {x: 43, y: 147.5}
+        - {x: 42, y: 148.5}
+        - {x: -24, y: 148.5}
+        - {x: -25, y: 147.5}
+        - {x: -28, y: 98.5}
+        - {x: -82, y: 89.5}
+        - {x: -108, y: -115.5}
+        - {x: -108, y: -135.5}
+        - {x: -99, y: -143.5}
+        - {x: -64, y: -148.5}
+        - {x: 70, y: -148.5}
+        - {x: 80, y: -147.5}
+        - {x: 118, y: -142.5}
+      - - {x: -115, y: 31.5}
+        - {x: -115, y: 34.5}
+        - {x: -118, y: 35.5}
+        - {x: -118, y: 30.5}
+    - name: MeleeEnemy_4
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 19
+        width: 341
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 170.5, y: 31.5}
+        - {x: 170.5, y: 41.5}
+        - {x: 168.5, y: 41.5}
+        - {x: 104.5, y: 21.5}
+        - {x: 104.5, y: 88.5}
+        - {x: 54.5, y: 102.5}
+        - {x: 46.5, y: 148.5}
+        - {x: -20.5, y: 148.5}
+        - {x: -21.5, y: 147.5}
+        - {x: -79.5, y: 90.5}
+        - {x: -82.5, y: 33.5}
+        - {x: -170.5, y: 53.5}
+        - {x: -170.5, y: 31.5}
+        - {x: -90.5, y: 6.5}
+        - {x: -109.5, y: -134.5}
+        - {x: -84.5, y: -148.5}
+        - {x: 92.5, y: -148.5}
+        - {x: 115.5, y: -142.5}
+        - {x: 124.5, y: -135.5}
+        - {x: 106.5, y: 5.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
