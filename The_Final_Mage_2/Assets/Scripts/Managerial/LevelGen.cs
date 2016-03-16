@@ -52,7 +52,7 @@ public class LevelGen : MonoBehaviour {
     /// <summary>
     /// Default room size limit
     /// </summary>
-    private int defaultMaxSize = 15;
+    private int defaultMaxSize = 10;
 
     /// <summary>
     /// Current room size limit
