@@ -210,12 +210,16 @@ public class DifficultyManager : MonoBehaviour {
             int type = Random.Range(0, 2);
             if (type == 0)
             {
+                //Destroy the collider for melee enemies
+                Destroy(enemies[x].GetComponent<CircleCollider2D>());
                 enemies[x].rangedType = false;
                 enemies[x].meleeType = true;
                 enemies[x].GetComponent<SpriteRenderer>().sprite = meleeType;
             }
             else if (type == 1)
             {
+                //Destroy the collider for ranged enemies.
+                Destroy(enemies[x].GetComponent<BoxCollider2D>());
                 enemies[x].meleeType = false;
                 enemies[x].rangedType = true;
                 enemies[x].GetComponent<SpriteRenderer>().sprite = rangeType;
