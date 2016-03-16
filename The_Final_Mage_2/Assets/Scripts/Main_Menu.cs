@@ -9,6 +9,12 @@ public class Main_Menu : MonoBehaviour {
 
 	public void newGame ()
 	{
+        //If we have previously started a game already...
+        if (DifficultyManager.dManager != null)
+        {
+            //Start on floor 1.
+            DifficultyManager.dManager.floor = 1;
+        }
         SceneManager.LoadScene(startLevel);
 	}
 
