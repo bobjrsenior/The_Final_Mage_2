@@ -316,7 +316,7 @@ public class LevelGen : MonoBehaviour {
     /// <param name="spawned">A list of already spawned rooms</param>
     private int spawnLevel(Dictionary<Vector2, Room> map, Room room, List<Room> spawned, int keyCountDown)
     {
-
+        
         spawned.Add(room);
         //Create the room
         Instantiate(rooms[room.getPrefabIndex()], room.position, Quaternion.identity);
@@ -336,6 +336,8 @@ public class LevelGen : MonoBehaviour {
             Instantiate(keycardPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
         }
 
+        --keyCountDown;
+
         //Go through each door for the room
         for (int e = 0; e < 4; ++e)
         {
@@ -346,7 +348,7 @@ public class LevelGen : MonoBehaviour {
                 if (map.TryGetValue(dirToPos(room.position, e), out nextRoom) && !spawned.Contains(nextRoom))
                 {
                     //Spawn corresponding room
-                    keyCountDown = spawnLevel(map, nextRoom, spawned, --keyCountDown);
+                    keyCountDown = spawnLevel(map, nextRoom, spawned, keyCountDown);
 
                 }
             }
