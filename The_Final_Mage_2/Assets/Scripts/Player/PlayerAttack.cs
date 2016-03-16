@@ -199,11 +199,11 @@ public class PlayerAttack : MonoBehaviour {
         GUI.color = Color.yellow;
         if (meleeType == true)
         {
-            GUI.Box(new Rect(0, 40, 100, 25), "Type: Melee");
+            GUI.Box(new Rect(0, 60, 100, 25), "Type: Melee");
         }
         else
         {
-            GUI.Box(new Rect(0, 40, 100, 25), "Type: Ranged");
+            GUI.Box(new Rect(0, 60, 100, 25), "Type: Ranged");
         }
         
     }

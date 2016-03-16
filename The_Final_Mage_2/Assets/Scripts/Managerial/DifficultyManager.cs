@@ -113,6 +113,12 @@ public class DifficultyManager : MonoBehaviour {
 
     public static DifficultyManager dManager;
 
+    void OnGUI()
+    {
+        GUI.color = Color.yellow;
+        GUI.Box(new Rect(0, 80, 100, 25), "Floor: " + floor);
+
+    }
 
     void Start()
     {

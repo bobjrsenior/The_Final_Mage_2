@@ -150,7 +150,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         GUI.color = Color.yellow;
         GUI.Box(new Rect(0, 20, 80, 20), "Health: " + health);
-        GUI.Box(new Rect(0, 60, 80, 20), "Mana: " + mana);
+        GUI.Box(new Rect(0, 40, 80, 20), "Mana: " + mana);
     }
     /// <summary>
     /// damages player by amount.
