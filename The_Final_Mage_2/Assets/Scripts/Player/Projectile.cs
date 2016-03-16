@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour {
             other.gameObject.GetComponent<EnemyHealth>().damage(PlayerAttack.pAttack.rangeDamage);
             Destroy(transform.gameObject);
         }
-        else if (other.gameObject.CompareTag("Walls"))
+        else if (other.gameObject.CompareTag("Walls") || other.gameObject.tag.Contains("Exit"))
         {
             Destroy(transform.gameObject);
         }

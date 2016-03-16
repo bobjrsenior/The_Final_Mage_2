@@ -17,7 +17,7 @@ public class EnemyProjectile : MonoBehaviour {
             PlayerHealth.pHealth.damage(DifficultyManager.dManager.enemyStandardRangeDamage);
             Destroy(transform.gameObject);
         }
-        else if (other.gameObject.CompareTag("Walls"))
+        else if (other.gameObject.CompareTag("Walls") || other.gameObject.tag.Contains("Exit"))
         {
             Destroy(transform.gameObject);
         }
