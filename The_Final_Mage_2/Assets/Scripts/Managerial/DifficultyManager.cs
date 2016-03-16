@@ -129,7 +129,7 @@ public class DifficultyManager : MonoBehaviour {
             //Start on floor 1
             floor = 1;
             buildIndex = SceneManager.GetActiveScene().buildIndex;
-            setUpFloor();
+            StartCoroutine(setUpFloor());
         }
         
     }
@@ -140,7 +140,7 @@ public class DifficultyManager : MonoBehaviour {
         
         if (dManager != null && dManager.Equals(this) && buildIndex == SceneManager.GetActiveScene().buildIndex)
         {
-            setUpFloor();
+            StartCoroutine(setUpFloor());
         }
 
     }
@@ -154,13 +154,14 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// Setup the current floor
     /// </summary>
-    private void setUpFloor()
+    private IEnumerator setUpFloor()
     {
         gotKeyCard = false;
         if (SceneManager.GetActiveScene().name.Equals("LevelGen"))
         {
             LevelGen.gen.generateLevel();
         }
+        while (PlayerHealth.pHealth == null || PlayerAttack.pAttack == null) { yield return null; }
         setPlayerStats();
         setEnemyStats();
     }
