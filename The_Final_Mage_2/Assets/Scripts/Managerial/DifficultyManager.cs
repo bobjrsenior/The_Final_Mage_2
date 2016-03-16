@@ -115,9 +115,12 @@ public class DifficultyManager : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 80, 100, 25), "Floor: " + floor);
-
+        //If the player exists.
+        if (PlayerHealth.pHealth != null)
+        {
+            GUI.color = Color.yellow;
+            GUI.Box(new Rect(0, 80, 100, 25), "Floor: " + floor);
+        }
     }
 
     void Start()
@@ -162,6 +165,11 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     private IEnumerator setUpFloor()
     {
+        if (floor == 1)
+        {
+            //Ensure that our score always starts at the default score on floor 1.
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.initialScore;
+        }
         gotKeyCard = false;
         if (SceneManager.GetActiveScene().name.Equals("LevelGen"))
         {

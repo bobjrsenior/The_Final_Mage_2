@@ -132,6 +132,8 @@ public class PlayerHealth : MonoBehaviour {
         //If our health ever hits 0
         if (health == 0)
         {
+            //Disable the score countdown
+            Scoring.scoreKeeper.countdown = false;
             //We die
             anim.SetBool("isDead", true);
             isDead = true;
@@ -139,6 +141,8 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
+            //Enable the score countdown.
+            Scoring.scoreKeeper.countdown = true;
             //If our health is not 0, we are alive.
             anim.SetBool("isDead", false);
             isDead = false;

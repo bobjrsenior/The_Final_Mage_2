@@ -38,17 +38,31 @@ public class Scoring : MonoBehaviour {
     /// </summary>
     private bool degenerationCooldown;
 
+    /// <summary>
+    /// True will allow score to count down, false will not.
+    /// </summary>
+    public bool countdown;
+
+    private Timer degenerationTimer;
+
     public static Scoring scoreKeeper;
 
-
-    void Awake()
-    {
-        scoreKeeper = this;
-    }
     // Use this for initialization
     void Start () {
 
-        score = initialScore;
+        if (scoreKeeper != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            scoreKeeper = this;
+            DontDestroyOnLoad(this.gameObject);
+            score = initialScore;
+            degenerationTimer = gameObject.AddComponent<Timer>();
+            degenerationTimer.initialize(degenerationTime, false);
+        }
 	}
 	
 	// Update is called once per frame
@@ -63,21 +77,46 @@ public class Scoring : MonoBehaviour {
     //Temporary means to track score.
     void OnGUI()
     {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 0, 100, 20), "Score: " + score);
+        //If the player exists
+        if (PlayerHealth.pHealth != null)
+        {
+            GUI.color = Color.yellow;
+            GUI.Box(new Rect(0, 0, 100, 20), "Score: " + score);
+        }
     }
     private IEnumerator degenerate()
     {
         degenerationCooldown = true;
-        yield return new WaitForSeconds(degenerationTime);
-        if ((score - degenerationAmount) < 0)
+        degenerationTimer.started = true;
+        while (degenerationTimer.complete == false)
         {
-            score = 0;
-        }
-        else
-        {
-            score = score - degenerationAmount;
+            degenerationTimer.countdownUpdate();
+            //Checks to see if the player still exists or not
+            if (PlayerHealth.pHealth != null)
+            {
+                yield return null;
+            }
+            else
+            {
+                //The player is no longer in existence, thus, the timer should resut and stop.
+                degenerationTimer.started = false;
+                degenerationTimer.time = degenerationTimer.initialTime;
+                countdown = false;
+                break;
+            }
         }
         degenerationCooldown = false;
+        degenerationTimer.complete = false;
+        if (PlayerHealth.pHealth.health != 0 && countdown == true)
+        {
+            if ((score - degenerationAmount) < 0)
+            {
+                score = 0;
+            }
+            else
+            {
+                score = score - degenerationAmount;
+            }
+        }
     }
 }
