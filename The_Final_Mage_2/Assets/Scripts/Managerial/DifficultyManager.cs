@@ -32,12 +32,12 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// Our base standard melee health.
     /// </summary>
-    public float enemyStandardMeleeHP = 4.0f;
+    public float enemyStandardMeleeHP;
 
     /// <summary>
     /// Our base standard ranged health.
     /// </summary>
-    public float enemyStandardRangedHP = 5.0f;
+    public float enemyStandardRangedHP;
 
     /// <summary>
     /// Our base standard melee damage
@@ -166,7 +166,7 @@ public class DifficultyManager : MonoBehaviour {
     private IEnumerator setUpFloor()
     {
         //If we've gotten to the end...
-        if (floor == 6)
+        if (floor == 7)
         {
             Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(Experience.playerExperience.transform.root.gameObject);
@@ -243,25 +243,65 @@ public class DifficultyManager : MonoBehaviour {
             //If the current enemy is a melee type
             if (enemies[x].meleeType == true)
             {
-                //No additional floor modifiers on health and attack power for the time being.
-                enemyHP.maxHealth = enemyStandardMeleeHP;
-                enemyHP.health = enemyStandardMeleeHP;
-                enemyAI.enemySpeed = enemySpeed;
-
-                enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                //Floor 1 - 2
+                if (floor <= 2)
+                {
+                    enemyHP.maxHealth = enemyStandardMeleeHP - 2;
+                    enemyHP.health = enemyStandardMeleeHP - 2;
+                    enemyAI.enemySpeed = enemySpeed;
+                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                }
+                //floor 3 - 4
+                else if (floor > 2 && floor <= 4)
+                {
+                    enemyHP.maxHealth = enemyStandardMeleeHP - 1;
+                    enemyHP.health = enemyStandardMeleeHP - 1;
+                    enemyAI.enemySpeed = enemySpeed;
+                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                }
+                else
+                {
+                    enemyHP.maxHealth = enemyStandardMeleeHP;
+                    enemyHP.health = enemyStandardMeleeHP;
+                    enemyAI.enemySpeed = enemySpeed;
+                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                }
             }
             else
             {
-                //No additional floor modifiers on health and attack power for the time being.
-                enemyHP.maxHealth = enemyStandardRangedHP;
-                enemyHP.health = enemyStandardRangedHP;
-
-                //Ranged types always move at 1f speed to allow players to reach them for melee attacks.
-                enemyAI.enemySpeed = rangeEnemyMoveSpeed;
-                enemyAI.rangeDamage = enemyStandardRangeDamage;
-                enemyAI.rangeSpeed = enemyRangeSpeed;
-                enemyAI.shootWaitTime = enemyShootWaitTime;
-                enemyAI.rangeProjectile = enemyRangeProjectile;
+                //Floor 1 - 2
+                if (floor <= 2)
+                {
+                    enemyHP.maxHealth = enemyStandardRangedHP - 2;
+                    enemyHP.health = enemyStandardRangedHP - 2;
+                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
+                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.rangeSpeed = enemyRangeSpeed;
+                    enemyAI.shootWaitTime = enemyShootWaitTime;
+                    enemyAI.rangeProjectile = enemyRangeProjectile;
+                }
+                //Floor 3 - 4
+                else if (floor > 2 && floor <= 4)
+                {
+                    enemyHP.maxHealth = enemyStandardRangedHP - 1;
+                    enemyHP.health = enemyStandardRangedHP - 1;
+                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
+                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.rangeSpeed = enemyRangeSpeed;
+                    enemyAI.shootWaitTime = enemyShootWaitTime;
+                    enemyAI.rangeProjectile = enemyRangeProjectile;
+                }
+                //Floor 5 - 6
+                else
+                {
+                    enemyHP.maxHealth = enemyStandardRangedHP;
+                    enemyHP.health = enemyStandardRangedHP;
+                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
+                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.rangeSpeed = enemyRangeSpeed;
+                    enemyAI.shootWaitTime = enemyShootWaitTime;
+                    enemyAI.rangeProjectile = enemyRangeProjectile;
+                }
             }
 
         }

@@ -106,15 +106,40 @@ public class EnemyHealth : MonoBehaviour {
 
     private void scoreEvent()
     {
+        int bonusModifier;
         if (self.meleeType == true)
         {
-            //Score bonus increases with additional floors reached. Should be 1 for the first floor, 2 for floors 2 and 3, and 3 for floor 4.
-            int bonusModifier = (Scoring.scoreKeeper.meleeScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2));
-            Scoring.scoreKeeper.score += bonusModifier;
+            //Score bonus increases with additional floors reached. Should be 1 for floors 1-2, 2 f or 3-4, and 3 for 5-6.
+            if (DifficultyManager.dManager.floor > 2 && DifficultyManager.dManager.floor <= 4)
+            {
+                bonusModifier = 2;
+            }
+            else if (DifficultyManager.dManager.floor > 4)
+            {
+                bonusModifier = 3;
+            }
+            else
+            {
+                bonusModifier = 1;
+            }
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.meleeScore * bonusModifier);
         }
         else if (self.rangedType == true)
         {
-            Scoring.scoreKeeper.score += ((Scoring.scoreKeeper.rangedScore) * (Mathf.CeilToInt(((float)DifficultyManager.dManager.floor + 1) / 2)));
+            //Score bonus increases with additional floors reached. Should be 1 for floors 1-2, 2 f or 3-4, and 3 for 5-6.
+            if (DifficultyManager.dManager.floor > 2 && DifficultyManager.dManager.floor <= 4)
+            {
+                bonusModifier = 2;
+            }
+            else if (DifficultyManager.dManager.floor > 4)
+            {
+                bonusModifier = 3;
+            }
+            else
+            {
+                bonusModifier = 1;
+            }
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.rangedScore * bonusModifier);
         }
     }
 }
