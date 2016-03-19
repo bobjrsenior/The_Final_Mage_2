@@ -515,8 +515,8 @@ MonoBehaviour:
   rangeEnemyMoveSpeed: 0.9
   newFloor: 0
   difficulty: 1
-  enemyStandardMeleeHP: 4
-  enemyStandardRangedHP: 5
+  enemyStandardMeleeHP: 5
+  enemyStandardRangedHP: 4
   enemyStandardMeleeDamage: 1
   enemyStandardRangeDamage: 1
   statsSet: 0

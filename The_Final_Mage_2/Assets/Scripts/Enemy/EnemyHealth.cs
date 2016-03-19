@@ -66,7 +66,7 @@ public class EnemyHealth : MonoBehaviour {
             {
                 LevelGen.gen.enemyDied(transform.position);
             }
-            if (Random.Range(0, 100) >= 80)
+            if (Random.Range(0, 100) >= 85)
             {
                 Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             }    
