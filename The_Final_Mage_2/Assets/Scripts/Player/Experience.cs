@@ -6,7 +6,7 @@ public class Experience : MonoBehaviour {
     /// <summary>
     /// The maximum level of the player can never exceed 4.
     /// </summary>
-    private const int MAX_LEVEL = 4;
+    private const int MAX_LEVEL = 5;
 
     /// <summary>
     /// How much EXP does it take to reach the next level?
@@ -29,7 +29,7 @@ public class Experience : MonoBehaviour {
         else
         {
             playerExperience = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(transform.root.gameObject);
         }
     }
 
@@ -56,6 +56,7 @@ public class Experience : MonoBehaviour {
             if (playerEXP >= MAX_EXP_TO_LEVEL)
             {
                 playerLevel++;
+                Skills.pSkills.skillPoints++;
                 if (playerLevel == MAX_LEVEL)
                 {
                     playerEXP = 100;
