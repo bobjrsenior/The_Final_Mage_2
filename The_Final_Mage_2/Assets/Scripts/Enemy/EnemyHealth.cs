@@ -70,15 +70,13 @@ public class EnemyHealth : MonoBehaviour {
             //If we have enhanced drop rate...
             if (Skills.pSkills.skill1 == true)
             {
-                print("Here");
-                if (Random.Range(0, 100) >= 75)
+                if (Random.Range(25, 100) >= 85)
                 {
                     Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 }
             }
             else
             {
-                print("there");
                 if (Random.Range(0, 100) >= 85)
                 {
                     Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
