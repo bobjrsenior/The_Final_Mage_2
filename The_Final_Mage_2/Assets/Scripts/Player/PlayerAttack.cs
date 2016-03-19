@@ -146,7 +146,15 @@ public class PlayerAttack : MonoBehaviour {
                             //Get and damage the enemy by our melee damage
                             Rigidbody2D enemyRigid = rayHit[x].collider.GetComponent<Rigidbody2D>();
                             EnemyHealth enemyHP = rayHit[x].collider.GetComponent<EnemyHealth>();
-                            enemyHP.damage(meleeDamage);
+                            //If we have increased melee damage...
+                            if (Skills.pSkills.skill2 == true)
+                            {
+                                enemyHP.damage(meleeDamage * 2);
+                            }
+                            else
+                            {
+                                enemyHP.damage(meleeDamage);
+                            }
                             //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
 
                             enemyRigid.AddForce(attack_vector * 300);

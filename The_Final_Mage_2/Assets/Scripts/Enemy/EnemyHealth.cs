@@ -61,15 +61,29 @@ public class EnemyHealth : MonoBehaviour {
         {
             //Destroy this object on death. NOTE: This is only temporary until we give enemies death animations.
             scoreEvent();
-            Experience.playerExperience.addEXP(6);
+            Experience.playerExperience.addEXP(4);
             if (LevelGen.gen != null)
             {
                 LevelGen.gen.enemyDied(transform.position);
             }
-            if (Random.Range(0, 100) >= 85)
+
+            //If we have enhanced drop rate...
+            if (Skills.pSkills.skill1 == true)
             {
-                Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-            }    
+                print("Here");
+                if (Random.Range(0, 100) >= 75)
+                {
+                    Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                }
+            }
+            else
+            {
+                print("there");
+                if (Random.Range(0, 100) >= 85)
+                {
+                    Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                }
+            }   
             Destroy(transform.gameObject);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Skills : MonoBehaviour {
 
@@ -17,6 +18,16 @@ public class Skills : MonoBehaviour {
     public bool skill2;
     public bool skill3;
     public bool skill4;
+
+    public GameObject[] UIElements;
+
+    public Text skillText;
+    public Timer UIDropdownCool;
+
+    private bool cooldown;
+
+    //True if and only if the UI is up.
+    private bool up;
 
     public static Skills pSkills;
 
@@ -38,14 +49,56 @@ public class Skills : MonoBehaviour {
             pSkills = this;
             DontDestroyOnLoad(transform.root.gameObject);
             skillPoints = 0;
+            UIDropdownCool = gameObject.AddComponent<Timer>();
+            UIDropdownCool.initialize(.2f, false);
+
+            for (int x = 0; x < UIElements.Length; x++)
+            {
+                UIElements[x].transform.position = new Vector2(UIElements[x].transform.position.x, UIElements[x].transform.position.y + 3000);
+            }
+            skillText.transform.position = new Vector2(skillText.transform.position.x, skillText.transform.position.y + 3000);
+            up = true;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    
+	    if (Input.GetKeyDown(KeyCode.Space) && cooldown == false)
+        {
+            if (up == true)
+            {
+                for (int x = 0; x < UIElements.Length; x++)
+                {
+                    UIElements[x].transform.position = new Vector2(UIElements[x].transform.position.x, UIElements[x].transform.position.y - 3000);
+                }
+                skillText.transform.position = new Vector2(skillText.transform.position.x, skillText.transform.position.y - 3000);
+                up = false;
+            }
+            else
+            {
+                for (int x = 0; x < UIElements.Length; x++)
+                {
+                    UIElements[x].transform.position = new Vector2(UIElements[x].transform.position.x, UIElements[x].transform.position.y + 3000);
+                }
+                skillText.transform.position = new Vector2(skillText.transform.position.x, skillText.transform.position.y + 3000);
+                up = true;
+            }
+        }
 	}
 
+    private IEnumerable dropdownCoolTimer()
+    {
+        cooldown = true;
+        UIDropdownCool.started = true;
+        while (UIDropdownCool.complete == false)
+        {
+            UIDropdownCool.countdownUpdate();
+            yield return null;
+        }
+        UIDropdownCool.complete = false;
+        cooldown = false;
+        yield break;
+    }
     /// <summary>
     /// Spends skillpoints to unlock a tageted skill.
     /// </summary>
@@ -54,28 +107,67 @@ public class Skills : MonoBehaviour {
     {
         if (skillPoints != 0)
         {
-            skillPoints--;
             if (skillID == 1)
             {
-                skill1 = true;
+                if (skill1 == true)
+                {
+                    skillText.text = "You have already purchased that skill!";
+                }
+                else
+                {
+                    skillPoints--;
+                    skill1 = true;
+                    skillText.text = "Skill purchased successfully!";
+                }
+                
             }
             else if (skillID == 2)
             {
-                skill2 = true;
+                if (skill2 == true)
+                {
+                    skillText.text = "You have already purchased that skill!";
+                }
+                else
+                {
+                    skillPoints--;
+                    skill2 = true;
+                    skillText.text = "Skill purchased successfully!";
+                }
             }
             else if (skillID == 3)
             {
-                skill3 = true;
+                if (skill3 == true)
+                {
+                    skillText.text = "You have already purchased that skill!";
+                }
+                else
+                {
+                    skillPoints--;
+                    skill3 = true;
+                    skillText.text = "Skill purchased successfully!";
+                }
             }
             else if (skillID == 4)
             {
-                skill4 = true;
+                if (skill4 == true)
+                {
+                    skillText.text = "You have already purchased that skill!";
+                }
+                else
+                {
+                    skillPoints--;
+                    skill4 = true;
+                    skillText.text = "Skill purchased successfully!";
+                }
             }
             else
             {
                 print("SKILL SPENDING FAILED");
-                skillPoints++;
             }
+        }
+        else
+        {
+            skillText.text = "You do not have enough skill points to purchase that skill!";
         }
     }
 }
