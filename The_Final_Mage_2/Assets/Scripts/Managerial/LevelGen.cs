@@ -426,7 +426,7 @@ public class LevelGen : MonoBehaviour {
         //Spawn enemies in random place in room
         for(int e = 0; e < numEnemies; ++e)
         {
-            Instantiate(enemyPrefab, new Vector2(room.position.x + Random.Range(0.2f, 5.8f), room.position.y + Random.Range(-5.8f, -0.2f)), Quaternion.identity);
+            Instantiate(enemyPrefab, new Vector2(room.position.x + Random.Range(0.6f, 5.2f), room.position.y + Random.Range(-5.2f, -0.6f)), Quaternion.identity);
         }
     }
 }
