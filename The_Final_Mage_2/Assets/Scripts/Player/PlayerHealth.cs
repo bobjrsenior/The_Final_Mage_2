@@ -180,7 +180,7 @@ public class PlayerHealth : MonoBehaviour {
     /// Heals player by amount. If the new health exceeds the max health, it will simply bring it up to max health instead.
     /// </summary>
     /// <param name="amount"> The amount to heal by. </param>
-    public void heal(float amount)
+    public void heal(int amount)
     {
         if ((health + amount) > maxHealth)
         {
@@ -189,6 +189,18 @@ public class PlayerHealth : MonoBehaviour {
         else
         {
             health = health + amount;
+        }
+    }
+
+    public void addMana(int amount)
+    {
+        if ((mana + amount) >= maxMana)
+        {
+            mana = maxMana;
+        }
+        else
+        {
+            mana = mana + amount;
         }
     }
 

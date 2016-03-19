@@ -93,6 +93,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   isDead: 0
+  manaVial: {fileID: 160864, guid: b7f29a4f189bd23439fdf2ae3d5b3a23, type: 2}
 --- !u!114 &11423366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +172,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: manaVial
+      value: 
+      objectReference: {fileID: 160864, guid: b7f29a4f189bd23439fdf2ae3d5b3a23, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 188990}

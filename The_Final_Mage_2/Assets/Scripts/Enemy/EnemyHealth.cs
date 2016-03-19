@@ -18,6 +18,11 @@ public class EnemyHealth : MonoBehaviour {
     /// </summary>
     public bool isDead;
 
+    /// <summary>
+    /// For spawning mana vials on death.
+    /// </summary>
+    public GameObject manaVial;
+
     Enemy self;
 
     private EnemyAI enemyAI;
@@ -61,6 +66,10 @@ public class EnemyHealth : MonoBehaviour {
             {
                 LevelGen.gen.enemyDied(transform.position);
             }
+            if (Random.Range(0, 100) >= 80)
+            {
+                Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            }    
             Destroy(transform.gameObject);
         }
     }
