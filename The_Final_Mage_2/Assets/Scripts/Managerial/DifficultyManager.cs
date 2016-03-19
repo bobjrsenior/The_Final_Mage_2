@@ -165,6 +165,13 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     private IEnumerator setUpFloor()
     {
+        //If we've gotten to the end...
+        if (floor == 6)
+        {
+            Destroy(Skills.pSkills.transform.root.gameObject);
+            Destroy(Experience.playerExperience.transform.root.gameObject);
+            SceneManager.LoadScene("Victory");
+        }
         if (floor == 1)
         {
             //Ensure that our score always starts at the default score on floor 1.

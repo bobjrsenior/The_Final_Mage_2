@@ -266,7 +266,7 @@ public class PlayerHealth : MonoBehaviour {
         gameOverTimer.complete = false;
         if (health == 0)
         {
-            //Experience object is redundant on game over, so destroy it before loading the next scene.
+            //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
             SceneManager.LoadScene("GameOver");

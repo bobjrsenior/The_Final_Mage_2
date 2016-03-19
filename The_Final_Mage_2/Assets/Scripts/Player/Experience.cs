@@ -56,9 +56,11 @@ public class Experience : MonoBehaviour {
             if (playerEXP >= MAX_EXP_TO_LEVEL)
             {
                 playerLevel++;
+                //Give the player a skill point when they level up.
                 Skills.pSkills.skillPoints++;
                 if (playerLevel == MAX_LEVEL)
                 {
+                    //Keep our display at 100 if we are now at the max level.
                     playerEXP = 100;
                 }
                 else
