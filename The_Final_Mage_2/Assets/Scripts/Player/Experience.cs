@@ -49,7 +49,6 @@ public class Experience : MonoBehaviour {
         //Only perform EXP operations if the player level is not the max level.
         if (playerLevel != MAX_LEVEL)
         {
-            print("Here");
             //If we would exceep our exp cap through this level sequence...
             //If an EXP gain of this kind would boost our level to max...
             playerEXP = playerEXP + amount;

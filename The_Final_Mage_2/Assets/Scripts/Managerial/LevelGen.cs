@@ -494,7 +494,6 @@ public class Room
     public bool removeEnemies(int amount)
     {
         enemies -= amount;
-        Debug.Log(enemies);
         if(enemies <= 0)
         {
             enemies = 0;
