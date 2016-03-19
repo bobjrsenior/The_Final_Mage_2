@@ -167,7 +167,7 @@ public class EnemyAI : MonoBehaviour {
         canShoot = false;
         timeToShootTimer.started = true;
         //Randomizes our wait time by subtracting the wait time by a random number between -2 to 0. 
-        timeToShootTimer.time = shootWaitTime - (float)Random.Range(-2, 1);
+        timeToShootTimer.time = shootWaitTime + (float)Random.Range(-2f, 1);
         while (timeToShootTimer.complete == false)
         {
             timeToShootTimer.countdownUpdate();
