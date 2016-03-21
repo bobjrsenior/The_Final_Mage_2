@@ -63,13 +63,23 @@ public class PlayerHealth : MonoBehaviour {
 
     public static PlayerHealth pHealth;
 
-    // Use this for initialization
-    void Awake()
-    {
-        pHealth = this;
-    }
-    void Start () {
 
+    void Awake () {
+
+        if (pHealth != null)
+        {
+            Destroy(transform.root.gameObject);
+        }
+        else
+        {
+            pHealth = this;
+            DontDestroyOnLoad(transform.root.gameObject);
+        }
+
+    }
+
+    void Start()
+    {
         //Always want to start with the player alive
         isDead = false;
         //Always want to start where we can be damaged.
@@ -84,8 +94,7 @@ public class PlayerHealth : MonoBehaviour {
         gameOverTimer.initialize(2, false);
         anim = GetComponent<Animator>();
         soundSource = FindObjectOfType<SoundScript>();
-
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -118,10 +127,10 @@ public class PlayerHealth : MonoBehaviour {
         
 
 	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
-        //if(Input.GetKeyDown(KeyCode.G))
-       // {
-       //     damage(1);
-       // }
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            health = 0;
+        }
 
         //FOR TESTING PURPOSES ONLY, WILL HEAL YOU BY 1 IF YOU PRESS H
           if (Input.GetKeyDown(KeyCode.H))
@@ -281,6 +290,7 @@ public class PlayerHealth : MonoBehaviour {
             //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
+            Destroy(transform.root.gameObject);
             SceneManager.LoadScene("GameOver");
         }
     }

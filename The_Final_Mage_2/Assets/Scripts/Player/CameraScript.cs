@@ -10,22 +10,22 @@ public class CameraScript : MonoBehaviour {
     /// </summary>
     public Transform initialPoint;
 
-    public SoundScript BGM;
-
 	// Use this for initialization
 	void Start () {
 
-        //Play the appropriate music for the last two floors.
+        //Ensure that our camera warps to its initial position when it is first created.
+        transform.position = new Vector3(3.0f, -3.0f, -10);
+
         if (DifficultyManager.dManager.floor >= 5)
         {
-            BGM.PlaySound(1);
+            GetComponent<AudioSource>().clip = FindObjectOfType<SoundScript>().audioClip[4];
+            GetComponent<AudioSource>().Play();
         }
         else
         {
-            BGM.PlaySound(0);
+            GetComponent<AudioSource>().clip = FindObjectOfType<SoundScript>().audioClip[3];
+            GetComponent<AudioSource>().Play();
         }
-        //Ensure that our camera warps to its initial position when it is first created.
-        transform.position = new Vector3(3.0f, -3.0f, -10);
 
     }
 	

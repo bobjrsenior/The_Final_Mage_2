@@ -154,7 +154,7 @@ Transform:
   - {fileID: 533756193}
   - {fileID: 42521919}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &223296640
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +188,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 174.7, y: 42}
-  m_SizeDelta: {x: -331.4, y: -18}
+  m_AnchoredPosition: {x: 305, y: 60}
+  m_SizeDelta: {x: -563, y: -56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223296642
 MonoBehaviour:
@@ -279,10 +279,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increased Mana Vial Drop Rate
+  m_Text: "Increased Mana \nVial Drop Rate"
 --- !u!222 &243308964
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ GameObject:
   - 114: {fileID: 331933453}
   - 114: {fileID: 331933452}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: skillCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,7 +328,7 @@ RectTransform:
   - {fileID: 715938531}
   - {fileID: 1333225330}
   - {fileID: 223296641}
-  m_Father: {fileID: 1760682364}
+  m_Father: {fileID: 533756193}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -415,7 +415,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 331933451}
   m_Father: {fileID: 90588906}
   m_RootOrder: 0
 --- !u!114 &533756194
@@ -468,8 +469,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.8617602}
   m_AnchorMax: {x: 0.693, y: 1}
-  m_AnchoredPosition: {x: 61.687, y: -0}
-  m_SizeDelta: {x: -117.03, y: 15.7}
+  m_AnchoredPosition: {x: 119.8, y: -1}
+  m_SizeDelta: {x: -173.9, y: 17.996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &715938532
 MonoBehaviour:
@@ -568,7 +569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &841406519
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +619,7 @@ MonoBehaviour:
   - {fileID: 130238, guid: ab0d511e92c241946b1e769a4651f266, type: 2}
   - {fileID: 182934, guid: 922b2041502b29e41b69c5c32bf7fb16, type: 2}
   roomDistance: 15
+  soundsourcePrefab: {fileID: 0}
 --- !u!4 &841406521
 Transform:
   m_ObjectHideFlags: 0
@@ -630,48 +632,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &1109370257
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1115956466
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,8 +665,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.5000153, y: 57.600014}
-  m_SizeDelta: {x: 143.6, y: 42.7}
+  m_AnchoredPosition: {x: 6, y: 106}
+  m_SizeDelta: {x: 235.2, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115956468
 MonoBehaviour:
@@ -822,10 +782,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1825105203}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.04763493}
+  m_AnchorMax: {x: 0.83900005, y: 1}
+  m_AnchoredPosition: {x: 18.5, y: -1.5}
+  m_SizeDelta: {x: 37, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190660460
 MonoBehaviour:
@@ -848,10 +808,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -859,7 +819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increased Melee Damage
+  m_Text: "Increased Melee \nDamage"
 --- !u!222 &1190660461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -897,8 +857,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.3, y: 109.8}
-  m_SizeDelta: {x: 204.6, y: 39.2}
+  m_AnchoredPosition: {x: -10.3, y: 183.2}
+  m_SizeDelta: {x: 373.2, y: 60.808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333225331
 MonoBehaviour:
@@ -921,10 +881,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -986,6 +946,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1725026650}
     m_Modifications:
+    - target: {fileID: 11465426, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
+      propertyPath: audioClip.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 452736, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
       propertyPath: m_LocalPosition.x
       value: -9.1475525
@@ -1022,6 +986,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11465426, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
+      propertyPath: audioClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: a0d2f46bf57e4c94086626b9e9f27eee, type: 3}
+    - target: {fileID: 11465426, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
+      propertyPath: audioClip.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b1d92b167d6d4747b87dda03ab40f9d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
   m_IsPrefabParent: 0
@@ -1129,10 +1101,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.2, y: -3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 331933451}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &1760682365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,8 +1169,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: 2.5999985}
-  m_SizeDelta: {x: 150.6, y: 34.6}
+  m_AnchoredPosition: {x: 3.6, y: 21}
+  m_SizeDelta: {x: 229.8, y: 63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825105204
 MonoBehaviour:

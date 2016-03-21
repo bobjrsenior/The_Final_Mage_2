@@ -52,7 +52,7 @@ public class Skills : MonoBehaviour {
             UIDropdownCool = gameObject.AddComponent<Timer>();
             UIDropdownCool.initialize(.2f, false);
 
-            UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 3000);
+            UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
             up = true;
         }
 	}
@@ -63,13 +63,13 @@ public class Skills : MonoBehaviour {
         {
             if (up == true)
             {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y - 3000);
+                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y - 2750);
                 skillText.text = "Select a skill button to purchase that skill.";
                 up = false;
             }
             else
             {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 3000);
+                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
                 skillText.text = "Press space bar to spend skill points.";
                 up = true;
             }

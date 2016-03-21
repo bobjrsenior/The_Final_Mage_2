@@ -168,8 +168,9 @@ public class DifficultyManager : MonoBehaviour {
         //If we've gotten to the end...
         if (floor == 7)
         {
-            Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(Experience.playerExperience.transform.root.gameObject);
+            Destroy(Skills.pSkills.transform.root.gameObject);
+            Destroy(PlayerHealth.pHealth.transform.root.gameObject);
             SceneManager.LoadScene("Victory");
         }
         if (floor == 1)
@@ -310,10 +311,13 @@ public class DifficultyManager : MonoBehaviour {
 
     private void setPlayerStats()
     {
-        PlayerHealth.pHealth.maxHealth = playerStandardMaxHealth;
-        PlayerHealth.pHealth.health = playerStandardHealth;
-        PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
-        PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
-        pStatsSet = true;
+        if (floor == 1)
+        {
+            PlayerHealth.pHealth.maxHealth = playerStandardMaxHealth;
+            PlayerHealth.pHealth.health = playerStandardHealth;
+            PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
+            PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
+            pStatsSet = true;
+        }
     }
 }

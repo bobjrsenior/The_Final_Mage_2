@@ -21,6 +21,6 @@ public class SoundScript : MonoBehaviour {
     public void PlaySound(int clip)
     {
         source.clip = audioClip[clip];
-        source.Play();
+        source.PlayOneShot(audioClip[clip]);
     }
 }

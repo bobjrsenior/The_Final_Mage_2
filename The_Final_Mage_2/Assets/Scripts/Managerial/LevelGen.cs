@@ -79,6 +79,8 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     const int RIGHT = 3;
 
+    public GameObject soundsourcePrefab;
+
 
     // Use this for initialization
     void Awake () {
@@ -204,7 +206,6 @@ public class LevelGen : MonoBehaviour {
 
         //Create the camera
         Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
-
     }
 
     /// <summary>
