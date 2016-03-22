@@ -327,6 +327,8 @@ public class LevelGen : MonoBehaviour {
         }
         else
         {
+
+
             Instantiate(playerPrefab, new Vector2(room.position.x + 3.0f, room.position.y - 3.0f), Quaternion.identity);
             Instantiate(elevatorPrefab, new Vector2(room.position.x + 2.0f, room.position.y - 2.0f), Quaternion.identity);
         }
