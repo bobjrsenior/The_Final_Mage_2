@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            print(other.gameObject.GetComponent<EnemyHealth>());
+            print(PlayerAttack.pAttack.rangeDamage);
             other.gameObject.GetComponent<EnemyHealth>().damage(PlayerAttack.pAttack.rangeDamage);
             Destroy(transform.gameObject);
         }

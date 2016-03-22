@@ -171,6 +171,7 @@ public class DifficultyManager : MonoBehaviour {
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(PlayerHealth.pHealth.transform.root.gameObject);
+            Destroy(FindObjectOfType<SoundScript>().gameObject);
             SceneManager.LoadScene("Victory");
         }
         if (floor == 1)
@@ -315,9 +316,9 @@ public class DifficultyManager : MonoBehaviour {
         {
             PlayerHealth.pHealth.maxHealth = playerStandardMaxHealth;
             PlayerHealth.pHealth.health = playerStandardHealth;
-            PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
-            PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
-            pStatsSet = true;
         }
+        PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
+        PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
+        pStatsSet = true;
     }
 }

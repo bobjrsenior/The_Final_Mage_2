@@ -6,10 +6,22 @@ public class SoundScript : MonoBehaviour {
     public AudioClip[] audioClip;
     public AudioSource source;
 
+    public static bool exists;
 
 	// Use this for initialization
 	void Start () {
-        source = GetComponent<AudioSource>();
+
+        if (exists == false)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            source = GetComponent<AudioSource>();
+            exists = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
 	
 	}
 	

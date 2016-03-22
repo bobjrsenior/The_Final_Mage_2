@@ -81,6 +81,12 @@ public class EnemyAI : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+        //Ensures we never find and lock onto a duplicate player rigid body that gets deleted.
+        if (player == null)
+        {
+            player = GameObject.FindObjectOfType<PlayerMovement>().GetComponent<Rigidbody2D>();
+        }
+
         //If movement is locked on this enemy
         if (lockMovement == true || PlayerHealth.pHealth.isDead == true)
         {
