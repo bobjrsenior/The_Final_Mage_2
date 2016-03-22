@@ -292,6 +292,7 @@ public class PlayerHealth : MonoBehaviour {
             Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(soundSource.transform.gameObject);
             Destroy(transform.root.gameObject);
+            Destroy(TextBoxScript.textScript.transform.root.gameObject);
             SceneManager.LoadScene("GameOver");
         }
     }

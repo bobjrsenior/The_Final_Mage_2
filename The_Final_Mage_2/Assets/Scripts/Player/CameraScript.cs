@@ -4,12 +4,6 @@ using System.Collections;
 public class CameraScript : MonoBehaviour {
 
 
-
-    /// <summary>
-    /// The point we want our camera to start at in a given level.
-    /// </summary>
-    public Transform initialPoint;
-
 	// Use this for initialization
 	void Start () {
 

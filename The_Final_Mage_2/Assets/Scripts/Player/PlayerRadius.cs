@@ -30,6 +30,7 @@ public class PlayerRadius : MonoBehaviour {
         {
             //Set that enemy's "inRadius" boolean to true.
             other.gameObject.GetComponent<Enemy>().setInRadiusTrue();
+            StartCoroutine(TextBoxScript.textScript.displayMessage());
         }
     }
     void OnTriggerExit2D(Collider2D other)

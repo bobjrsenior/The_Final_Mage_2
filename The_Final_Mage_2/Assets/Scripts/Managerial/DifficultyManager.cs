@@ -106,8 +106,6 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public bool gotKeyCard = false;
 
-    public float currHealth = 0;
-
     /// <summary>
     /// The index the level is on
     /// </summary>
@@ -174,6 +172,7 @@ public class DifficultyManager : MonoBehaviour {
             Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(PlayerHealth.pHealth.transform.root.gameObject);
             Destroy(FindObjectOfType<SoundScript>().gameObject);
+            Destroy(TextBoxScript.textScript.transform.root.gameObject);
             SceneManager.LoadScene("Victory");
         }
         if (floor == 1)
