@@ -47,6 +47,8 @@ public class Scoring : MonoBehaviour {
 
     public static Scoring scoreKeeper;
 
+    private bool degenerationSkill;
+
     // Use this for initialization
     void Start () {
 
@@ -67,6 +69,13 @@ public class Scoring : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Enact the degeneration skill if it is purchased.
+        if (Skills.pSkills.skill4 == true && degenerationSkill == false)
+        {
+            degenerationTimer.initialTime += .25f;
+            degenerationSkill = true;
+        }
 
         if (degenerationCooldown == false && score != 0)
         {
