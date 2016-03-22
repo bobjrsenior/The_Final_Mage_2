@@ -63,6 +63,8 @@ public class PlayerHealth : MonoBehaviour {
 
     public static PlayerHealth pHealth;
 
+    private bool healthSkillApplied;
+
 
     void Awake () {
 
@@ -98,6 +100,17 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //If we have purchased the health regen skill.
+        if (Skills.pSkills.skill3 == true && healthSkillApplied == false)
+        {
+            healthRegenTimer.initialTime -= 5;
+            if (healthRegenTimer.started == true)
+            {
+                healthRegenTimer.time = 0;
+            }
+            healthSkillApplied = true;
+        }
 
         //Checks to see if we are currently in a game over scenario.
         if (health == 0 && gameOverTimer.started == false)
