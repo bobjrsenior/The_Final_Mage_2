@@ -31,7 +31,7 @@ public class TextBoxScript : MonoBehaviour {
             displaying = false;
             DontDestroyOnLoad(transform.root.gameObject);
             displayTimer = gameObject.AddComponent<Timer>();
-            displayTimer.initialize(7, false);
+            displayTimer.initialize(5, false);
             shuffleScript();
         }
 	}
