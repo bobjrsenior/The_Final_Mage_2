@@ -14,6 +14,8 @@ public class TextBoxScript : MonoBehaviour {
 
     public GameObject textPanel;
 
+    public bool displaying;
+
     private int currentMessagePosition;
 
 	// Use this for initialization
@@ -26,6 +28,7 @@ public class TextBoxScript : MonoBehaviour {
         {
             textScript = this;
             textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            displaying = false;
             DontDestroyOnLoad(transform.root.gameObject);
             displayTimer = gameObject.AddComponent<Timer>();
             displayTimer.initialize(7, false);
@@ -63,6 +66,7 @@ public class TextBoxScript : MonoBehaviour {
         {
             //Move the text panel pack into position.
             textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+            displaying = true;
             //Show the current message.
             textbox.text = gameScript[currentMessagePosition];
             displayTimer.started = true;
@@ -74,9 +78,41 @@ public class TextBoxScript : MonoBehaviour {
             displayTimer.complete = false;
             //Move the message off the screen.
             textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            displaying = false;
             //Move the message position up by one.
             currentMessagePosition++;
             yield break;
+        }
+    }
+
+    public void showTextbox()
+    {
+        //If the textbox is already active...
+        if (displayTimer.started == true)
+        {
+            //Stop it.
+            displayTimer.complete = true;
+        }
+
+        //Show text box.
+        displaying = true;
+        textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+    }
+
+    public void hideTextbox()
+    {
+        //If the textbox is already active...
+        if (displayTimer.started == true)
+        {
+            //Stop it.
+            displayTimer.complete = true;
+        }
+
+        //Hide text box only if it is being displayed already.
+        if (displaying == true)
+        {
+            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            displaying = false;
         }
     }
 }

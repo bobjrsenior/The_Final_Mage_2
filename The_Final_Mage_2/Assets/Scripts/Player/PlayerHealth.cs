@@ -279,18 +279,22 @@ public class PlayerHealth : MonoBehaviour {
     private IEnumerator gameOver()
     {
         gameOverTimer.started = true;
+        //Show the game over text.
+        TextBoxScript.textScript.textbox.text = "Dr. Evil: Dead! He is dead at last! Victory is mine!";
+        TextBoxScript.textScript.showTextbox();
         while (gameOverTimer.complete == false)
         {
             gameOverTimer.countdownUpdate();
             yield return null;
         }
         gameOverTimer.complete = false;
+        //Remove the game over text.
+        TextBoxScript.textScript.hideTextbox();
         if (health == 0)
         {
             //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
-            Destroy(soundSource.transform.gameObject);
             Destroy(transform.root.gameObject);
             Destroy(TextBoxScript.textScript.transform.root.gameObject);
             SceneManager.LoadScene("GameOver");

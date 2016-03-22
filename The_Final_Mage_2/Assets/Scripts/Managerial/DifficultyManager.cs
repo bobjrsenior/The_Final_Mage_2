@@ -171,7 +171,6 @@ public class DifficultyManager : MonoBehaviour {
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
             Destroy(PlayerHealth.pHealth.transform.root.gameObject);
-            Destroy(FindObjectOfType<SoundScript>().gameObject);
             Destroy(TextBoxScript.textScript.transform.root.gameObject);
             SceneManager.LoadScene("Victory");
         }
