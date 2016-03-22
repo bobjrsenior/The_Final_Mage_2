@@ -106,6 +106,8 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public bool gotKeyCard = false;
 
+    public float currHealth = 0;
+
     /// <summary>
     /// The index the level is on
     /// </summary>

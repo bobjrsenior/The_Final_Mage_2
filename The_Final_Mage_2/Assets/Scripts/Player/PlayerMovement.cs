@@ -46,7 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        pMovement = this;
+        if (pMovement == null)
+        {
+            pMovement = this;
+        }
     }
     void Start()
     {   
@@ -65,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
             rbody.WakeUp();
         }
         
+        //Stops player from moving if they are dead.
+        if (PlayerHealth.pHealth.health == 0)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
+
         //Gets the direction you want to move based on input
         Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -91,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If we are not attacking...
-        if (PlayerAttack.pAttack.isAttacking == false)
+        if (PlayerAttack.pAttack.isAttacking == false && canMove == true)
         {
             //Handles flipping player sprites to face right.
             if (movement_vector.x > 0)

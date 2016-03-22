@@ -84,7 +84,10 @@ public class PlayerAttack : MonoBehaviour {
 
     void Awake()
     {
-        pAttack = this;
+        if (pAttack == null)
+        {
+            pAttack = this;
+        }
     }
 	// Use this for initialization	void Start () {
 
@@ -234,6 +237,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         //Once the timer is done, we can melee again.
         canMelee = true;
+        isAttacking = false;
         //End the coroutine.
         yield break;
     }
@@ -272,7 +276,6 @@ public class PlayerAttack : MonoBehaviour {
         }
         meleeCooldownTimer.complete = false;
         anim.SetBool("isMelee", false);
-        isAttacking = false;
         yield break;
     }
 
