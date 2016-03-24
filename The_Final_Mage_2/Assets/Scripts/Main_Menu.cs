@@ -6,6 +6,8 @@ public class Main_Menu : MonoBehaviour {
 
 	public string startLevel;
 	public string levelSelect;
+    public string optionsMenu;
+    public string mainMenu;
 
 	public void newGame ()
 	{
@@ -18,9 +20,19 @@ public class Main_Menu : MonoBehaviour {
         SceneManager.LoadScene(startLevel);
 	}
 
+    public void optionsScreen()
+    {
+        SceneManager.LoadScene(optionsMenu);
+    }
+
     public void levelLoad()
     {
         SceneManager.LoadScene(levelSelect);
+    }
+
+    public void mainScreen()
+    {
+        SceneManager.LoadScene(mainMenu);
     }
 
     public void quitGame()
