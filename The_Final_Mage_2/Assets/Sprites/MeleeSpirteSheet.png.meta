@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: e92d812abf931d64d987300e62957d8f
+timeCreated: 1458710873
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MeleeSpirteSheet_0
+    21300002: MeleeSpirteSheet_1
+    21300004: MeleeSpirteSheet_2
+    21300006: MeleeSpirteSheet_3
+    21300008: MeleeSpirteSheet_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MeleeSpirteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 768
+        width: 448
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 139.62, y: 5.519989}
+        - {x: 30.619995, y: 114.51999}
+        - {x: -40.380005, y: 114.51999}
+        - {x: -85.380005, y: 52.51999}
+        - {x: -143.38, y: 13.519989}
+        - {x: -143.38, y: -25.480011}
+        - {x: -109.380005, y: -32.48001}
+        - {x: -95.380005, y: -110.48001}
+        - {x: -87.380005, y: -113.48001}
+        - {x: 71.619995, y: -113.48001}
+        - {x: 78.619995, y: -112.48001}
+        - {x: 76.619995, y: -21.480011}
+        - {x: 143.62, y: -24.480011}
+        - {x: 143.62, y: -0.480011}
+    - name: MeleeSpirteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 760
+        width: 347
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 111.94, y: 18.899994}
+        - {x: 109.94, y: 20.899994}
+        - {x: 72.94, y: 32.899994}
+        - {x: 17.940002, y: 119.899994}
+        - {x: -8.059998, y: 119.899994}
+        - {x: -48.059998, y: 111.899994}
+        - {x: -100.06, y: 55.899994}
+        - {x: -111.06, y: -42.100006}
+        - {x: -111.06, y: -118.100006}
+        - {x: -91.06, y: -119.100006}
+        - {x: 65.94, y: -119.100006}
+        - {x: 65.94, y: -13.100006}
+        - {x: 111.94, y: 1.8999939}
+      - - {x: 77.94, y: -3.100006}
+        - {x: 80.94, y: -2.100006}
+        - {x: 80.94, y: 0.8999939}
+        - {x: 77.94, y: 1.8999939}
+        - {x: 75.94, y: -0.1000061}
+    - name: MeleeSpirteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 764
+        width: 342
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110.32001, y: 51.45999}
+        - {x: 56.320007, y: 77.45999}
+        - {x: 17.320007, y: 114.45999}
+        - {x: -52.679993, y: 114.45999}
+        - {x: -91.67999, y: 61.45999}
+        - {x: -109.67999, y: -69.54001}
+        - {x: -109.67999, y: -98.54001}
+        - {x: -98.67999, y: -110.54001}
+        - {x: -86.67999, y: -112.54001}
+        - {x: 41.320007, y: -112.54001}
+        - {x: 71.32001, y: -96.54001}
+        - {x: 57.320007, y: -5.5400085}
+        - {x: 110.32001, y: -2.5400085}
+    - name: MeleeSpirteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 340
+        width: 324
+        height: 357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58.379997, y: 45.59999}
+        - {x: 57.379997, y: 33.59999}
+        - {x: 57.379997, y: 31.59999}
+        - {x: 57.379997, y: 35.59999}
+        - {x: 58.379997, y: 60.59999}
+        - {x: 15.379997, y: 111.59999}
+        - {x: 9.379997, y: 112.59999}
+        - {x: -43.620003, y: 112.59999}
+        - {x: -103.62, y: 80.59999}
+        - {x: -103.62, y: -87.40001}
+        - {x: -102.62, y: -96.40001}
+        - {x: -78.62, y: -114.40001}
+        - {x: 85.38, y: -114.40001}
+        - {x: 89.38, y: -99.40001}
+        - {x: 89.38, y: 47.59999}
+        - {x: 74.38, y: 52.59999}
+      - - {x: 102.38, y: 45.59999}
+        - {x: 100.38, y: 43.59999}
+        - {x: 100.38, y: 41.59999}
+        - {x: 102.38, y: 39.59999}
+        - {x: 103.38, y: 39.59999}
+        - {x: 105.38, y: 41.59999}
+        - {x: 105.38, y: 45.59999}
+      - - {x: 91.38, y: 54.59999}
+        - {x: 89.38, y: 52.59999}
+        - {x: 89.38, y: 49.59999}
+        - {x: 91.38, y: 47.59999}
+        - {x: 93.38, y: 47.59999}
+        - {x: 95.38, y: 49.59999}
+        - {x: 95.38, y: 52.59999}
+        - {x: 93.38, y: 54.59999}
+      - - {x: 40.379997, y: 115.59999}
+        - {x: 39.379997, y: 114.59999}
+        - {x: 40.379997, y: 111.59999}
+        - {x: 44.379997, y: 111.59999}
+        - {x: 46.379997, y: 113.59999}
+        - {x: 45.379997, y: 115.59999}
+    - name: MeleeSpirteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 562
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

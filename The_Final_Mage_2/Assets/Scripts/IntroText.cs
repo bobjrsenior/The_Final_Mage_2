@@ -18,12 +18,16 @@ public class IntroText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Move the text up
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Menu_Test");
+        }
         transform.Translate(0, scrollSpeed * Time.deltaTime, 0);
 
         //If it is off the screen, load next scene (3050 was found by moving the text up and finding it's y position)
-        if(transform.position.y > 3050)
+        if(transform.position.y > 3200)
         {
-            SceneManager.LoadScene("Test");
+            SceneManager.LoadScene("Menu_Test");
         }
 	}
 }
