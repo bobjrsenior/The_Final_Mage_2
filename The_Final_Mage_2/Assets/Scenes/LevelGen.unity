@@ -1540,9 +1540,10 @@ MonoBehaviour:
   enemySpeed: 1.15
   rangeEnemyMoveSpeed: 0.9
   newFloor: 0
-  difficulty: 1
   enemyStandardMeleeHP: 5
+  enemyHardMeleeHP: 7
   enemyStandardRangedHP: 4
+  enemyHardRangedHP: 6
   enemyStandardMeleeDamage: 1
   enemyStandardRangeDamage: 1
   statsSet: 0

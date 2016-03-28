@@ -180,7 +180,7 @@ public class LevelGen : MonoBehaviour {
     public void generateLevel()
     {
         //Figure out the max room count for this floor
-        curMaxSize = (int)(defaultMaxSize + (defaultMaxSize * 0.5f * DifficultyManager.dManager.difficulty * DifficultyManager.dManager.floor));
+        curMaxSize = (int)(defaultMaxSize + (defaultMaxSize * 0.5f * DifficultyTracker.difficultyTrack.getDifficulty() * DifficultyManager.dManager.floor));
 
         //Create a map for the floor
         map.Clear();
@@ -267,7 +267,7 @@ public class LevelGen : MonoBehaviour {
                 {
 
                     //Check to see if this room wants another door based on an algorithm
-                    if (Random.Range(Mathf.Log(DifficultyManager.dManager.difficulty * DifficultyManager.dManager.floor) + buff, 10.0f + Mathf.Log(DifficultyManager.dManager.difficulty * DifficultyManager.dManager.floor) + (0.5f * doorCount)) > 5.0f)
+                    if (Random.Range(Mathf.Log(DifficultyTracker.difficultyTrack.getDifficulty() * DifficultyManager.dManager.floor) + buff, 10.0f + Mathf.Log(DifficultyTracker.difficultyTrack.getDifficulty() * DifficultyManager.dManager.floor) + (0.5f * doorCount)) > 5.0f)
                     {
                         Room temp;
                         //Make it harder to punch into existing rooms
@@ -419,7 +419,7 @@ public class LevelGen : MonoBehaviour {
     private void generateEnemies(Room room)
     {
         //Determine number of enemies to spawn based on floor number and difficulty
-        int numEnemies = (int) (Random.Range(0.0f, 4.0f + (0.5f * (DifficultyManager.dManager.floor + (DifficultyManager.dManager.floor * 0.25f * DifficultyManager.dManager.difficulty)))));
+        int numEnemies = (int) (Random.Range(0.0f, 4.0f + (0.5f * (DifficultyManager.dManager.floor + (DifficultyManager.dManager.floor * 0.25f * DifficultyTracker.difficultyTrack.getDifficulty())))));
 
         if (numEnemies > 0)
         {

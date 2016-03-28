@@ -25,19 +25,18 @@ public class DifficultyManager : MonoBehaviour {
     public bool newFloor;
 
     /// <summary>
-    /// The difficulty of the current game
-    /// </summary>
-    public int difficulty = 1;
-
-    /// <summary>
     /// Our base standard melee health.
     /// </summary>
     public float enemyStandardMeleeHP;
+
+    public float enemyHardMeleeHP;
 
     /// <summary>
     /// Our base standard ranged health.
     /// </summary>
     public float enemyStandardRangedHP;
+
+    public float enemyHardRangedHP;
 
     /// <summary>
     /// Our base standard melee damage
@@ -248,23 +247,23 @@ public class DifficultyManager : MonoBehaviour {
                 //Floor 1 - 2
                 if (floor <= 2)
                 {
-                    enemyHP.maxHealth = enemyStandardMeleeHP - 2;
-                    enemyHP.health = enemyStandardMeleeHP - 2;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = enemySpeed;
                     enemyAI.meleeDamage = enemyStandardMeleeDamage;
                 }
                 //floor 3 - 4
                 else if (floor > 2 && floor <= 4)
                 {
-                    enemyHP.maxHealth = enemyStandardMeleeHP - 1;
-                    enemyHP.health = enemyStandardMeleeHP - 1;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = enemySpeed;
                     enemyAI.meleeDamage = enemyStandardMeleeDamage;
                 }
                 else
                 {
-                    enemyHP.maxHealth = enemyStandardMeleeHP;
-                    enemyHP.health = enemyStandardMeleeHP;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = enemySpeed;
                     enemyAI.meleeDamage = enemyStandardMeleeDamage;
                 }
@@ -274,8 +273,8 @@ public class DifficultyManager : MonoBehaviour {
                 //Floor 1 - 2
                 if (floor <= 2)
                 {
-                    enemyHP.maxHealth = enemyStandardRangedHP - 2;
-                    enemyHP.health = enemyStandardRangedHP - 2;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = rangeEnemyMoveSpeed;
                     enemyAI.rangeDamage = enemyStandardRangeDamage;
                     enemyAI.rangeSpeed = enemyRangeSpeed;
@@ -285,8 +284,8 @@ public class DifficultyManager : MonoBehaviour {
                 //Floor 3 - 4
                 else if (floor > 2 && floor <= 4)
                 {
-                    enemyHP.maxHealth = enemyStandardRangedHP - 1;
-                    enemyHP.health = enemyStandardRangedHP - 1;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = rangeEnemyMoveSpeed;
                     enemyAI.rangeDamage = enemyStandardRangeDamage;
                     enemyAI.rangeSpeed = enemyRangeSpeed;
@@ -296,8 +295,8 @@ public class DifficultyManager : MonoBehaviour {
                 //Floor 5 - 6
                 else
                 {
-                    enemyHP.maxHealth = enemyStandardRangedHP;
-                    enemyHP.health = enemyStandardRangedHP;
+                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
+                    enemyHP.health = enemyHP.maxHealth;
                     enemyAI.enemySpeed = rangeEnemyMoveSpeed;
                     enemyAI.rangeDamage = enemyStandardRangeDamage;
                     enemyAI.rangeSpeed = enemyRangeSpeed;
@@ -320,5 +319,30 @@ public class DifficultyManager : MonoBehaviour {
         PlayerAttack.pAttack.meleeDamage = playerStandardMeleeDam;
         PlayerAttack.pAttack.rangeDamage = playerStandardRangedDam;
         pStatsSet = true;
+    }
+
+    /// <summary>
+    /// Gets the HP value based on enemy type and difficulty
+    /// </summary>
+    /// <returns></returns>
+    private float enemyHPDifficulty(Enemy enemy)
+    {
+        if (enemy.rangedType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardRangedHP;
+            }
+            else return enemyHardRangedHP;
+        }
+        else if (enemy.meleeType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardMeleeHP;
+            }
+            else return enemyHardMeleeHP;
+        }
+        else return 1; //Should never happen.
     }
 }

@@ -719,7 +719,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -759,6 +758,8 @@ MonoBehaviour:
   levelSelect: Test
   optionsMenu: OptionsMenu
   mainMenu: 
+  difficultyTrackerPrefab: {fileID: 143054, guid: 0e8082a4e6d3afe43a4a2dc677753f59,
+    type: 2}
 --- !u!95 &1301963266
 Animator:
   serializedVersion: 3
