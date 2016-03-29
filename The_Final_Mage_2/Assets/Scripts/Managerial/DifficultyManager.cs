@@ -12,12 +12,16 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// How fast do the enemies move?
     /// </summary>
-    public float enemySpeed;
+    public float enemyStandardMeleeSpeed;
+
+    public float enemyHardMeleeSpeed;
 
     /// <summary>
     /// How fast do ranged enemies move?
     /// </summary>
-    public float rangeEnemyMoveSpeed;
+    public float enemyStandardRangedSpeed;
+
+    public float enemyHardRangedSpeed;
 
     /// <summary>
     /// True when we go to a new floor, false otherwise.
@@ -41,12 +45,16 @@ public class DifficultyManager : MonoBehaviour {
     /// <summary>
     /// Our base standard melee damage
     /// </summary>
-    public float enemyStandardMeleeDamage = 1.0f;
+    public float enemyStandardMeleeDamage;
+
+    public float enemyHardMeleeDamage;
 
     /// <summary>
     /// Our base standard range damage
     /// </summary>
-    public float enemyStandardRangeDamage = 1.0f;
+    public float enemyStandardRangeDamage;
+
+    public float enemyHardRangeDamage;
 
     /// <summary>
     /// Have we set our stats for the enemies on this floor?
@@ -249,23 +257,23 @@ public class DifficultyManager : MonoBehaviour {
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeed;
-                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]);
+                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
                 }
                 //floor 3 - 4
                 else if (floor > 2 && floor <= 4)
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeed;
-                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .1f;
+                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
                 }
                 else
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeed;
-                    enemyAI.meleeDamage = enemyStandardMeleeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .15f;
+                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
                 }
             }
             else
@@ -275,8 +283,8 @@ public class DifficultyManager : MonoBehaviour {
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
-                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]);
+                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
                     enemyAI.rangeSpeed = enemyRangeSpeed;
                     enemyAI.shootWaitTime = enemyShootWaitTime;
                     enemyAI.rangeProjectile = enemyRangeProjectile;
@@ -286,8 +294,8 @@ public class DifficultyManager : MonoBehaviour {
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
-                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .1f;
+                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
                     enemyAI.rangeSpeed = enemyRangeSpeed;
                     enemyAI.shootWaitTime = enemyShootWaitTime;
                     enemyAI.rangeProjectile = enemyRangeProjectile;
@@ -297,8 +305,8 @@ public class DifficultyManager : MonoBehaviour {
                 {
                     enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
                     enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = rangeEnemyMoveSpeed;
-                    enemyAI.rangeDamage = enemyStandardRangeDamage;
+                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .15f;
+                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
                     enemyAI.rangeSpeed = enemyRangeSpeed;
                     enemyAI.shootWaitTime = enemyShootWaitTime;
                     enemyAI.rangeProjectile = enemyRangeProjectile;
@@ -342,6 +350,52 @@ public class DifficultyManager : MonoBehaviour {
                 return enemyStandardMeleeHP;
             }
             else return enemyHardMeleeHP;
+        }
+        else return 1; //Should never happen.
+    }
+
+    /// <summary>
+    /// Gets the attack value based on enemy type and difficulty
+    /// </summary>
+    /// <returns></returns>
+    private float enemyDamageDifficulty(Enemy enemy)
+    {
+        if (enemy.rangedType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardRangeDamage;
+            }
+            else return enemyHardRangeDamage;
+        }
+        else if (enemy.meleeType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardMeleeDamage;
+            }
+            else return enemyHardMeleeDamage;
+        }
+        else return 1; //Should never happen.
+    }
+
+    private float enemySpeedDifficulty(Enemy enemy)
+    {
+        if (enemy.rangedType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardRangedSpeed;
+            }
+            else return enemyHardRangedSpeed;
+        }
+        else if (enemy.meleeType == true)
+        {
+            if (DifficultyTracker.difficultyTrack.getDifficulty() == 1)
+            {
+                return enemyStandardMeleeSpeed;
+            }
+            else return enemyHardMeleeSpeed;
         }
         else return 1; //Should never happen.
     }

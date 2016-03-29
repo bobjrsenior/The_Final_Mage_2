@@ -1537,15 +1537,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 1
-  enemySpeed: 1.15
-  rangeEnemyMoveSpeed: 0.9
+  enemyStandardMeleeSpeed: 1
+  enemyHardMeleeSpeed: 1.05
+  enemyStandardRangedSpeed: 0.9
+  enemyHardRangedSpeed: 1
   newFloor: 0
   enemyStandardMeleeHP: 5
-  enemyHardMeleeHP: 7
+  enemyHardMeleeHP: 6
   enemyStandardRangedHP: 4
-  enemyHardRangedHP: 6
+  enemyHardRangedHP: 5
   enemyStandardMeleeDamage: 1
+  enemyHardMeleeDamage: 1
   enemyStandardRangeDamage: 1
+  enemyHardRangeDamage: 1
   statsSet: 0
   pStatsSet: 0
   playerStandardHealth: 5

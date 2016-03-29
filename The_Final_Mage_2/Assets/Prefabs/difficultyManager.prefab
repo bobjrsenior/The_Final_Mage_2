@@ -40,14 +40,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 0
-  enemySpeed: 1.15
-  rangeEnemyMoveSpeed: 0.9
+  enemyStandardMeleeSpeed: 1
+  enemyHardMeleeSpeed: 1.1
+  enemyStandardRangedSpeed: 0.9
+  enemyHardRangedSpeed: 1
   newFloor: 0
-  difficulty: 1
   enemyStandardMeleeHP: 4
+  enemyHardMeleeHP: 0
   enemyStandardRangedHP: 5
+  enemyHardRangedHP: 0
   enemyStandardMeleeDamage: 1
+  enemyHardMeleeDamage: 0
   enemyStandardRangeDamage: 1
+  enemyHardRangeDamage: 0
   statsSet: 0
   pStatsSet: 0
   playerStandardHealth: 5
@@ -74,6 +79,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: rangeEnemyMoveSpeed
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyStandardMeleeSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyHardMeleeSpeed
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyStandardRangedSpeed
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyHardRangedSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: newFloor
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

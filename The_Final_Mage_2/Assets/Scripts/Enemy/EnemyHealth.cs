@@ -134,7 +134,7 @@ public class EnemyHealth : MonoBehaviour {
             {
                 bonusModifier = 1;
             }
-            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.meleeScore * bonusModifier);
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.meleeScore * bonusModifier) * (DifficultyTracker.difficultyTrack.getDifficulty());
         }
         else if (self.rangedType == true)
         {
@@ -151,7 +151,8 @@ public class EnemyHealth : MonoBehaviour {
             {
                 bonusModifier = 1;
             }
-            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.rangedScore * bonusModifier);
+            //Should double the score on hard and take into account the floor modifier.
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.score + (Scoring.scoreKeeper.meleeScore * bonusModifier) * (DifficultyTracker.difficultyTrack.getDifficulty());
         }
     }
 }
