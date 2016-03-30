@@ -646,7 +646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slower Score Degeneration
+  m_Text: "Faster Mana \nRegen"
 --- !u!222 &823460435
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1763,7 +1763,7 @@ GameObject:
   - 114: {fileID: 1944498550}
   - 114: {fileID: 1944498549}
   m_Layer: 0
-  m_Name: meleeDamage
+  m_Name: manaRegen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
