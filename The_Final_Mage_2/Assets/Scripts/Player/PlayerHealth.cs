@@ -65,6 +65,8 @@ public class PlayerHealth : MonoBehaviour {
 
     private bool healthSkillApplied;
 
+    private bool manaSkillApplied;
+
 
     void Awake () {
 
@@ -110,6 +112,17 @@ public class PlayerHealth : MonoBehaviour {
                 healthRegenTimer.time = 0;
             }
             healthSkillApplied = true;
+        }
+
+        //If we have purchased the health regen skill.
+        if (Skills.pSkills.skill4 == true && manaSkillApplied == false)
+        {
+            manaRegenTimer.initialTime -= 2;
+            if (manaRegenTimer.started == true)
+            {
+                manaRegenTimer.time = 0;
+            }
+            manaSkillApplied = true;
         }
 
         //Checks to see if we are currently in a game over scenario.
