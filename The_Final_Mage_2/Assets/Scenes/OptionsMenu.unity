@@ -426,12 +426,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &584647531 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11409534, guid: 0e8082a4e6d3afe43a4a2dc677753f59,
-    type: 2}
-  m_PrefabInternal: {fileID: 849775789}
-  m_Script: {fileID: 11500000, guid: fb1789cc0f8e4ee43bb2907667a186bd, type: 3}
 --- !u!1 &647931642
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,11 +698,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.3296173
+      value: 3.3296204
       objectReference: {fileID: 0}
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.9900217
+      value: -4.9900208
       objectReference: {fileID: 0}
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_LocalPosition.z
@@ -734,9 +728,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 143054, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
+      propertyPath: m_Name
+      value: difficultySetter
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11409534, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &849775790 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 143054, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
+  m_PrefabInternal: {fileID: 849775789}
+--- !u!114 &849775791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 849775790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ab802efbb46f44f8c7685f378d7f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983128329
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +1009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584647531}
+      - m_Target: {fileID: 849775791}
         m_MethodName: setNormal
         m_Mode: 1
         m_Arguments:
@@ -1189,7 +1203,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584647531}
+      - m_Target: {fileID: 849775791}
         m_MethodName: setHard
         m_Mode: 1
         m_Arguments:

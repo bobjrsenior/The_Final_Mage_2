@@ -18,11 +18,6 @@ public class Main_Menu : MonoBehaviour {
             //Start on floor 1.
             DifficultyManager.dManager.floor = 1;
         }
-        if (DifficultyTracker.difficultyTrack == null)
-        {
-            Debug.Log("Here");
-            Instantiate(difficultyTrackerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        }
         SceneManager.LoadScene(startLevel);
 	}
 
