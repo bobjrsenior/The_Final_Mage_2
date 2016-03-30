@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour {
     /// </summary>
     public float maxHealth;
 
+    public int expToGive;
+
     /// <summary>
     /// A boolean that corresponds to whether the enemy is dead or not.
     /// </summary>
@@ -29,6 +31,14 @@ public class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        if (DifficultyTracker.difficultyTrack.difficulty == 1)
+        {
+            expToGive = 4;
+        }
+        else
+        {
+            expToGive = 2;
+        }
         //Always want to start with the enemy alive
         isDead = false;
         self = transform.GetComponent<Enemy>();
@@ -61,7 +71,7 @@ public class EnemyHealth : MonoBehaviour {
         {
             //Destroy this object on death. NOTE: This is only temporary until we give enemies death animations.
             scoreEvent();
-            Experience.playerExperience.addEXP(4);
+            Experience.playerExperience.addEXP(expToGive);
             if (LevelGen.gen != null)
             {
                 LevelGen.gen.enemyDied(transform.position);
