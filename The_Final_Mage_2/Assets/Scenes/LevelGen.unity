@@ -1537,8 +1537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 1
-  enemyStandardMeleeSpeed: 1.1
-  enemyHardMeleeSpeed: 1.5
+  enemyStandardMeleeSpeed: 1
+  enemyHardMeleeSpeed: 1.1
   enemyStandardRangedSpeed: 0.9
   enemyHardRangedSpeed: 1
   newFloor: 0
