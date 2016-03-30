@@ -76,7 +76,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.00647974, y: -0.06047821}
+  m_Offset: {x: -0.03806877, y: -0.07956982}
   serializedVersion: 2
   m_Size: {x: 0.44515437, y: 0.53904605}
 --- !u!114 &11405952
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1a7e2f4f7190665478d320793f1fa383, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e92d812abf931d64d987300e62957d8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,6 +176,19 @@ Prefab:
       propertyPath: manaVial
       value: 
       objectReference: {fileID: 160864, guid: b7f29a4f189bd23439fdf2ae3d5b3a23, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e92d812abf931d64d987300e62957d8f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Offset.x
+      value: -0.03806877
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Offset.y
+      value: -0.07956982
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 188990}

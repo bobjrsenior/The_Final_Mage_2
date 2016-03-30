@@ -646,7 +646,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slower Score Degeneration
+  m_Text: 'Faster Mana
+
+    Regen'
 --- !u!222 &823460435
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1533,12 +1535,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760682363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafff8d813a30e4468fb8e4fc47a96c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4565e08bb0cabe147a11448d132ad1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   floor: 1
-  enemyStandardMeleeSpeed: 1
-  enemyHardMeleeSpeed: 1.05
+  enemyStandardMeleeSpeed: 1.1
+  enemyHardMeleeSpeed: 1.5
   enemyStandardRangedSpeed: 0.9
   enemyHardRangedSpeed: 1
   newFloor: 0
@@ -1556,9 +1558,9 @@ MonoBehaviour:
   playerStandardMaxHealth: 5
   playerStandardMeleeDam: 0.5
   playerStandardRangedDam: 1
-  meleeType: {fileID: 21300000, guid: 1a7e2f4f7190665478d320793f1fa383, type: 3}
+  meleeType: {fileID: 21300000, guid: e92d812abf931d64d987300e62957d8f, type: 3}
   rangeType: {fileID: 21300000, guid: a80181f0233afd545bb504014c12272c, type: 3}
-  enemyRangeSpeed: 125
+  enemyRangeSpeed: 0.9
   enemyShootWaitTime: 3
   enemyRangeProjectile: {fileID: 143356, guid: a2283b73db6fd084bb7634c92c72b095, type: 2}
   gotKeyCard: 0
@@ -1763,7 +1765,7 @@ GameObject:
   - 114: {fileID: 1944498550}
   - 114: {fileID: 1944498549}
   m_Layer: 0
-  m_Name: meleeDamage
+  m_Name: manaRegen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
