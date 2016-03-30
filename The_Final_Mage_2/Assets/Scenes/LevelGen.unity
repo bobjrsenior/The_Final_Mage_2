@@ -646,9 +646,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
+<<<<<<< HEAD
   m_Text: 'Faster Mana
 
     Regen'
+=======
+  m_Text: "Faster Mana \nRegen"
+>>>>>>> master
 --- !u!222 &823460435
 CanvasRenderer:
   m_ObjectHideFlags: 0
