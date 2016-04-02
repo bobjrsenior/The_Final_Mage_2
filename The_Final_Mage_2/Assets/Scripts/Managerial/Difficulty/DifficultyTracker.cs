@@ -7,7 +7,7 @@ public class DifficultyTracker : MonoBehaviour {
 
     public static DifficultyTracker difficultyTrack;
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 
         if (difficultyTrack != null)
         {
