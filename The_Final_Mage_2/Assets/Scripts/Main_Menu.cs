@@ -8,6 +8,7 @@ public class Main_Menu : MonoBehaviour {
 	public string levelSelect;
     public string optionsMenu;
     public string mainMenu;
+    public string instructions;
     public GameObject difficultyTrackerPrefab;
 
 	public void newGame ()
@@ -34,6 +35,11 @@ public class Main_Menu : MonoBehaviour {
     public void mainScreen()
     {
         SceneManager.LoadScene(mainMenu);
+    }
+
+    public void instructionsScreen()
+    {
+        SceneManager.LoadScene(instructions);
     }
 
     public void quitGame()
