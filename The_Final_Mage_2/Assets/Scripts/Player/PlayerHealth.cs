@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
+    //We create an array of health images in the player
+    //So that when the scene loads we can reference the player health images
+    //The UIManager will pull from this which image to show based on health
+    public Sprite[] images;
+
+
     /// <summary>
     /// The value that holds our current player health.
     /// </summary>
@@ -84,6 +91,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void Start()
     {
+        
         //Always want to start with the player alive
         isDead = false;
         //Always want to start where we can be damaged.
