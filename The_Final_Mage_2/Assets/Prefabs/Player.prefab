@@ -52,7 +52,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473018}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &473018
 Transform:
   m_ObjectHideFlags: 1
@@ -66,7 +65,6 @@ Transform:
   - {fileID: 436776}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5065572
 Rigidbody2D:
   serializedVersion: 2
@@ -263,6 +261,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 001151b4d27a7764e8535484351afd1b, type: 3}
   - {fileID: 21300000, guid: 689400c4ccd980c4c852abdf243e8218, type: 3}
   - {fileID: 21300000, guid: 060357fc9fd8ceb4a96095ed2a551b78, type: 3}
+  __exps:
+  - {fileID: 21300000, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300002, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300004, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300006, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300008, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300010, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300012, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300014, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300016, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300018, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
+  - {fileID: 21300020, guid: f0ef7da7f4c3f344f97cbabf1b36780c, type: 3}
   health: 5
   maxHealth: 5
   maxMana: 100
@@ -297,14 +307,13 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0

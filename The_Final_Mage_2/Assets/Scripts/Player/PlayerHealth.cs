@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour {
     //We create an array of health images in the player
     //So that when the scene loads we can reference the player health images
     //The UIManager will pull from this which image to show based on health
-    public Sprite[] images;
+    public Sprite[] images; //Health
+    public Sprite[] __exps; //Exp
 
 
     /// <summary>
