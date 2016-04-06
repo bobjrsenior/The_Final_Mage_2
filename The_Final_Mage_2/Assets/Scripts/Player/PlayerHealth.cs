@@ -193,13 +193,7 @@ public class PlayerHealth : MonoBehaviour {
             PlayerMovement.pMovement.canMove = true;
         }
 	}
-    //TEMPORARY FOR DISPLAYING HEALTH
-    void OnGUI()
-    {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 20, 80, 20), "Health: " + health);
-        GUI.Box(new Rect(0, 40, 80, 20), "Mana: " + mana);
-    }
+
     /// <summary>
     /// damages player by amount.
     /// </summary>

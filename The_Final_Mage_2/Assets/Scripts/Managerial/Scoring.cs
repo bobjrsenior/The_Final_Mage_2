@@ -74,16 +74,6 @@ public class Scoring : MonoBehaviour {
         }
 	}
 
-    //Temporary means to track score.
-    void OnGUI()
-    {
-        //If the player exists
-        if (PlayerHealth.pHealth != null)
-        {
-            GUI.color = Color.yellow;
-            GUI.Box(new Rect(0, 0, 100, 20), "Score: " + score);
-        }
-    }
     private IEnumerator degenerate()
     {
         degenerationCooldown = true;

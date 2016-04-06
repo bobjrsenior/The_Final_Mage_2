@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DifficultyManager : MonoBehaviour {
 
@@ -119,16 +120,6 @@ public class DifficultyManager : MonoBehaviour {
     private int buildIndex;
 
     public static DifficultyManager dManager;
-
-    void OnGUI()
-    {
-        //If the player exists.
-        if (PlayerHealth.pHealth != null)
-        {
-            GUI.color = Color.yellow;
-            GUI.Box(new Rect(0, 80, 100, 25), "Floor: " + floor);
-        }
-    }
 
     void Start()
     {

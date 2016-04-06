@@ -31,12 +31,6 @@ public class Skills : MonoBehaviour {
 
     public static Skills pSkills;
 
-    void OnGUI()
-    {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 140, 100, 25), "Skill points:" + skillPoints);
-    }
-
 	// Use this for initialization
 	void Start () {
         if (pSkills != null)

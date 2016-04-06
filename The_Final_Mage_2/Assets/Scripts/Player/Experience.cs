@@ -33,13 +33,6 @@ public class Experience : MonoBehaviour {
         }
     }
 
-    void OnGUI()
-    {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 100, 100, 25), "EXP: " + playerEXP + "/" + MAX_EXP_TO_LEVEL);
-        GUI.Box(new Rect(0, 120, 100, 25), "Level: " + playerLevel);
-    }
-
     /// <summary>
     /// Adds a certain amount of EXP to the player.
     /// </summary>
