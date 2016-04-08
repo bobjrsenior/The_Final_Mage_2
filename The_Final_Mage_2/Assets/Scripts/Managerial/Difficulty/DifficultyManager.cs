@@ -216,96 +216,100 @@ public class DifficultyManager : MonoBehaviour {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         //For every enemy in the gamespace
-        for (int x = 0; x < enemies.Length; x++)
+        foreach(Enemy enemy in enemies)
         {
-            EnemyHealth enemyHP = enemies[x].GetComponent<EnemyHealth>();
-            EnemyAI enemyAI = enemies[x].GetComponent<EnemyAI>();
-            
-            //Randomly generates enemy type.
-            int type = Random.Range(0, 2);
-            if (type == 0)
-            {
-                //Destroy the collider for melee enemies
-                Destroy(enemies[x].GetComponent<CircleCollider2D>());
-                enemies[x].rangedType = false;
-                enemies[x].meleeType = true;
-                enemies[x].GetComponent<SpriteRenderer>().sprite = meleeType;
-            }
-            else if (type == 1)
-            {
-                //Destroy the collider for ranged enemies.
-                Destroy(enemies[x].GetComponent<BoxCollider2D>());
-                enemies[x].meleeType = false;
-                enemies[x].rangedType = true;
-                enemies[x].GetComponent<SpriteRenderer>().sprite = rangeType;
-            }
+            setEnemyStats(enemy);
+        }
+        statsSet = true;
+    }
 
-            //If the current enemy is a melee type
-            if (enemies[x].meleeType == true)
+    public void setEnemyStats(Enemy enemy)
+    {
+        EnemyHealth enemyHP = enemy.GetComponent<EnemyHealth>();
+        EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+
+        //Randomly generates enemy type.
+        int type = Random.Range(0, 2);
+        if (type == 0)
+        {
+            //Destroy the collider for melee enemies
+            Destroy(enemy.GetComponent<CircleCollider2D>());
+            enemy.rangedType = false;
+            enemy.meleeType = true;
+            enemy.GetComponent<SpriteRenderer>().sprite = meleeType;
+        }
+        else if (type == 1)
+        {
+            //Destroy the collider for ranged enemies.
+            Destroy(enemy.GetComponent<BoxCollider2D>());
+            enemy.meleeType = false;
+            enemy.rangedType = true;
+            enemy.GetComponent<SpriteRenderer>().sprite = rangeType;
+        }
+
+        //If the current enemy is a melee type
+        if (enemy.meleeType == true)
+        {
+            //Floor 1 - 2
+            if (floor <= 2)
             {
-                //Floor 1 - 2
-                if (floor <= 2)
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]);
-                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
-                }
-                //floor 3 - 4
-                else if (floor > 2 && floor <= 4)
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .1f;
-                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
-                }
-                else
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .15f;
-                    enemyAI.meleeDamage = enemyDamageDifficulty(enemies[x]);
-                }
+                enemyHP.maxHealth = enemyHPDifficulty(enemy) - 2;
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy);
+                enemyAI.meleeDamage = enemyDamageDifficulty(enemy);
+            }
+            //floor 3 - 4
+            else if (floor > 2 && floor <= 4)
+            {
+                enemyHP.maxHealth = enemyHPDifficulty(enemy) - 1;
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy) + .1f;
+                enemyAI.meleeDamage = enemyDamageDifficulty(enemy);
             }
             else
             {
-                //Floor 1 - 2
-                if (floor <= 2)
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 2;
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]);
-                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
-                    enemyAI.rangeSpeed = enemyRangeSpeed;
-                    enemyAI.shootWaitTime = enemyShootWaitTime;
-                    enemyAI.rangeProjectile = enemyRangeProjectile;
-                }
-                //Floor 3 - 4
-                else if (floor > 2 && floor <= 4)
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]) - 1;
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .1f;
-                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
-                    enemyAI.rangeSpeed = enemyRangeSpeed;
-                    enemyAI.shootWaitTime = enemyShootWaitTime;
-                    enemyAI.rangeProjectile = enemyRangeProjectile;
-                }
-                //Floor 5 - 6
-                else
-                {
-                    enemyHP.maxHealth = enemyHPDifficulty(enemies[x]);
-                    enemyHP.health = enemyHP.maxHealth;
-                    enemyAI.enemySpeed = enemySpeedDifficulty(enemies[x]) + .15f;
-                    enemyAI.rangeDamage = enemyDamageDifficulty(enemies[x]);
-                    enemyAI.rangeSpeed = enemyRangeSpeed;
-                    enemyAI.shootWaitTime = enemyShootWaitTime;
-                    enemyAI.rangeProjectile = enemyRangeProjectile;
-                }
+                enemyHP.maxHealth = enemyHPDifficulty(enemy);
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy) + .15f;
+                enemyAI.meleeDamage = enemyDamageDifficulty(enemy);
             }
-
         }
-        statsSet = true;
+        else
+        {
+            //Floor 1 - 2
+            if (floor <= 2)
+            {
+                enemyHP.maxHealth = enemyHPDifficulty(enemy) - 2;
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy);
+                enemyAI.rangeDamage = enemyDamageDifficulty(enemy);
+                enemyAI.rangeSpeed = enemyRangeSpeed;
+                enemyAI.shootWaitTime = enemyShootWaitTime;
+                enemyAI.rangeProjectile = enemyRangeProjectile;
+            }
+            //Floor 3 - 4
+            else if (floor > 2 && floor <= 4)
+            {
+                enemyHP.maxHealth = enemyHPDifficulty(enemy) - 1;
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy) + .1f;
+                enemyAI.rangeDamage = enemyDamageDifficulty(enemy);
+                enemyAI.rangeSpeed = enemyRangeSpeed;
+                enemyAI.shootWaitTime = enemyShootWaitTime;
+                enemyAI.rangeProjectile = enemyRangeProjectile;
+            }
+            //Floor 5 - 6
+            else
+            {
+                enemyHP.maxHealth = enemyHPDifficulty(enemy);
+                enemyHP.health = enemyHP.maxHealth;
+                enemyAI.enemySpeed = enemySpeedDifficulty(enemy) + .15f;
+                enemyAI.rangeDamage = enemyDamageDifficulty(enemy);
+                enemyAI.rangeSpeed = enemyRangeSpeed;
+                enemyAI.shootWaitTime = enemyShootWaitTime;
+                enemyAI.rangeProjectile = enemyRangeProjectile;
+            }
+        }
     }
 
     private void setPlayerStats()

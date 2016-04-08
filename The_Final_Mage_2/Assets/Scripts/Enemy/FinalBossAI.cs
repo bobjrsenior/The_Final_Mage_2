@@ -22,7 +22,13 @@ public class FinalBossAI : MonoBehaviour {
     /// Prefab of this object's range projectile
     /// </summary>
     [SerializeField]
-    private GameObject rangeProjectile;
+    private GameObject rangeProjectilePrefab;
+
+    /// <summary>
+    /// Prefab of an enemy gameobject
+    /// </summary>
+    [SerializeField]
+    private GameObject enemyPrefab;
 
     /// <summary>
     /// This object's barrier
@@ -138,6 +144,12 @@ public class FinalBossAI : MonoBehaviour {
 
     private void phase1()
     {
+        rigidbody.velocity *= 0.95f;
+        if(rigidbody.velocity.sqrMagnitude < 0.1f)
+        {
+            rigidbody.velocity = Vector2.zero;
+        }
+
         if (state.Equals(State.Idle))
         {
             if(generalTimer1 == defaultTimerValue)
@@ -149,7 +161,7 @@ public class FinalBossAI : MonoBehaviour {
                 }
                 else if(Random.Range(0.0f, 10.0f) > 6.0f)
                 {
-                    //Spawn Enemies
+                    spawnEnemies(Random.Range(3, 5));
                 }
             }
 
@@ -253,6 +265,27 @@ public class FinalBossAI : MonoBehaviour {
         }
     }
 
+    private void spawnEnemies(int count)
+    {
+        for(int e = 0; e < count; ++e)
+        {
+
+            Vector2 position;
+            float dist;
+
+            do
+            {
+                position = new Vector2(Random.Range(bounds[0], bounds[1]), Random.Range(bounds[2], bounds[3]));
+
+
+            } while (((Vector2)position - (Vector2)player.position).sqrMagnitude < 1.0f || ((Vector2)position - (Vector2)transform.position).sqrMagnitude < 1.0f);
+
+            Enemy enemy = (Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject).GetComponent<Enemy>();
+
+            DifficultyManager.dManager.setEnemyStats(enemy);
+        }
+    }
+
     private void phase2()
     {
 
@@ -285,7 +318,7 @@ public class FinalBossAI : MonoBehaviour {
     private void Shoot()
     {
         Vector2 attack_vector = ((Vector2)player.position - (Vector2)transform.position).normalized;
-        GameObject rAttack = Instantiate(rangeProjectile, (Vector2)transform.position, Quaternion.identity) as GameObject;
+        GameObject rAttack = Instantiate(rangeProjectilePrefab, (Vector2)transform.position, Quaternion.identity) as GameObject;
         rAttack.GetComponent<Rigidbody2D>().velocity = attack_vector * projectileSpeed;
     }
 }

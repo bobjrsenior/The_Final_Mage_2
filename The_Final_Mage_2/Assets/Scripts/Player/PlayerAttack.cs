@@ -171,7 +171,7 @@ public class PlayerAttack : MonoBehaviour {
                             //If we have increased melee damage...
                             if (Skills.pSkills.skill2 == true)
                             {
-                                barrier.damage(meleeDamage * 2);
+                                barrier.damage(meleeDamage * 300);
                             }
                             else
                             {
@@ -179,7 +179,7 @@ public class PlayerAttack : MonoBehaviour {
                             }
                             //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
 
-                            enemyRigid.AddForce(attack_vector * 300);
+                            enemyRigid.AddForce(attack_vector * 10);
                         }
                     }
                 }

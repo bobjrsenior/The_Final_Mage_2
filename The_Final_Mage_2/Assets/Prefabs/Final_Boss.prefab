@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21214148}
   - 50: {fileID: 5097590}
   - 58: {fileID: 5882340}
-  - 61: {fileID: 6140532}
   - 114: {fileID: 11481168}
   m_Layer: 9
   m_Name: Final_Boss
@@ -20,6 +19,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &160152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421888}
+  - 212: {fileID: 21259492}
+  - 58: {fileID: 5888122}
+  - 114: {fileID: 11465470}
+  m_Layer: 9
+  m_Name: Barrier
+  m_TagString: Barrier
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &421888
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_Children: []
+  m_Father: {fileID: 440660}
+  m_RootOrder: 0
 --- !u!4 &440660
 Transform:
   m_ObjectHideFlags: 1
@@ -28,8 +57,9 @@ Transform:
   m_GameObject: {fileID: 118176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_Children:
+  - {fileID: 421888}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!50 &5097590
@@ -60,23 +90,34 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.21}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2790298
---- !u!61 &6140532
-BoxCollider2D:
+  m_Radius: 0.12
+--- !u!58 &5888122
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118176}
+  m_GameObject: {fileID: 160152}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.00647974, y: -0.06047821}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.44515437, y: 0.53904605}
+  m_Radius: 0.64
+--- !u!114 &11465470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d1128936a8197478349ad478b24842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11481168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,7 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32eca9875c0f5244b2b89d714272c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeProjectile: {fileID: 143356, guid: a2283b73db6fd084bb7634c92c72b095, type: 2}
+  rangeProjectilePrefab: {fileID: 143356, guid: a2283b73db6fd084bb7634c92c72b095,
+    type: 2}
+  enemyPrefab: {fileID: 188990, guid: 92e53a45a2d4d914893a162759f75640, type: 2}
+  barrier: {fileID: 11465470}
   bounds: {x: -6, y: 6, z: -6, w: 6}
   phase: 0
   state: 0
@@ -118,7 +162,37 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1986732791
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1a7e2f4f7190665478d320793f1fa383, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e2c9272629ca5d4eaecf1d102a6a092, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!212 &21259492
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160152}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1986732791
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 0ef727ef742639045b785932ffd8335f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
