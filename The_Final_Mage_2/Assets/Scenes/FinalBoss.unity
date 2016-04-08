@@ -1932,6 +1932,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaText: {fileID: 1360055735}
+--- !u!1 &1386709349 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 118176, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
+  m_PrefabInternal: {fileID: 1850661706}
+--- !u!114 &1386709350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1386709349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe0094d93a725746b36c6f900d61abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  maxHealth: 30
+  expToGive: 15
+  isDead: 0
+  manaVial: {fileID: 0}
 --- !u!1 &1422341485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,6 +2745,10 @@ Prefab:
     - target: {fileID: 160152, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 118176, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
