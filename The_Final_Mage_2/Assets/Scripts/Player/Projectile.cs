@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using System.Collections;
 
 public class Projectile : MonoBehaviour {
@@ -16,6 +16,11 @@ public class Projectile : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyHealth>().damage(PlayerAttack.pAttack.rangeDamage);
+            Destroy(transform.gameObject);
+        }
+        else if (other.CompareTag("Barrier"))
+        {
+            other.gameObject.GetComponent<Barrier>().damage(PlayerAttack.pAttack.rangeDamage);
             Destroy(transform.gameObject);
         }
         else if (other.gameObject.CompareTag("Walls") || other.gameObject.tag.Contains("Exit"))

@@ -163,6 +163,24 @@ public class PlayerAttack : MonoBehaviour {
                             enemyRigid.AddForce(attack_vector * 300);
 
                         }
+                        else if (rayHit[x].collider.CompareTag("Barrier"))
+                        {
+                            //Get and damage the enemy by our melee damage
+                            Rigidbody2D enemyRigid = rayHit[x].collider.GetComponentInParent<Rigidbody2D>();
+                            Barrier barrier = rayHit[x].collider.GetComponent<Barrier>();
+                            //If we have increased melee damage...
+                            if (Skills.pSkills.skill2 == true)
+                            {
+                                barrier.damage(meleeDamage * 2);
+                            }
+                            else
+                            {
+                                barrier.damage(meleeDamage);
+                            }
+                            //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
+
+                            enemyRigid.AddForce(attack_vector * 300);
+                        }
                     }
                 }
                 

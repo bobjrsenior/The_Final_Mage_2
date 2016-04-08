@@ -25,6 +25,12 @@ public class FinalBossAI : MonoBehaviour {
     private GameObject rangeProjectile;
 
     /// <summary>
+    /// This object's barrier
+    /// </summary>
+    [SerializeField]
+    private Barrier barrier;
+
+    /// <summary>
     /// The speed at which projectiles fired will fly
     /// </summary>
     private float projectileSpeed = 5.0f;
@@ -137,6 +143,14 @@ public class FinalBossAI : MonoBehaviour {
             if(generalTimer1 == defaultTimerValue)
             {
                 generalTimer1 = Random.Range(2.0f, 4.8f);
+                if(!barrier.isActive() && Random.Range(0.0f, 10.0f) > 6.0f)
+                {
+                    barrier.activate();
+                }
+                else if(Random.Range(0.0f, 10.0f) > 6.0f)
+                {
+                    //Spawn Enemies
+                }
             }
 
             generalTimer1 -= Time.fixedDeltaTime;
@@ -221,15 +235,15 @@ public class FinalBossAI : MonoBehaviour {
         float chance = Random.Range(0.0f, 10.0f);
 
         //Idle
-        if (chance < 1.5f)
+        if (chance < 2.0f)
         {
             state = State.Idle;
         }//Attack
-        else if (chance < 4.9f)
+        else if (chance < 5.0f)
         {
             state = State.Attacking;
         }//Move
-        else if (chance < 7.3f)
+        else if (chance < 7.5f)
         {
             state = State.Moving;
         }//Move and Attack

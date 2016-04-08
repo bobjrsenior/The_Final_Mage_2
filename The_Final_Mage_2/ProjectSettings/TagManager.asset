@@ -10,6 +10,7 @@ TagManager:
   - Down_Exit
   - Left_Exit
   - Right_Exit
+  - Barrier
   layers:
   - Default
   - TransparentFX
