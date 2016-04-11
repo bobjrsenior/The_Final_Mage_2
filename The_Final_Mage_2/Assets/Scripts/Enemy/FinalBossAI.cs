@@ -144,7 +144,7 @@ public class FinalBossAI : MonoBehaviour {
 
     private void phase1()
     {
-        rigidbody.velocity *= 0.95f;
+        rigidbody.velocity *= 0.90f;
         if(rigidbody.velocity.sqrMagnitude < 0.1f)
         {
             rigidbody.velocity = Vector2.zero;
