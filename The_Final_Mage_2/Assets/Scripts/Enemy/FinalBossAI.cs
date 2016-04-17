@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FinalBossAI : MonoBehaviour {
 
@@ -40,6 +41,8 @@ public class FinalBossAI : MonoBehaviour {
     /// The speed at which projectiles fired will fly
     /// </summary>
     private float projectileSpeed = 5.0f;
+
+    public finalBossHealth finalHealth;
 
     /// <summary>
     /// Where this object can reside (xMin, xMax, yMin, yMax)
@@ -107,6 +110,7 @@ public class FinalBossAI : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        finalHealth = FindObjectOfType<finalBossHealth>();
 
         generalTarget1 = defaultVector2;
         generalTarget2 = defaultVector2;
@@ -119,7 +123,11 @@ public class FinalBossAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (state.Equals(State.Attacking))
+        if (finalHealth.isDead)
+        {
+            phase = Phase.Dead;
+        }
+        else if (state.Equals(State.Attacking))
         {
             //state = State.Idle;
         }
@@ -293,7 +301,12 @@ public class FinalBossAI : MonoBehaviour {
 
     private void dead()
     {
-
+        //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
+        Destroy(Experience.playerExperience.transform.root.gameObject);
+        Destroy(Skills.pSkills.transform.root.gameObject);
+        Destroy(PlayerMovement.pMovement.transform.root.gameObject);
+        Destroy(TextBoxScript.textScript.transform.root.gameObject);
+        SceneManager.LoadScene("Victory");
     }
 
     private void phase1Setup()
