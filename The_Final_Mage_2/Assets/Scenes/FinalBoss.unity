@@ -1203,6 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f1d25e66466fa489a51ddab9779462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &719259954
 Prefab:
   m_ObjectHideFlags: 0
@@ -1240,7 +1241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
@@ -2631,14 +2632,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386709349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe0094d93a725746b36c6f900d61abc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8525c9d0ec0bbd343aa9aa33b5b265bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
   maxHealth: 30
-  expToGive: 15
   isDead: 0
-  manaVial: {fileID: 0}
 --- !u!1 &1422341485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,7 +3694,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 440660, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 160152, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_IsActive
@@ -3703,7 +3702,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 118176, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: finalBoss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}

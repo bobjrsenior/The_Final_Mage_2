@@ -11,6 +11,7 @@ TagManager:
   - Left_Exit
   - Right_Exit
   - Barrier
+  - finalBoss
   layers:
   - Default
   - TransparentFX
