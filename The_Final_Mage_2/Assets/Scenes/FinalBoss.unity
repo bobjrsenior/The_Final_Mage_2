@@ -85,10 +85,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &40210149 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 473018, guid: b719a89ca9bff564daf94437c872e8c4, type: 2}
-  m_PrefabInternal: {fileID: 2091268469}
 --- !u!4 &41875565 stripped
 Transform:
   m_PrefabParentObject: {fileID: 450580, guid: 0e5a54d204bfd6746865f8c12d02dceb, type: 2}
@@ -1121,6 +1117,7 @@ GameObject:
   - 124: {fileID: 657949699}
   - 92: {fileID: 657949698}
   - 81: {fileID: 657949697}
+  - 114: {fileID: 657949701}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -1135,11 +1132,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657949695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.4, y: 4.99, z: -10}
+  m_LocalScale: {x: 2.3370864, y: 2.2701445, z: 1}
   m_Children: []
-  m_Father: {fileID: 40210149}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!81 &657949697
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1195,6 +1192,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &657949701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657949695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f1d25e66466fa489a51ddab9779462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &719259954
 Prefab:
   m_ObjectHideFlags: 0
@@ -1232,7 +1241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
@@ -2380,7 +2389,7 @@ Transform:
   - {fileID: 370435205}
   - {fileID: 1844767562}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!4 &1282633379 stripped
 Transform:
   m_PrefabParentObject: {fileID: 450580, guid: 0e5a54d204bfd6746865f8c12d02dceb, type: 2}
@@ -2623,14 +2632,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386709349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe0094d93a725746b36c6f900d61abc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8525c9d0ec0bbd343aa9aa33b5b265bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
   maxHealth: 30
-  expToGive: 15
   isDead: 0
-  manaVial: {fileID: 0}
 --- !u!1 &1422341485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3694,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 440660, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 160152, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_IsActive
@@ -3695,7 +3702,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 118176, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: finalBoss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 055c81ba6bb538f46ac1bb3adb7bf1ba, type: 2}
@@ -4075,7 +4082,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 473018, guid: b719a89ca9bff564daf94437c872e8c4, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 21256624, guid: b719a89ca9bff564daf94437c872e8c4, type: 2}
       propertyPath: m_SortingLayerID

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FinalBossAI : MonoBehaviour {
 
@@ -18,10 +19,6 @@ public class FinalBossAI : MonoBehaviour {
     /// </summary>
     private Rigidbody2D rigidbody;
 
-    /// <summary>
-    /// This enemie's health script
-    /// </summary>
-    private EnemyHealth health;
 
     /// <summary>
     /// Prefab of this object's range projectile
@@ -45,6 +42,8 @@ public class FinalBossAI : MonoBehaviour {
     /// The speed at which projectiles fired will fly
     /// </summary>
     private float projectileSpeed = 5.0f;
+
+    public finalBossHealth finalHealth;
 
     /// <summary>
     /// Where this object can reside (xMin, xMax, yMin, yMax)
@@ -112,9 +111,10 @@ public class FinalBossAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
-        health = GetComponent<EnemyHealth>();
+
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        finalHealth = FindObjectOfType<finalBossHealth>();
 
         generalTarget1 = defaultVector2;
         generalTarget2 = defaultVector2;
@@ -127,8 +127,7 @@ public class FinalBossAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        
-        if(health.health <= 0)
+        if (finalHealth.isDead)
         {
             generalTarget1 = defaultVector2;
             generalTarget2 = defaultVector2;
@@ -147,7 +146,7 @@ public class FinalBossAI : MonoBehaviour {
         {
             phase2();
         }
-        else if (phase.Equals(Phase.Dead))
+        else if (phase.Equals(Phase.Dying))
         {
             dying();
         }
@@ -308,7 +307,7 @@ public class FinalBossAI : MonoBehaviour {
 
     private void dying()
     {
-
+        
         print("I'm Dying");
         phase = Phase.Dead;
     }
@@ -316,6 +315,14 @@ public class FinalBossAI : MonoBehaviour {
     private void dead()
     {
         print("I'm Dead");
+        //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
+        Destroy(Experience.playerExperience.transform.root.gameObject);
+        Destroy(Skills.pSkills.transform.root.gameObject);
+        SoundScript.exists = false;
+        Destroy(FindObjectOfType<SoundScript>().transform.gameObject);
+        Destroy(PlayerMovement.pMovement.transform.root.gameObject);
+        Destroy(TextBoxScript.textScript.transform.root.gameObject);
+        SceneManager.LoadScene("Victory");
         Destroy(this.gameObject);
     }
 

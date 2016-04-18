@@ -166,11 +166,8 @@ public class DifficultyManager : MonoBehaviour {
         //If we've gotten to the end...
         if (floor == 7)
         {
-            Destroy(Experience.playerExperience.transform.root.gameObject);
-            Destroy(Skills.pSkills.transform.root.gameObject);
-            Destroy(PlayerHealth.pHealth.transform.root.gameObject);
-            Destroy(TextBoxScript.textScript.transform.root.gameObject);
-            SceneManager.LoadScene("Victory");
+
+            SceneManager.LoadScene("finalBoss");
         }
         if (floor == 1)
         {
