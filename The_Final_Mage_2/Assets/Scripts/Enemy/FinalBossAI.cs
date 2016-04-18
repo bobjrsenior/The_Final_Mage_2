@@ -19,6 +19,7 @@ public class FinalBossAI : MonoBehaviour {
     /// </summary>
     private Rigidbody2D rigidbody;
 
+
     /// <summary>
     /// Prefab of this object's range projectile
     /// </summary>
@@ -53,7 +54,7 @@ public class FinalBossAI : MonoBehaviour {
     /// <summary>
     /// The different major phases of this object
     /// </summary>
-    private enum Phase { Phase1, Phase2, Dead }
+    private enum Phase { Phase1, Phase2, Dying, Dead }
 
     /// <summary>
     /// The current major phase
@@ -71,6 +72,8 @@ public class FinalBossAI : MonoBehaviour {
     /// </summary>
     [SerializeField]
     private State state;
+
+
 
 
     ////// General Variables
@@ -109,6 +112,7 @@ public class FinalBossAI : MonoBehaviour {
     void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
 
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         finalHealth = FindObjectOfType<finalBossHealth>();
 
@@ -125,15 +129,13 @@ public class FinalBossAI : MonoBehaviour {
 	void FixedUpdate () {
         if (finalHealth.isDead)
         {
-            phase = Phase.Dead;
-        }
-        else if (state.Equals(State.Attacking))
-        {
-            //state = State.Idle;
-        }
-        else if (state.Equals(State.MovingAndAttacking))
-        {
-            //state = State.Moving;
+            generalTarget1 = defaultVector2;
+            generalTarget2 = defaultVector2;
+
+            generalTimer1 = defaultTimerValue;
+            generalTimer2 = defaultTimerValue;
+
+            phase = Phase.Dying;
         }
 
         if (phase.Equals(Phase.Phase1))
@@ -143,6 +145,10 @@ public class FinalBossAI : MonoBehaviour {
         else if (phase.Equals(Phase.Phase2))
         {
             phase2();
+        }
+        else if (phase.Equals(Phase.Dying))
+        {
+            dying();
         }
         else if (phase.Equals(Phase.Dead))
         {
@@ -299,8 +305,16 @@ public class FinalBossAI : MonoBehaviour {
 
     }
 
+    private void dying()
+    {
+        
+        print("I'm Dying");
+        phase = Phase.Dead;
+    }
+
     private void dead()
     {
+        print("I'm Dead");
         //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
         Destroy(Experience.playerExperience.transform.root.gameObject);
         Destroy(Skills.pSkills.transform.root.gameObject);
@@ -309,6 +323,7 @@ public class FinalBossAI : MonoBehaviour {
         Destroy(PlayerMovement.pMovement.transform.root.gameObject);
         Destroy(TextBoxScript.textScript.transform.root.gameObject);
         SceneManager.LoadScene("Victory");
+        Destroy(this.gameObject);
     }
 
     private void phase1Setup()
