@@ -19,6 +19,11 @@ public class FinalBossAI : MonoBehaviour {
     private Rigidbody2D rigidbody;
 
     /// <summary>
+    /// This enemie's health script
+    /// </summary>
+    private EnemyHealth health;
+
+    /// <summary>
     /// Prefab of this object's range projectile
     /// </summary>
     [SerializeField]
@@ -50,7 +55,7 @@ public class FinalBossAI : MonoBehaviour {
     /// <summary>
     /// The different major phases of this object
     /// </summary>
-    private enum Phase { Phase1, Phase2, Dead }
+    private enum Phase { Phase1, Phase2, Dying, Dead }
 
     /// <summary>
     /// The current major phase
@@ -68,6 +73,8 @@ public class FinalBossAI : MonoBehaviour {
     /// </summary>
     [SerializeField]
     private State state;
+
+
 
 
     ////// General Variables
@@ -105,6 +112,7 @@ public class FinalBossAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
+        health = GetComponent<EnemyHealth>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -119,13 +127,16 @@ public class FinalBossAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (state.Equals(State.Attacking))
+        
+        if(health.health <= 0)
         {
-            //state = State.Idle;
-        }
-        else if (state.Equals(State.MovingAndAttacking))
-        {
-            //state = State.Moving;
+            generalTarget1 = defaultVector2;
+            generalTarget2 = defaultVector2;
+
+            generalTimer1 = defaultTimerValue;
+            generalTimer2 = defaultTimerValue;
+
+            phase = Phase.Dying;
         }
 
         if (phase.Equals(Phase.Phase1))
@@ -135,6 +146,10 @@ public class FinalBossAI : MonoBehaviour {
         else if (phase.Equals(Phase.Phase2))
         {
             phase2();
+        }
+        else if (phase.Equals(Phase.Dead))
+        {
+            dying();
         }
         else if (phase.Equals(Phase.Dead))
         {
@@ -291,9 +306,17 @@ public class FinalBossAI : MonoBehaviour {
 
     }
 
-    private void dead()
+    private void dying()
     {
 
+        print("I'm Dying");
+        phase = Phase.Dead;
+    }
+
+    private void dead()
+    {
+        print("I'm Dead");
+        Destroy(this.gameObject);
     }
 
     private void phase1Setup()
