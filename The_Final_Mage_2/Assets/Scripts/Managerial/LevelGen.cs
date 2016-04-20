@@ -220,7 +220,7 @@ public class LevelGen : MonoBehaviour {
         //Create the camera
         Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
 
-        MiniMap.cur.addRoom(Vector3.zero);
+        MiniMap.cur.addRoom(Vector2.zero);
     }
 
     /// <summary>

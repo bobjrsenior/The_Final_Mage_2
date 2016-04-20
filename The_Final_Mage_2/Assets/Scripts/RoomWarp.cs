@@ -52,6 +52,8 @@ public class RoomWarp : MonoBehaviour
 
                     if (LevelGen.gen.unlocked(transform.position))
                     {
+                        MiniMap.cur.leaveRoom(Camera.main.transform.position);
+
                         //Top door
                         if (this.CompareTag("Up_Exit"))
                         {
