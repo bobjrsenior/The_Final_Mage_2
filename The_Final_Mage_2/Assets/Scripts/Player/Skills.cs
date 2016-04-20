@@ -99,79 +99,86 @@ public class Skills : MonoBehaviour {
     /// <param name="skillID">the ID number of the skil that we wish to obtain by spending this point.</param>
     public void spend(int skillID)
     {
-        if (skillPoints != 0)
+        if (skillID == 1)
         {
-            if (skillID == 1)
+            if (skill1 == true)
             {
-                if (skill1 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                    TextBoxScript.textScript.showWarning();
-                }
-                else
-                {
-                    skillPoints--;
-                    skill1 = true;
-                    skillText.text = "Skill purchased successfully!";
-                    TextBoxScript.textScript.showWarning();
-                }
-                
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
             }
-            else if (skillID == 2)
+            else if (skillPoints != 0)
             {
-                if (skill2 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                    TextBoxScript.textScript.showWarning();
-                }
-                else
-                {
-                    skillPoints--;
-                    skill2 = true;
-                    skillText.text = "Skill purchased successfully!";
-                    TextBoxScript.textScript.showWarning();
-                }
-            }
-            else if (skillID == 3)
-            {
-                if (skill3 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                    TextBoxScript.textScript.showWarning();
-                }
-                else
-                {
-                    skillPoints--;
-                    skill3 = true;
-                    skillText.text = "Skill purchased successfully!";
-                    TextBoxScript.textScript.showWarning();
-                }
-            }
-            else if (skillID == 4)
-            {
-                if (skill4 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                    TextBoxScript.textScript.showWarning();
-                }
-                else
-                {
-                    skillPoints--;
-                    skill4 = true;
-                    skillText.text = "Skill purchased successfully!";
-                    TextBoxScript.textScript.showWarning();
-                }
+                skillPoints--;
+                skill1 = true;
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
             }
             else
             {
-                print("SKILL SPENDING FAILED");
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+
+        }
+        else if (skillID == 2)
+        {
+            if (skill2 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if(skillPoints != 0)
+            {
+                skillPoints--;
+                skill2 = true;
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
             }
         }
-        else
+        else if (skillID == 3)
         {
-            skillText.text = "You need a skill point to purchase a skill!";
-            TextBoxScript.textScript.showWarning();
+            if (skill3 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if (skillPoints != 0)
+            {
+                skillPoints--;
+                skill3 = true;
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
         }
-
+        else if (skillID == 4)
+        {
+            if (skill4 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if (skillPoints != 0)
+            {
+                skillPoints--;
+                skill4 = true;
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+        }
     }
 }
