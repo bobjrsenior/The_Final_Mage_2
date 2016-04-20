@@ -151,6 +151,10 @@ public class TextBoxScript : MonoBehaviour {
             displayingWarning = true;
             StartCoroutine(displayWarning());
         }
+        else if (displayingWarning == true)
+        {
+            displayTimer.time = 2;
+        }
     }
 }
 
