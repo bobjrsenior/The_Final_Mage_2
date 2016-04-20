@@ -19,6 +19,11 @@ public class Skills : MonoBehaviour {
     public bool skill3;
     public bool skill4;
 
+    public Button skill1Button;
+    public Button skill2Button;
+    public Button skill3Button;
+    public Button skill4Button;
+
     public GameObject UIPanel;
 
     public Text skillText;
@@ -46,7 +51,6 @@ public class Skills : MonoBehaviour {
             UIDropdownCool = gameObject.AddComponent<Timer>();
             UIDropdownCool.initialize(.2f, false);
 
-            UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
             up = true;
         }
 	}
@@ -57,14 +61,20 @@ public class Skills : MonoBehaviour {
         {
             if (up == true)
             {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y - 2750);
-                skillText.text = "Select a skill button to purchase that skill.";
+                UIPanel.SetActive(true);
+                skill1Button.interactable = true;
+                skill2Button.interactable = true;
+                skill3Button.interactable = true;
+                skill4Button.interactable = true;
                 up = false;
             }
             else
             {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
-                skillText.text = "Press space bar to spend skill points.";
+                skill1Button.interactable = false;
+                skill2Button.interactable = false;
+                skill3Button.interactable = false;
+                skill4Button.interactable = false;
+                UIPanel.SetActive(false);
                 up = true;
             }
         }
@@ -96,12 +106,14 @@ public class Skills : MonoBehaviour {
                 if (skill1 == true)
                 {
                     skillText.text = "You have already purchased that skill!";
+                    TextBoxScript.textScript.showWarning();
                 }
                 else
                 {
                     skillPoints--;
                     skill1 = true;
                     skillText.text = "Skill purchased successfully!";
+                    TextBoxScript.textScript.showWarning();
                 }
                 
             }
@@ -110,12 +122,14 @@ public class Skills : MonoBehaviour {
                 if (skill2 == true)
                 {
                     skillText.text = "You have already purchased that skill!";
+                    TextBoxScript.textScript.showWarning();
                 }
                 else
                 {
                     skillPoints--;
                     skill2 = true;
                     skillText.text = "Skill purchased successfully!";
+                    TextBoxScript.textScript.showWarning();
                 }
             }
             else if (skillID == 3)
@@ -123,12 +137,14 @@ public class Skills : MonoBehaviour {
                 if (skill3 == true)
                 {
                     skillText.text = "You have already purchased that skill!";
+                    TextBoxScript.textScript.showWarning();
                 }
                 else
                 {
                     skillPoints--;
                     skill3 = true;
                     skillText.text = "Skill purchased successfully!";
+                    TextBoxScript.textScript.showWarning();
                 }
             }
             else if (skillID == 4)
@@ -136,12 +152,14 @@ public class Skills : MonoBehaviour {
                 if (skill4 == true)
                 {
                     skillText.text = "You have already purchased that skill!";
+                    TextBoxScript.textScript.showWarning();
                 }
                 else
                 {
                     skillPoints--;
                     skill4 = true;
                     skillText.text = "Skill purchased successfully!";
+                    TextBoxScript.textScript.showWarning();
                 }
             }
             else
@@ -152,6 +170,8 @@ public class Skills : MonoBehaviour {
         else
         {
             skillText.text = "You need a skill point to purchase a skill!";
+            TextBoxScript.textScript.showWarning();
         }
+
     }
 }
