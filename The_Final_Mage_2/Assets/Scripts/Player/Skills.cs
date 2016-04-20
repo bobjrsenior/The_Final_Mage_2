@@ -50,7 +50,7 @@ public class Skills : MonoBehaviour {
             skillPoints = 0;
             UIDropdownCool = gameObject.AddComponent<Timer>();
             UIDropdownCool.initialize(.2f, false);
-
+            UIPanel.SetActive(false);
             up = true;
         }
 	}
