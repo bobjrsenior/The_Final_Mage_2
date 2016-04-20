@@ -2580,7 +2580,7 @@ MonoBehaviour:
   pStatsSet: 0
   playerStandardHealth: 5
   playerStandardMaxHealth: 5
-  playerStandardMeleeDam: 0.5
+  playerStandardMeleeDam: 1
   playerStandardRangedDam: 1
   meleeType: {fileID: 21300000, guid: 1a7e2f4f7190665478d320793f1fa383, type: 3}
   rangeType: {fileID: 21300000, guid: a80181f0233afd545bb504014c12272c, type: 3}
