@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MiniMap : MonoBehaviour {
 
@@ -14,8 +15,13 @@ public class MiniMap : MonoBehaviour {
     [SerializeField]
     private GameObject roomPrefab;
 
-	// Use this for initialization
-	void Awake () {
+    /// <summary>
+    /// 
+    /// </summary>
+    private Dictionary<Vector2, SpriteRenderer> miniMap = new Dictionary<Vector2, SpriteRenderer>();
+
+    // Use this for initialization
+    void Awake () {
         cur = this;
 	}
 	
@@ -48,13 +54,15 @@ public class MiniMap : MonoBehaviour {
 
         print(position);
 
-        Vector2 temp = position;
-
-        if (!LevelGen.gen.visit(temp))
+        if (!LevelGen.gen.visit(position))
         {
             position /= LevelGen.gen.roomDistance;
 
-            Instantiate(roomPrefab, position, Quaternion.identity);
+            miniMap.Add(position, (Instantiate(roomPrefab, position, Quaternion.identity) as GameObject).GetComponent<SpriteRenderer>());
+        }
+        else
+        {
+
         }
     }
 }
