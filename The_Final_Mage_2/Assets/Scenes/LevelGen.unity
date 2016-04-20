@@ -759,12 +759,12 @@ MonoBehaviour:
   skill2: 0
   skill3: 0
   skill4: 0
-  skill1Button: {fileID: 0}
-  skill2Button: {fileID: 0}
-  skill3Button: {fileID: 0}
-  skill4Button: {fileID: 0}
+  skill1Button: {fileID: 1115956468}
+  skill2Button: {fileID: 1825105204}
+  skill3Button: {fileID: 1673406648}
+  skill4Button: {fileID: 1944498549}
   UIPanel: {fileID: 223296640}
-  skillText: {fileID: 1333225331}
+  skillText: {fileID: 1527457419}
   UIDropdownCool: {fileID: 0}
 --- !u!1001 &673890836
 Prefab:
