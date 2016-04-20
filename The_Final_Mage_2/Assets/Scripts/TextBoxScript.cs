@@ -16,6 +16,8 @@ public class TextBoxScript : MonoBehaviour {
 
     public bool displaying;
 
+    public bool displayingWarning;
+
     private int currentMessagePosition;
 
 	// Use this for initialization
@@ -52,6 +54,22 @@ public class TextBoxScript : MonoBehaviour {
             gameScript[i] = gameScript[rnd];
             gameScript[rnd] = temp;
         }
+    }
+
+    public IEnumerator displayWarning()
+    {
+        displayTimer.started = true;
+        while (displayTimer.complete == false)
+        {
+            displayTimer.countdownUpdate();
+            yield return null;
+        }
+        displayTimer.complete = false;
+        //Move the message off the screen.
+        textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+        displaying = false;
+        displayingWarning = false;
+        yield break;
     }
 
     public IEnumerator displayMessage()
@@ -113,6 +131,25 @@ public class TextBoxScript : MonoBehaviour {
         {
             textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
             displaying = false;
+        }
+    }
+
+    public void showWarning()
+    {
+        if (displaying == true && displayingWarning == false)
+        {
+            displayTimer.time = 2;
+            displayingWarning = true;
+            StartCoroutine(displayWarning());
+        }
+        else if (displayingWarning == false)
+        {
+            //Show text box.
+            displaying = true;
+            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+            displayTimer.time = 2;
+            displayingWarning = true;
+            StartCoroutine(displayWarning());
         }
     }
 }
