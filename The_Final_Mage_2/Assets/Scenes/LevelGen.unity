@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41506416, g: 0, b: 0.875, a: 0.392}
+  m_Color: {r: 0.02745098, g: 0.67058825, b: 0, a: 0.3882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43944633, g: 0, b: 0.9338235, a: 0.392}
+  m_Color: {r: 0.028448224, g: 0.672, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24816178, g: 0.25076073, b: 0.625, a: 1}
+  m_Color: {r: 0.02745098, g: 0.67058825, b: 0, a: 0.3882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1598,16 +1598,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameScript:
-  - 'Dr. Evil: No! Stop him!'
-  - 'Dr. Evil: Stop the intruder! At once! I command it!'
+  - 'Dr. Evil: Stop him at once!'
+  - 'Dr. Evil: Stop the intruder! I command it!'
   - 'Dr. Evil: You cannot win, Xander Whitethorne!'
   - 'Dr. Evil: You have no chance to survive!'
   - 'Dr. Evil: I command you to cease your efforts, Xander Whitethorne!'
   - 'Dr. Evil: Why don''t you just call it quits? You cannot win.'
   - 'Dr. Evil: You dare betray your destiny?'
-  - 'Dr. Evil: Why do you persist?'
+  - 'Dr. Evil: What makes you think you have any hope of victory? '
   - 'Dr. Evil: What defect makes you believe you have a chance of destroying me?'
+  - 'Dr. Evil: You rebellious cur! Just end this futility and bow before me!'
+  - 'Dr. Evil: This world is mine to control, Xander Whitethorne. You shall not take
+    it from me!'
+  - 'Dr. Evil: Have you lost your mind? This senseless destruction is without purpose!'
+  - 'Dr. Evil: Aren''t you dead yet?'
+  - 'Dr. Evil: I expected more of you, Xander Whitethorne!'
+  - 'Dr. Evil: You call that magic?'
+  - 'Dr. Evil: I had hoped the "final mage" would put on a greater show than this!'
+  - 'Dr. Evil: Kill him! KILL HIM! I want his head on my desk as a trophy!'
   - 'Dr. Evil: My robotic minions shall be the end of you!'
+  - 'Dr. Evil: No matter how many you slaughter, more will come!'
+  - 'Dr. Evil: EvilKO will outlast you! We are eternal!'
+  - 'Dr. Evil: Your actions are of no consequence to the future of my world. Give
+    up.'
+  - 'Dr. Evil: What should your gravestone read? Perhaps "Died fighting against the
+    inevitable like a fool?"'
+  - 'Dr. Evil: Come, now. Why don''t we just talk this out?'
   textbox: {fileID: 1527457419}
   textPanel: {fileID: 941206504}
   displaying: 0
@@ -2082,8 +2098,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -3}
-  m_SizeDelta: {x: 664, y: 72}
+  m_AnchoredPosition: {x: 14.500023, y: -3}
+  m_SizeDelta: {x: 733, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527457419
 MonoBehaviour:
@@ -2363,7 +2379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.2392157, b: 0.6, a: 1}
+  m_Color: {r: 0.02745098, g: 0.67058825, b: 0, a: 0.3882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2576,7 +2592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.2392157, b: 0.6, a: 1}
+  m_Color: {r: 0.02745098, g: 0.67058825, b: 0, a: 0.3882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2697,7 +2713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.2392157, b: 0.6, a: 1}
+  m_Color: {r: 0.02745098, g: 0.67058825, b: 0, a: 0.3882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
