@@ -136,6 +136,19 @@ public class LevelGen : MonoBehaviour {
         return false;
     }
 
+    public bool visit(Vector2 position)
+    {
+        Room room;
+        //Get that room and check it
+        if (map.TryGetValue(position, out room))
+        {
+            bool visited = room.visited;
+            room.visited = true;
+            return visited;
+        }
+        return false;
+    }
+
     /// <summary>
     /// Kills an enemy in the specified room
     /// </summary>
@@ -206,6 +219,8 @@ public class LevelGen : MonoBehaviour {
 
         //Create the camera
         Instantiate(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.identity);
+
+        MiniMap.cur.addRoom(Vector3.zero);
     }
 
     /// <summary>
@@ -457,6 +472,11 @@ public class Room
     /// Are this room's doors unlocked?
     /// </summary>
     public bool unlocked = true;
+
+    /// <summary>
+    /// Has this room visited yet?
+    /// </summary>
+    public bool visited = false;
 
     /// <summary>
     /// Set the rooms position

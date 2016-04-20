@@ -57,21 +57,25 @@ public class RoomWarp : MonoBehaviour
                         {
                             other.transform.Translate(0.0f, roomDistance - 5.0f, 0.0f);
                             Camera.main.transform.Translate(0.0f, roomDistance, 0.0f);
+                            MiniMap.cur.addRoom(Camera.main.transform.position);
                         }//Bottom door
                         else if (this.CompareTag("Down_Exit"))
                         {
                             other.transform.Translate(0.0f, -roomDistance + 5.0f, 0.0f);
                             Camera.main.transform.Translate(0.0f, -roomDistance, 0.0f);
+                            MiniMap.cur.addRoom(Camera.main.transform.position);
                         }//Right door
                         else if (this.CompareTag("Left_Exit"))
                         {
                             other.transform.Translate(-roomDistance + 5.0f, 0.0f, 0.0f);
                             Camera.main.transform.Translate(-roomDistance, 0.0f, 0.0f);
+                            MiniMap.cur.addRoom(Camera.main.transform.position);
                         }//Left door
                         else
                         {
                             other.transform.Translate(roomDistance - 5.0f, 0.0f, 0.0f);
                             Camera.main.transform.Translate(roomDistance, 0.0f, 0.0f);
+                            MiniMap.cur.addRoom(Camera.main.transform.position);
                         }
                     }
                 }
