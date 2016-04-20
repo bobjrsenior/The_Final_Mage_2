@@ -110,7 +110,7 @@ public class Skills : MonoBehaviour {
             {
                 skillPoints--;
                 skill1 = true;
-                skill1Button.GetComponent<Image>().color = Color.green;
+                skill1Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
                 skillText.text = "Skill purchased successfully!";
                 TextBoxScript.textScript.showWarning();
             }
@@ -132,7 +132,7 @@ public class Skills : MonoBehaviour {
             {
                 skillPoints--;
                 skill2 = true;
-                skill2Button.GetComponent<Image>().color = Color.green;
+                skill2Button.GetComponent<Image>().color = new Color(0,.6f,0,1);
                 skillText.text = "Skill purchased successfully!";
                 TextBoxScript.textScript.showWarning();
             }
@@ -153,7 +153,7 @@ public class Skills : MonoBehaviour {
             {
                 skillPoints--;
                 skill3 = true;
-                skill3Button.GetComponent<Image>().color = Color.green;
+                skill3Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
                 skillText.text = "Skill purchased successfully!";
                 TextBoxScript.textScript.showWarning();
             }
@@ -174,7 +174,7 @@ public class Skills : MonoBehaviour {
             {
                 skillPoints--;
                 skill4 = true;
-                skill4Button.GetComponent<Image>().color = Color.green;
+                skill4Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
                 skillText.text = "Skill purchased successfully!";
                 TextBoxScript.textScript.showWarning();
             }
