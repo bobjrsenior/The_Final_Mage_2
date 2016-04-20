@@ -29,7 +29,7 @@ public class TextBoxScript : MonoBehaviour {
         else
         {
             textScript = this;
-            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            textPanel.SetActive(false);
             displaying = false;
             DontDestroyOnLoad(transform.root.gameObject);
             displayTimer = gameObject.AddComponent<Timer>();
@@ -66,7 +66,7 @@ public class TextBoxScript : MonoBehaviour {
         }
         displayTimer.complete = false;
         //Move the message off the screen.
-        textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+        textPanel.SetActive(false);
         displaying = false;
         displayingWarning = false;
         yield break;
@@ -83,7 +83,7 @@ public class TextBoxScript : MonoBehaviour {
         if (displayTimer.started == false)
         {
             //Move the text panel pack into position.
-            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+            textPanel.SetActive(true);
             displaying = true;
             //Show the current message.
             textbox.text = gameScript[currentMessagePosition];
@@ -95,7 +95,7 @@ public class TextBoxScript : MonoBehaviour {
             }
             displayTimer.complete = false;
             //Move the message off the screen.
-            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            textPanel.SetActive(false);
             displaying = false;
             //Move the message position up by one.
             currentMessagePosition++;
@@ -114,7 +114,7 @@ public class TextBoxScript : MonoBehaviour {
 
         //Show text box.
         displaying = true;
-        textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+        textPanel.SetActive(true);
     }
 
     public void hideTextbox()
@@ -129,7 +129,7 @@ public class TextBoxScript : MonoBehaviour {
         //Hide text box only if it is being displayed already.
         if (displaying == true)
         {
-            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y + 2500);
+            textPanel.SetActive(false);
             displaying = false;
         }
     }
@@ -146,7 +146,7 @@ public class TextBoxScript : MonoBehaviour {
         {
             //Show text box.
             displaying = true;
-            textPanel.transform.position = new Vector2(textPanel.transform.position.x, textPanel.transform.position.y - 2500);
+            textPanel.SetActive(true);
             displayTimer.time = 2;
             displayingWarning = true;
             StartCoroutine(displayWarning());
