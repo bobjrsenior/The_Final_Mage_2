@@ -39,6 +39,12 @@ public class FinalBossAI : MonoBehaviour {
     private Barrier barrier;
 
     /// <summary>
+    /// The Final Boss's particle system
+    /// </summary>
+    [SerializeField]
+    private GameObject particleSystem;
+
+    /// <summary>
     /// The speed at which projectiles fired will fly
     /// </summary>
     private float projectileSpeed = 5.0f;
@@ -127,7 +133,7 @@ public class FinalBossAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (finalHealth.isDead)
+        if (finalHealth.isDead && !phase.Equals(Phase.Dying) && !phase.Equals(Phase.Dead))
         {
             generalTarget1 = defaultVector2;
             generalTarget2 = defaultVector2;
@@ -190,7 +196,6 @@ public class FinalBossAI : MonoBehaviour {
             if (generalTarget1.Equals(defaultVector2))
             {
                 generalTarget1 = new Vector2(Random.Range(bounds[0], bounds[1]), Random.Range(bounds[2], bounds[3]));
-                print(generalTarget1);
             }
 
             Vector2 direction = generalTarget1 - (Vector2) transform.position;
@@ -285,7 +290,6 @@ public class FinalBossAI : MonoBehaviour {
         {
 
             Vector2 position;
-            float dist;
 
             do
             {
@@ -307,9 +311,18 @@ public class FinalBossAI : MonoBehaviour {
 
     private void dying()
     {
-        
-        print("I'm Dying");
-        phase = Phase.Dead;
+        if(generalTimer1 == defaultTimerValue)
+        {
+            generalTimer1 = 3.0f;
+            //particleSystem.SetActive(true);
+        }
+
+        generalTimer1 -= Time.fixedDeltaTime;
+
+        if (generalTimer1 < 0)
+        {
+            phase = Phase.Dead;
+        }
     }
 
     private void dead()
