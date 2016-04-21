@@ -31,14 +31,6 @@ public class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        if (DifficultyTracker.difficultyTrack.difficulty == 1)
-        {
-            expToGive = 4;
-        }
-        else
-        {
-            expToGive = 2;
-        }
         //Always want to start with the enemy alive
         isDead = false;
         try

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 0
-  expToGive: 0
+  expToGive: 3
   isDead: 0
   manaVial: {fileID: 160864, guid: b7f29a4f189bd23439fdf2ae3d5b3a23, type: 2}
 --- !u!114 &11423366
