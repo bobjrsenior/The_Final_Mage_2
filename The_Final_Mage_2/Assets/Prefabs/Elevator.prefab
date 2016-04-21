@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fb5551ac193674699186e8a7c361aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openSprite: {fileID: 21300006, guid: c244a875a39cb914795cbcb6c287ba83, type: 3}
 --- !u!212 &21240396
 SpriteRenderer:
   m_ObjectHideFlags: 1
