@@ -163,12 +163,6 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     private IEnumerator setUpFloor()
     {
-        //If we've gotten to the end...
-        if (floor == 7)
-        {
-
-            SceneManager.LoadScene("finalBoss");
-        }
         if (floor == 1)
         {
             //Ensure that our score always starts at the default score on floor 1.
@@ -192,7 +186,14 @@ public class DifficultyManager : MonoBehaviour {
         if (gotKeyCard)
         {
             ++floor;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            if (floor == 7)
+            {
+                SceneManager.LoadScene("finalBoss");
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            }
         }
     }
 
