@@ -179,12 +179,17 @@ public class EnemyAI : MonoBehaviour {
                 selfRigid.MovePosition(selfRigid.position - direction * enemySpeed * Time.fixedDeltaTime);
             }
 
-            
+            updateRangeSprite();
         }
     }
 
+    /// <summary>
+    /// Updates the Enemy's sprite if it is a melee enemy
+    /// </summary>
+    /// <param name="direction"></param>
     private void updateMeleeSprite(Vector3 direction)
     {
+        //Depending on which way the enemy is moving, set the sprite
         if(Mathf.Abs(direction.x) < 0.1f)
         {
             if(direction.y > 0){
@@ -221,6 +226,14 @@ public class EnemyAI : MonoBehaviour {
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
+    }
+
+    /// <summary>
+    /// Updates the Enemy's sprite if it is a melee enemy
+    /// </summary>
+    private void updateRangeSprite()
+    {
+        spriteRenderer.sprite = rangeSpriteDirections[((int)(Time.time * 12)) % 3];
     }
 
     /// <summary>
