@@ -19,14 +19,17 @@ public class finalBossHealth : MonoBehaviour
     /// </summary>
     public bool isDead;
 
+    public Timer flashTimer;
+
     Enemy self;
 
-    private EnemyAI enemyAI;
     // Use this for initialization
     void Start()
     {
         //Always want to start with the enemy alive
         isDead = false;
+        flashTimer = gameObject.AddComponent<Timer>();
+        flashTimer.initialize(.1f, false);
     }
 
     // Update is called once per frame
@@ -41,11 +44,6 @@ public class finalBossHealth : MonoBehaviour
             }
             //We die
             isDead = true;
-            if (enemyAI != null)
-            {
-                //Stop the enemy from moving anymore so that it will remain stationary during its death animation.
-                enemyAI.lockMovement = true;
-            }
         }
         else
         {
@@ -56,12 +54,29 @@ public class finalBossHealth : MonoBehaviour
             //Let final boss AI script handle death.
     }
 
+    private IEnumerator damageFlash()
+    {
+        transform.GetComponent<SpriteRenderer>().color = Color.red;
+        flashTimer.started = true;
+        {
+            while (flashTimer.complete == false)
+            {
+                flashTimer.countdownUpdate();
+                yield return null;
+            }
+            flashTimer.complete = false;
+            transform.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return null;
+        }
+    }
+
     /// <summary>
     /// damages enemy by amount.
     /// </summary>
     /// <param name="amount"> The amount to damage the enemy by. </param>
     public void damage(float amount)
     {
+        StartCoroutine(damageFlash());
         health = health - amount;
         if (health < 0)
         {
