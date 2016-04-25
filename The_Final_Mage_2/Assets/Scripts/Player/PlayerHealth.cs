@@ -51,11 +51,13 @@ public class PlayerHealth : MonoBehaviour {
 
     private Timer healthRegenTimer;
 
-    public float manaRegenTime = 5f;
+    public float manaRegenTime = 4f;
 
     private Timer manaRegenTimer;
 
     private Timer gameOverTimer;
+
+    public Timer flashTimer;
 
     public float manaRegenAmount = 5f;
 
@@ -105,6 +107,8 @@ public class PlayerHealth : MonoBehaviour {
         delayTimer.initialize(delayTime, false);
         gameOverTimer = gameObject.AddComponent<Timer>();
         gameOverTimer.initialize(2, false);
+        flashTimer = gameObject.AddComponent<Timer>();
+        flashTimer.initialize(.1f, false);
         anim = GetComponent<Animator>();
         soundSource = FindObjectOfType<SoundScript>();
     }
@@ -194,6 +198,22 @@ public class PlayerHealth : MonoBehaviour {
         }
 	}
 
+    private IEnumerator damageFlash()
+    {
+        transform.GetComponent<SpriteRenderer>().color = Color.red;
+        flashTimer.started = true;
+        {
+            while (flashTimer.complete == false)
+            {
+                flashTimer.countdownUpdate();
+                yield return null;
+            }
+            flashTimer.complete = false;
+            transform.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return null;
+        }
+    }
+
     /// <summary>
     /// damages player by amount.
     /// </summary>
@@ -204,6 +224,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
+            StartCoroutine(damageFlash());
             health = health - amount;
             soundSource.PlaySound(2);
             if (health < 0)
