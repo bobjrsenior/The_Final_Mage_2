@@ -25,6 +25,8 @@ public class EnemyHealth : MonoBehaviour {
     /// </summary>
     public GameObject manaVial;
 
+    public Timer flashTimer;
+
     Enemy self;
 
     private EnemyAI enemyAI;
@@ -35,6 +37,8 @@ public class EnemyHealth : MonoBehaviour {
         isDead = false;
         try
         {
+            flashTimer = gameObject.AddComponent<Timer>();
+            flashTimer.initialize(.1f, false);
             self = transform.GetComponent<Enemy>();
             enemyAI = transform.GetComponent<EnemyAI>();
         }
@@ -100,12 +104,29 @@ public class EnemyHealth : MonoBehaviour {
         }
     }
 
+    private IEnumerator damageFlash()
+    {
+        transform.GetComponent<SpriteRenderer>().color = Color.red;
+        flashTimer.started = true;
+        {
+            while (flashTimer.complete == false)
+            {
+                flashTimer.countdownUpdate();
+                yield return null;
+            }
+            flashTimer.complete = false;
+            transform.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return null;
+        }
+    }
+
     /// <summary>
     /// damages enemy by amount.
     /// </summary>
     /// <param name="amount"> The amount to damage the enemy by. </param>
     public void damage(float amount)
     {
+        StartCoroutine(damageFlash());
         health = health - amount;
         if (health < 0)
         {
