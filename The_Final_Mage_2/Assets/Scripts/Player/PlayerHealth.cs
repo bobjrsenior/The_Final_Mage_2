@@ -155,27 +155,6 @@ public class PlayerHealth : MonoBehaviour {
                 StartCoroutine(manaRegen());
             }
         }
-        if (health == 0)
-        {
-            PlayerMovement.pMovement.canMove = false;
-        }
-        else
-        {
-            PlayerMovement.pMovement.canMove = true;
-        }
-        
-
-	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            health = 0;
-        }
-
-        //FOR TESTING PURPOSES ONLY, WILL HEAL YOU BY 1 IF YOU PRESS H
-          if (Input.GetKeyDown(KeyCode.H))
-          {
-              heal(1);
-          }
 
         //If our health ever hits 0
         if (health == 0)
@@ -186,15 +165,7 @@ public class PlayerHealth : MonoBehaviour {
             anim.SetBool("isDead", true);
             isDead = true;
             PlayerMovement.pMovement.canMove = false;
-        }
-        else
-        {
-            //Enable the score countdown.
-            Scoring.scoreKeeper.countdown = true;
-            //If our health is not 0, we are alive.
-            anim.SetBool("isDead", false);
-            isDead = false;
-            PlayerMovement.pMovement.canMove = true;
+            gameOver();
         }
 	}
 
@@ -342,6 +313,7 @@ public class PlayerHealth : MonoBehaviour {
         TextBoxScript.textScript.hideTextbox();
         if (health == 0)
         {
+            yield return StartCoroutine(ScreenFader.sf.FadeToBlack());
             //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);

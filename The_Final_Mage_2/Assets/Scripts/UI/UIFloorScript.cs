@@ -6,6 +6,6 @@ public class UIFloorScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gameObject.GetComponent<Text>().text = "" + DifficultyManager.dManager.floor;
+        gameObject.GetComponent<Text>().text = "Floor:\n" + DifficultyManager.dManager.floor;
     }
 }

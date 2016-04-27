@@ -10,6 +10,8 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public int floor = 1;
 
+    public bool fading;
+
     /// <summary>
     /// How fast do the enemies move?
     /// </summary>
@@ -163,11 +165,6 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     private IEnumerator setUpFloor()
     {
-        if (floor == 1)
-        {
-            //Ensure that our score always starts at the default score on floor 1.
-            Scoring.scoreKeeper.score = Scoring.scoreKeeper.initialScore;
-        }
         gotKeyCard = false;
         if (SceneManager.GetActiveScene().name.Equals("LevelGen"))
         {
@@ -176,6 +173,16 @@ public class DifficultyManager : MonoBehaviour {
         while (PlayerHealth.pHealth == null || PlayerAttack.pAttack == null) { yield return null; }
         setPlayerStats();
         setEnemyStats();
+        if (floor == 1)
+        {
+            //Ensure that our score always starts at the default score on floor 1.
+            Scoring.scoreKeeper.score = Scoring.scoreKeeper.initialScore;
+            Scoring.scoreKeeper.pauseDegeneration = false;
+        }
+        else
+        {
+            StartCoroutine(fadeIn());
+        }
     }
 
     /// <summary>
@@ -183,8 +190,10 @@ public class DifficultyManager : MonoBehaviour {
     /// </summary>
     public void wonFloor()
     {
-        if (gotKeyCard)
+        if (gotKeyCard && fading == false)
         {
+            PlayerMovement.pMovement.canMove = false;
+            Scoring.scoreKeeper.pauseDegeneration = true;
             ++floor;
             if (floor == 7)
             {
@@ -192,9 +201,25 @@ public class DifficultyManager : MonoBehaviour {
             }
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+                StartCoroutine(fadeOut());
             }
         }
+    }
+
+    private IEnumerator fadeIn()
+    {
+        yield return StartCoroutine(ScreenFader.sf.FadeToClear());
+        PlayerMovement.pMovement.canMove = true;
+        Scoring.scoreKeeper.pauseDegeneration = false;
+    }
+    private IEnumerator fadeOut()
+    {
+        fading = true;
+        PlayerMovement.pMovement.canMove = false;
+        Scoring.scoreKeeper.pauseDegeneration = true;
+        yield return StartCoroutine(ScreenFader.sf.FadeToBlack());
+        fading = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
     /// <summary>

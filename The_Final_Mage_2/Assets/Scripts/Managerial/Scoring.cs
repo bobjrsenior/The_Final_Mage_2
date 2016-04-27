@@ -43,6 +43,8 @@ public class Scoring : MonoBehaviour {
     /// </summary>
     public bool countdown;
 
+    public bool pauseDegeneration;
+
     private Timer degenerationTimer;
 
     public static Scoring scoreKeeper;
@@ -60,6 +62,7 @@ public class Scoring : MonoBehaviour {
             scoreKeeper = this;
             DontDestroyOnLoad(this.gameObject);
             score = initialScore;
+            pauseDegeneration = true;
             degenerationTimer = gameObject.AddComponent<Timer>();
             degenerationTimer.initialize(degenerationTime, false);
         }
@@ -68,7 +71,7 @@ public class Scoring : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (degenerationCooldown == false && score != 0)
+        if (degenerationCooldown == false && score != 0 && pauseDegeneration != true)
         {
             StartCoroutine(degenerate());
         }
