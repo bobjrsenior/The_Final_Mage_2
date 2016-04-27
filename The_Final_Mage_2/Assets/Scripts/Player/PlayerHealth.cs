@@ -163,20 +163,21 @@ public class PlayerHealth : MonoBehaviour {
         {
             PlayerMovement.pMovement.canMove = true;
         }
-        
 
-	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
-        if(Input.GetKeyDown(KeyCode.G))
+
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
+        if (Input.GetKeyDown(KeyCode.G))
         {
             health = 0;
         }
 
         //FOR TESTING PURPOSES ONLY, WILL HEAL YOU BY 1 IF YOU PRESS H
-          if (Input.GetKeyDown(KeyCode.H))
-          {
-              heal(1);
-          }
-
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            heal(1);
+        }
+        #endif
         //If our health ever hits 0
         if (health == 0)
         {
