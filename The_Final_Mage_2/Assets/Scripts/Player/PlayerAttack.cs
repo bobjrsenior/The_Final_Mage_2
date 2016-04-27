@@ -152,7 +152,7 @@ public class PlayerAttack : MonoBehaviour {
                             //If we have increased melee damage...
                             if (Skills.pSkills.skill2 == true)
                             {
-                                enemyHP.damage(meleeDamage + .5f);
+                                enemyHP.damage(meleeDamage * 2);
                             }
                             else
                             {

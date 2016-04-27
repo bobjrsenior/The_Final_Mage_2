@@ -88,7 +88,7 @@ public class EnemyHealth : MonoBehaviour {
             //If we have enhanced drop rate...
             if (Skills.pSkills.skill1 == true)
             {
-                if (Random.Range(25, 100) >= 85)
+                if (Random.Range(0, 100) >= 70)
                 {
                     Instantiate(manaVial, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 }
