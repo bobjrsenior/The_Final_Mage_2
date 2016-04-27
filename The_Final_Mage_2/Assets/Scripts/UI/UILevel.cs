@@ -6,6 +6,6 @@ public class UILevel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        gameObject.GetComponent<Text>().text = "Level: " + Experience.playerExperience.playerLevel;
+        gameObject.GetComponent<Text>().text = "Player Level: " + Experience.playerExperience.playerLevel;
 	}
 }
