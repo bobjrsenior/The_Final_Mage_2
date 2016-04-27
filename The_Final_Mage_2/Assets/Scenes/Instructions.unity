@@ -944,8 +944,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Go room to room to find an elevator key and return to the elevator to go
-    to the next floor!
+  m_Text: 'Go room to room to collect an elevator key and return to the elevator (E)
+    to resume to the next level!
 
 '
 --- !u!222 &1309989827
