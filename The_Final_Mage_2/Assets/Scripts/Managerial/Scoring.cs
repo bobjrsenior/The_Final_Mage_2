@@ -62,7 +62,6 @@ public class Scoring : MonoBehaviour {
             scoreKeeper = this;
             DontDestroyOnLoad(this.gameObject);
             score = initialScore;
-            pauseDegeneration = true;
             degenerationTimer = gameObject.AddComponent<Timer>();
             degenerationTimer.initialize(degenerationTime, false);
         }
@@ -81,6 +80,7 @@ public class Scoring : MonoBehaviour {
     {
         degenerationCooldown = true;
         degenerationTimer.started = true;
+        countdown = true;
         while (degenerationTimer.complete == false)
         {
             degenerationTimer.countdownUpdate();

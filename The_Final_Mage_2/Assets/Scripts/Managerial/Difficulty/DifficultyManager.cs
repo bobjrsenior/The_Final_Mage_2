@@ -198,6 +198,11 @@ public class DifficultyManager : MonoBehaviour {
             if (floor == 7)
             {
                 SceneManager.LoadScene("finalBoss");
+                PlayerMovement.pMovement.canMove = true;
+                Scoring.scoreKeeper.pauseDegeneration = false;
+                Skills.pSkills.closeSkillPanel();
+                TextBoxScript.textScript.finalLevel = true;
+                StartCoroutine(TextBoxScript.textScript.finalBossSequence());
             }
             else
             {

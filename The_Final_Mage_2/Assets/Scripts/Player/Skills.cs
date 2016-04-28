@@ -59,26 +59,41 @@ public class Skills : MonoBehaviour {
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.Space) && cooldown == false)
         {
-            if (up == true)
-            {
-                UIPanel.SetActive(true);
-                skill1Button.interactable = true;
-                skill2Button.interactable = true;
-                skill3Button.interactable = true;
-                skill4Button.interactable = true;
-                up = false;
-            }
-            else
-            {
-                skill1Button.interactable = false;
-                skill2Button.interactable = false;
-                skill3Button.interactable = false;
-                skill4Button.interactable = false;
-                UIPanel.SetActive(false);
-                up = true;
-            }
+            swap();
         }
 	}
+
+    private void swap()
+    {
+        if (up == true)
+        {
+            UIPanel.SetActive(true);
+            skill1Button.interactable = true;
+            skill2Button.interactable = true;
+            skill3Button.interactable = true;
+            skill4Button.interactable = true;
+            up = false;
+        }
+        else
+        {
+            skill1Button.interactable = false;
+            skill2Button.interactable = false;
+            skill3Button.interactable = false;
+            skill4Button.interactable = false;
+            UIPanel.SetActive(false);
+            up = true;
+        }
+    }
+
+    public void closeSkillPanel()
+    {
+        skill1Button.interactable = false;
+        skill2Button.interactable = false;
+        skill3Button.interactable = false;
+        skill4Button.interactable = false;
+        UIPanel.SetActive(false);
+        up = true;
+    }
 
     private IEnumerable dropdownCoolTimer()
     {

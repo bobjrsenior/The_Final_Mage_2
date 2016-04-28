@@ -18,6 +18,12 @@ public class TextBoxScript : MonoBehaviour {
 
     public bool displayingWarning;
 
+    public bool finalLevel;
+
+    public string[] finalBossScript
+        ;
+    public bool finalBossDisplayed;
+
     private int currentMessagePosition;
 
 	// Use this for initialization
@@ -155,6 +161,34 @@ public class TextBoxScript : MonoBehaviour {
         {
             displayTimer.time = 2;
         }
+    }
+
+    public IEnumerator finalBossSequence()
+    {
+        Debug.Log("There");
+        for (int currPosition = 0; currPosition <= (finalBossScript.Length - 1); currPosition++)
+        {
+            Debug.Log("Here");
+            if (displayTimer.started == false)
+            {
+                //Move the text panel pack into position.
+                textPanel.SetActive(true);
+                displaying = true;
+                //Show the current message.
+                textbox.text = finalBossScript[currPosition];
+                displayTimer.started = true;
+                while (displayTimer.complete == false)
+                {
+                    displayTimer.countdownUpdate();
+                    yield return null;
+                }
+                displayTimer.complete = false;
+            }
+        }
+        //Move the message off the screen.
+        textPanel.SetActive(false);
+        displaying = false;
+        finalBossDisplayed = true;
     }
 }
 
