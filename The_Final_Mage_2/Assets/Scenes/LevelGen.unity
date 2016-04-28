@@ -154,7 +154,7 @@ Transform:
   - {fileID: 533756193}
   - {fileID: 42521919}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &137481299
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &218889940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &841406519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1462,7 @@ RectTransform:
   - {fileID: 232702545}
   - {fileID: 1247542228}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1531,9 +1531,11 @@ MonoBehaviour:
   displayingWarning: 0
   finalLevel: 0
   finalBossScript:
-  - a
-  - b
-  - c
+  - 'Dr. Evil: So you made it this far... but now, it is time to tell you the truth!'
+  - 'Dr. Evil: You are not the "Final Mage" as you believed.'
+  - 'Dr. Evil: You are a robot, based on my likeness! Meant to be my finest creation...'
+  - 'Dr. Evil: Yet you are merely defective. Living out delusions!'
+  - 'Dr. Evil: Stop this fantasy of yours! Face reality. Submit to me, or die!'
   finalBossDisplayed: 0
 --- !u!114 &943352198
 MonoBehaviour:
@@ -1603,7 +1605,7 @@ RectTransform:
   m_Children:
   - {fileID: 560934537}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
