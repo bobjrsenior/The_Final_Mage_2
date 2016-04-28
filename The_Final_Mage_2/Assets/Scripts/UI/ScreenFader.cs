@@ -12,22 +12,14 @@ public class ScreenFader : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         anim = GetComponent<Animator>();
-        if (sf == null) //If the player does not already exist
-        {
-            sf = this;
-            DontDestroyOnLoad(transform.root.gameObject); //When we load a new area, we will not destroy the object this is attached to (the player)
-        }
-        else//This will prevent duplicate objects when loading into a new area.
-        {
-            Destroy(gameObject);
-        }
+        sf = this;
     }
 
     public IEnumerator FadeToClear()//Used to allow us to yield.
     {
         isFading = true;
+        if (anim == null) yield break;
         anim.SetBool("isFading", true);
         anim.SetTrigger("fadeIn");
 

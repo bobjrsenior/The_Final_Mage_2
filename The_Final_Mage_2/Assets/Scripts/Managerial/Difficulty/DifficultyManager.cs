@@ -224,6 +224,7 @@ public class DifficultyManager : MonoBehaviour {
         Scoring.scoreKeeper.pauseDegeneration = true;
         yield return StartCoroutine(ScreenFader.sf.FadeToBlack());
         fading = false;
+        Destroy(UIFloorScript.UIFloor.gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
