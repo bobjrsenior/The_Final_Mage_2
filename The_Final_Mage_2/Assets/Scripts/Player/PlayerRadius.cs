@@ -28,9 +28,13 @@ public class PlayerRadius : MonoBehaviour {
         //If the object that entered our trigger zone is tagged as an enemy
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //Set that enemy's "inRadius" boolean to true.
-            other.gameObject.GetComponent<Enemy>().setInRadiusTrue();
-            StartCoroutine(TextBoxScript.textScript.displayMessage());
+            try
+            {
+                //Set that enemy's "inRadius" boolean to true.
+                other.gameObject.GetComponent<Enemy>().setInRadiusTrue();
+            }
+            catch { }
+            if (!TextBoxScript.textScript.finalLevel) StartCoroutine(TextBoxScript.textScript.displayMessage());
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -38,8 +42,12 @@ public class PlayerRadius : MonoBehaviour {
         //If the object that exited our trigger zone is tagged as an enemy
         if (other.gameObject.tag == "Enemy")
         {
-            //Set that enemy's "inRadius" boolean to false.
-            other.gameObject.GetComponent<Enemy>().setInRadiusFalse();
+            try
+            {
+                //Set that enemy's "inRadius" boolean to false.
+                other.gameObject.GetComponent<Enemy>().setInRadiusFalse();
+            }
+            catch { }
         }
     }
 }

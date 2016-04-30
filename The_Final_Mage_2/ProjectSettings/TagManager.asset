@@ -10,6 +10,8 @@ TagManager:
   - Down_Exit
   - Left_Exit
   - Right_Exit
+  - Barrier
+  - finalBoss
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Enemy
   - Walls
   - Items
-  - 
+  - Minimap
   - 
   - 
   - 
@@ -47,9 +49,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 1986732791
-    locked: 0
   - name: Background
     uniqueID: 237886185
+    locked: 0
+  - name: Foreground
+    uniqueID: 1986732791
     locked: 0

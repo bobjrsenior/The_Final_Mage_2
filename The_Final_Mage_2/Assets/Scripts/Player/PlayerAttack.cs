@@ -163,6 +163,42 @@ public class PlayerAttack : MonoBehaviour {
                             enemyRigid.AddForce(attack_vector * 300);
 
                         }
+                        else if (rayHit[x].collider.CompareTag("Barrier"))
+                        {
+                            //Get and damage the enemy by our melee damage
+                            Rigidbody2D enemyRigid = rayHit[x].collider.GetComponentInParent<Rigidbody2D>();
+                            Barrier barrier = rayHit[x].collider.GetComponent<Barrier>();
+                            //If we have increased melee damage...
+                            if (Skills.pSkills.skill2 == true)
+                            {
+                                barrier.damage(meleeDamage + .5f);
+                            }
+                            else
+                            {
+                                barrier.damage(meleeDamage);
+                            }
+                            //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
+
+                            enemyRigid.AddForce(attack_vector * 10);
+                        }
+                        else if (rayHit[x].collider.CompareTag("finalBoss"))
+                        {
+                            //Get and damage the enemy by our melee damage
+                            Rigidbody2D enemyRigid = rayHit[x].collider.GetComponentInParent<Rigidbody2D>();
+                            finalBossHealth fbh = rayHit[x].collider.GetComponent<finalBossHealth>();
+                            //If we have increased melee damage...
+                            if (Skills.pSkills.skill2 == true)
+                            {
+                                fbh.damage(meleeDamage * .5f);
+                            }
+                            else
+                            {
+                                fbh.damage(meleeDamage);
+                            }
+                            //Searches for a wall, starting at the enemy's position and moving along the same vector as our attack - the direction of a knockback.
+
+                            enemyRigid.AddForce(attack_vector * 10);
+                        }
                     }
                 }
                 
@@ -204,20 +240,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         
 	}
-    //TEMPORARY FOR DISPLAYING TYPE
-    void OnGUI()
-    {
-        GUI.color = Color.yellow;
-        if (meleeType == true)
-        {
-            GUI.Box(new Rect(0, 60, 100, 25), "Type: Melee");
-        }
-        else
-        {
-            GUI.Box(new Rect(0, 60, 100, 25), "Type: Ranged");
-        }
-        
-    }
+
     /// <summary>
     /// Delays us from attacking again after a melee for a specified amount of seconds.
     /// </summary>

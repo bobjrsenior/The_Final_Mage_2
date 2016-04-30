@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
+    //We create an array of health images in the player
+    //So that when the scene loads we can reference the player health images
+    //The UIManager will pull from this which image to show based on health
+    public Sprite[] images; //Health
+    public Sprite[] __exps; //Exp
+
+
     /// <summary>
     /// The value that holds our current player health.
     /// </summary>
@@ -43,11 +51,13 @@ public class PlayerHealth : MonoBehaviour {
 
     private Timer healthRegenTimer;
 
-    public float manaRegenTime = 5f;
+    public float manaRegenTime = 4f;
 
     private Timer manaRegenTimer;
 
     private Timer gameOverTimer;
+
+    public Timer flashTimer;
 
     public float manaRegenAmount = 5f;
 
@@ -64,6 +74,8 @@ public class PlayerHealth : MonoBehaviour {
     public static PlayerHealth pHealth;
 
     private bool healthSkillApplied;
+
+    private bool manaSkillApplied;
 
 
     void Awake () {
@@ -82,6 +94,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void Start()
     {
+        
         //Always want to start with the player alive
         isDead = false;
         //Always want to start where we can be damaged.
@@ -94,6 +107,8 @@ public class PlayerHealth : MonoBehaviour {
         delayTimer.initialize(delayTime, false);
         gameOverTimer = gameObject.AddComponent<Timer>();
         gameOverTimer.initialize(2, false);
+        flashTimer = gameObject.AddComponent<Timer>();
+        flashTimer.initialize(.1f, false);
         anim = GetComponent<Animator>();
         soundSource = FindObjectOfType<SoundScript>();
     }
@@ -110,6 +125,17 @@ public class PlayerHealth : MonoBehaviour {
                 healthRegenTimer.time = 0;
             }
             healthSkillApplied = true;
+        }
+
+        //If we have purchased the health regen skill.
+        if (Skills.pSkills.skill4 == true && manaSkillApplied == false)
+        {
+            manaRegenTimer.initialTime -= 2;
+            if (manaRegenTimer.started == true)
+            {
+                manaRegenTimer.time = 0;
+            }
+            manaSkillApplied = true;
         }
 
         //Checks to see if we are currently in a game over scenario.
@@ -129,27 +155,6 @@ public class PlayerHealth : MonoBehaviour {
                 StartCoroutine(manaRegen());
             }
         }
-        if (health == 0)
-        {
-            PlayerMovement.pMovement.canMove = false;
-        }
-        else
-        {
-            PlayerMovement.pMovement.canMove = true;
-        }
-        
-
-	    //FOR TESTING PURPOSES ONLY, WILL DAMAGE YOU BY 1 IF YOU PRESS G
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            health = 0;
-        }
-
-        //FOR TESTING PURPOSES ONLY, WILL HEAL YOU BY 1 IF YOU PRESS H
-          if (Input.GetKeyDown(KeyCode.H))
-          {
-              heal(1);
-          }
 
         //If our health ever hits 0
         if (health == 0)
@@ -160,24 +165,26 @@ public class PlayerHealth : MonoBehaviour {
             anim.SetBool("isDead", true);
             isDead = true;
             PlayerMovement.pMovement.canMove = false;
-        }
-        else
-        {
-            //Enable the score countdown.
-            Scoring.scoreKeeper.countdown = true;
-            //If our health is not 0, we are alive.
-            anim.SetBool("isDead", false);
-            isDead = false;
-            PlayerMovement.pMovement.canMove = true;
+            gameOver();
         }
 	}
-    //TEMPORARY FOR DISPLAYING HEALTH
-    void OnGUI()
+
+    private IEnumerator damageFlash()
     {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 20, 80, 20), "Health: " + health);
-        GUI.Box(new Rect(0, 40, 80, 20), "Mana: " + mana);
+        transform.GetComponent<SpriteRenderer>().color = Color.red;
+        flashTimer.started = true;
+        {
+            while (flashTimer.complete == false)
+            {
+                flashTimer.countdownUpdate();
+                yield return null;
+            }
+            flashTimer.complete = false;
+            transform.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return null;
+        }
     }
+
     /// <summary>
     /// damages player by amount.
     /// </summary>
@@ -188,6 +195,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             //Starts our delay timer to prevent us from being damaged until the delay is complete.
             StartCoroutine(afterDamageDelay());
+            StartCoroutine(damageFlash());
             health = health - amount;
             soundSource.PlaySound(2);
             if (health < 0)
@@ -305,9 +313,12 @@ public class PlayerHealth : MonoBehaviour {
         TextBoxScript.textScript.hideTextbox();
         if (health == 0)
         {
+            yield return StartCoroutine(ScreenFader.sf.FadeToBlack());
             //Experience and skills object is redundant on game over, so destroy them before loading the next scene.
             Destroy(Experience.playerExperience.transform.root.gameObject);
             Destroy(Skills.pSkills.transform.root.gameObject);
+            SoundScript.exists = false;
+            Destroy(FindObjectOfType<SoundScript>().transform.gameObject);
             Destroy(transform.root.gameObject);
             Destroy(TextBoxScript.textScript.transform.root.gameObject);
             SceneManager.LoadScene("GameOver");

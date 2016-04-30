@@ -1,0 +1,496 @@
+fileFormatVersion: 2
+guid: 24a44e8b29d036d428060436b42c58f1
+timeCreated: 1461182910
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: FrontRunningSS_0
+    21300002: FrontRunningSS_1
+    21300004: FrontRunningSS_2
+    21300006: FrontRunningSS_3
+    21300008: FrontRunningSS_4
+    21300010: FrontRunningSS_5
+    21300012: FrontRunningSS_6
+    21300014: FrontRunningSS_7
+    21300016: FrontRunningSS_8
+    21300018: FrontRunningSS_9
+    21300020: FrontRunningSS_10
+    21300022: FrontRunningSS_11
+    21300024: FrontRunningSS_12
+    21300026: FrontRunningSS_13
+    21300028: FrontRunningSS_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 800
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FrontRunningSS_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 766
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: -112.5}
+        - {x: 6, y: -124.5}
+        - {x: 4, y: -139.5}
+        - {x: 3, y: -162.5}
+        - {x: 5, y: -168.5}
+        - {x: 5, y: -180.5}
+        - {x: 15, y: -191.5}
+        - {x: 44, y: -191.5}
+        - {x: 68, y: -109.5}
+        - {x: 105, y: 21.5}
+        - {x: 105, y: 104.5}
+        - {x: 31, y: 191.5}
+        - {x: -12, y: 191.5}
+        - {x: -105, y: 90.5}
+        - {x: -105, y: 61.5}
+        - {x: -103, y: 59.5}
+        - {x: -45, y: -124.5}
+        - {x: -21, y: -107.5}
+        - {x: -21, y: -93.5}
+        - {x: -23, y: -83.5}
+        - {x: -18, y: -91.5}
+        - {x: -21, y: -95.5}
+        - {x: -21, y: -120.5}
+        - {x: -23, y: -120.5}
+        - {x: -44, y: -186.5}
+        - {x: -30, y: -191.5}
+        - {x: 1, y: -191.5}
+        - {x: 5, y: -184.5}
+        - {x: 4, y: -165.5}
+        - {x: 2, y: -158.5}
+    - name: FrontRunningSS_1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 766
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 191.5}
+        - {x: -105, y: 120.5}
+        - {x: -105, y: -22.5}
+        - {x: -68, y: -187.5}
+        - {x: -2, y: -187.5}
+        - {x: 4, y: -180.5}
+        - {x: 5, y: -174.5}
+        - {x: 5, y: -155.5}
+        - {x: 5, y: -177.5}
+        - {x: 11, y: -187.5}
+        - {x: 61, y: -187.5}
+        - {x: 105, y: -59.5}
+        - {x: 105, y: 126.5}
+        - {x: 6, y: 191.5}
+    - name: FrontRunningSS_2
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 766
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 90.5}
+        - {x: 5, y: 191.5}
+        - {x: -6, y: 191.5}
+        - {x: -104, y: 82.5}
+        - {x: -105, y: 80.5}
+        - {x: -105, y: 38.5}
+        - {x: -66, y: -57.5}
+        - {x: -29, y: -184.5}
+        - {x: 46, y: -184.5}
+        - {x: 62, y: -59.5}
+        - {x: 58, y: 49.5}
+        - {x: 105, y: 49.5}
+    - name: FrontRunningSS_3
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 766
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 191.5}
+        - {x: -6, y: 191.5}
+        - {x: -104, y: 81.5}
+        - {x: -105, y: 78.5}
+        - {x: -105, y: 64.5}
+        - {x: -98, y: 60.5}
+        - {x: -38, y: -172.5}
+        - {x: -12, y: -182.5}
+        - {x: 51, y: -182.5}
+        - {x: 78, y: -55.5}
+        - {x: 105, y: 43.5}
+        - {x: 105, y: 82.5}
+    - name: FrontRunningSS_4
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 766
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 100, y: 80.5}
+        - {x: 4, y: 186.5}
+        - {x: -2, y: 186.5}
+        - {x: -5, y: 185.5}
+        - {x: -105, y: 73.5}
+        - {x: -105, y: 46.5}
+        - {x: -62, y: -66.5}
+        - {x: -28, y: -185.5}
+        - {x: 40, y: -185.5}
+        - {x: 64, y: -57.5}
+        - {x: 105, y: 37.5}
+        - {x: 105, y: 72.5}
+    - name: FrontRunningSS_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 383
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: -166.5}
+        - {x: 7, y: -169.5}
+        - {x: 13, y: -175.5}
+        - {x: 33, y: -188.5}
+        - {x: 42, y: -188.5}
+        - {x: 78, y: -58.5}
+        - {x: 105, y: 13.5}
+        - {x: 105, y: 105.5}
+        - {x: 5, y: 189.5}
+        - {x: -3, y: 189.5}
+        - {x: -5, y: 188.5}
+        - {x: -104, y: 78.5}
+        - {x: -105, y: 75.5}
+        - {x: -105, y: 59.5}
+        - {x: -103, y: 57.5}
+        - {x: -60, y: -58.5}
+        - {x: -40, y: -92.5}
+        - {x: -31, y: -186.5}
+        - {x: -29, y: -188.5}
+        - {x: -4, y: -188.5}
+        - {x: 6, y: -185.5}
+        - {x: 6, y: -161.5}
+        - {x: 5, y: -158.5}
+        - {x: 6, y: -157.5}
+    - name: FrontRunningSS_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 383
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -158.5}
+        - {x: 5, y: -162.5}
+        - {x: 13, y: -172.5}
+        - {x: 36, y: -173.5}
+        - {x: 55, y: -170.5}
+        - {x: 105, y: 2.5}
+        - {x: 105, y: 98.5}
+        - {x: 5, y: 189.5}
+        - {x: -3, y: 189.5}
+        - {x: -5, y: 188.5}
+        - {x: -105, y: 103.5}
+        - {x: -105, y: 31.5}
+        - {x: -42, y: -97.5}
+        - {x: -33, y: -105.5}
+        - {x: -26, y: -106.5}
+        - {x: -33, y: -179.5}
+        - {x: -23, y: -188.5}
+        - {x: -1, y: -188.5}
+        - {x: 5, y: -181.5}
+        - {x: 6, y: -172.5}
+        - {x: 5, y: -172.5}
+    - name: FrontRunningSS_7
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 383
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -154.5}
+        - {x: 6, y: -165.5}
+        - {x: 7, y: -168.5}
+        - {x: 16, y: -176.5}
+        - {x: 37, y: -187.5}
+        - {x: 44, y: -187.5}
+        - {x: 105, y: 34.5}
+        - {x: 105, y: 79.5}
+        - {x: 5, y: 183.5}
+        - {x: -3, y: 183.5}
+        - {x: -5, y: 182.5}
+        - {x: -105, y: 97.5}
+        - {x: -105, y: 8.5}
+        - {x: -32, y: -187.5}
+        - {x: 2, y: -187.5}
+        - {x: 8, y: -184.5}
+        - {x: 5, y: -176.5}
+        - {x: 5, y: -157.5}
+        - {x: 2, y: -150.5}
+    - name: FrontRunningSS_8
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 383
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: -140.5}
+        - {x: 5, y: -157.5}
+        - {x: 6, y: -171.5}
+        - {x: 13, y: -185.5}
+        - {x: 62, y: -187.5}
+        - {x: 105, y: -23.5}
+        - {x: 105, y: 100.5}
+        - {x: 5, y: 188.5}
+        - {x: -3, y: 188.5}
+        - {x: -5, y: 187.5}
+        - {x: -104, y: 76.5}
+        - {x: -105, y: 73.5}
+        - {x: -105, y: 58.5}
+        - {x: -100, y: 56.5}
+        - {x: -33, y: -187.5}
+        - {x: -4, y: -187.5}
+        - {x: 6, y: -179.5}
+        - {x: 5, y: -153.5}
+        - {x: 2, y: -150.5}
+    - name: FrontRunningSS_9
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 383
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -154.5}
+        - {x: 6, y: -167.5}
+        - {x: 8, y: -172.5}
+        - {x: 13, y: -185.5}
+        - {x: 59, y: -180.5}
+        - {x: 105, y: -43.5}
+        - {x: 105, y: 89.5}
+        - {x: 22, y: 191.5}
+        - {x: -7, y: 191.5}
+        - {x: -105, y: 78.5}
+        - {x: -105, y: 36.5}
+        - {x: -35, y: -186.5}
+        - {x: -2, y: -186.5}
+        - {x: 6, y: -176.5}
+        - {x: 5, y: -156.5}
+        - {x: 4, y: -153.5}
+    - name: FrontRunningSS_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: -168.5}
+        - {x: 18, y: -183.5}
+        - {x: 75, y: -183.5}
+        - {x: 105, y: -113.5}
+        - {x: 105, y: 131.5}
+        - {x: 47, y: 191.5}
+        - {x: -7, y: 191.5}
+        - {x: -105, y: 85.5}
+        - {x: -105, y: 63.5}
+        - {x: -103, y: 61.5}
+        - {x: -86, y: 56.5}
+        - {x: -60, y: -54.5}
+        - {x: -32, y: -172.5}
+        - {x: -24, y: -183.5}
+        - {x: -4, y: -183.5}
+        - {x: 4, y: -175.5}
+        - {x: 6, y: -171.5}
+        - {x: 5, y: -149.5}
+    - name: FrontRunningSS_11
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: -168.5}
+        - {x: 15, y: -180.5}
+        - {x: 76, y: -180.5}
+        - {x: 105, y: -112.5}
+        - {x: 105, y: 115.5}
+        - {x: 6, y: 191.5}
+        - {x: -6, y: 191.5}
+        - {x: -104, y: 80.5}
+        - {x: -105, y: 77.5}
+        - {x: -105, y: 46.5}
+        - {x: -54, y: -180.5}
+        - {x: -4, y: -180.5}
+        - {x: 3, y: -174.5}
+        - {x: 6, y: -169.5}
+        - {x: 5, y: -146.5}
+    - name: FrontRunningSS_12
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -178.5}
+        - {x: 36, y: -179.5}
+        - {x: 42, y: -170.5}
+        - {x: 42, y: -160.5}
+        - {x: 60, y: -56.5}
+        - {x: 105, y: 39.5}
+        - {x: 105, y: 104.5}
+        - {x: 6, y: 191.5}
+        - {x: -6, y: 191.5}
+        - {x: -105, y: 82.5}
+        - {x: -105, y: 14.5}
+        - {x: -32, y: -181.5}
+        - {x: -2, y: -181.5}
+        - {x: 5, y: -178.5}
+        - {x: 6, y: -171.5}
+        - {x: 5, y: -148.5}
+        - {x: 6, y: -168.5}
+    - name: FrontRunningSS_13
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -185.5}
+        - {x: 78, y: -185.5}
+        - {x: 105, y: -121.5}
+        - {x: 105, y: 131.5}
+        - {x: 45, y: 190.5}
+        - {x: -32, y: 190.5}
+        - {x: -105, y: 132.5}
+        - {x: -105, y: -7.5}
+        - {x: -42, y: -180.5}
+        - {x: -29, y: -185.5}
+        - {x: -4, y: -185.5}
+        - {x: 0, y: -184.5}
+        - {x: 6, y: -174.5}
+        - {x: 5, y: -156.5}
+        - {x: 6, y: -176.5}
+    - name: FrontRunningSS_14
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 0
+        width: 210
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -177.5}
+        - {x: 35, y: -182.5}
+        - {x: 46, y: -164.5}
+        - {x: 105, y: -24.5}
+        - {x: 105, y: 104.5}
+        - {x: 37, y: 189.5}
+        - {x: -24, y: 189.5}
+        - {x: -105, y: 120.5}
+        - {x: -105, y: -5.5}
+        - {x: -40, y: -182.5}
+        - {x: -25, y: -189.5}
+        - {x: -3, y: -189.5}
+        - {x: 7, y: -178.5}
+        - {x: 6, y: -160.5}
+        - {x: 6, y: -167.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

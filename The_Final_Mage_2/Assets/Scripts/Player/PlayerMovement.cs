@@ -73,10 +73,6 @@ public class PlayerMovement : MonoBehaviour
         {
             canMove = false;
         }
-        else
-        {
-            canMove = true;
-        }
 
         //Gets the direction you want to move based on input
         Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

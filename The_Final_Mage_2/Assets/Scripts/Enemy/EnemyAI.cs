@@ -19,6 +19,11 @@ public class EnemyAI : MonoBehaviour {
     private Enemy self;
 
     /// <summary>
+    /// This object's sprite renderer
+    /// </summary>
+    private SpriteRenderer spriteRenderer;
+
+    /// <summary>
     /// The rigidBody2D object attached to the player.
     /// </summary>
     private Rigidbody2D player;
@@ -60,12 +65,25 @@ public class EnemyAI : MonoBehaviour {
 
     public GameObject rangeProjectile;
 
+    /// <summary>
+    /// Sprites related to the melee robot's direction
+    /// </summary>
+    [SerializeField]
+    private Sprite[] meleeSpriteDirections;
+
+    /// <summary>
+    /// Sprites related to the range robot's direction
+    /// </summary>
+    [SerializeField]
+    private Sprite[] rangeSpriteDirections;
+
     private Timer timeToShootTimer;
 
 	// Use this for initialization
 	void Start () {
 
         self = GetComponent<Enemy>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         canShoot = true;
 
@@ -122,6 +140,8 @@ public class EnemyAI : MonoBehaviour {
 
                 //Move towards player at enemySpeed units/second
                 selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
+
+                updateMeleeSprite(direction);
             }
         }
     }
@@ -138,12 +158,12 @@ public class EnemyAI : MonoBehaviour {
             //Get the direction to the player
             Vector2 direction = player.transform.position - transform.position;
 
+            //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
+            direction.Normalize();
+
             //If the distance between our player and the enemy attached to this script is less than two...
             if (Vector2.Distance(player.transform.position, selfRigid.position) > 2.1)
             {
-                //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-                direction.Normalize();
-
                 //Move towards player at enemySpeed units/second
                 selfRigid.MovePosition(selfRigid.position + direction * enemySpeed * Time.fixedDeltaTime);
             }
@@ -155,13 +175,65 @@ public class EnemyAI : MonoBehaviour {
             }
             else
             {
-                //Normalize it so that the magnitude is 1 (5 * direction gives a total value of 5 in that direction)
-                direction.Normalize();
-
                 //Move away from the player at enemySpeed units/second
                 selfRigid.MovePosition(selfRigid.position - direction * enemySpeed * Time.fixedDeltaTime);
             }
+
+            updateRangeSprite();
         }
+    }
+
+    /// <summary>
+    /// Updates the Enemy's sprite if it is a melee enemy
+    /// </summary>
+    /// <param name="direction"></param>
+    private void updateMeleeSprite(Vector3 direction)
+    {
+        //Depending on which way the enemy is moving, set the sprite
+        if(Mathf.Abs(direction.x) < 0.1f)
+        {
+            if(direction.y > 0){
+                spriteRenderer.sprite = meleeSpriteDirections[0];
+            }
+            else
+            {
+                spriteRenderer.sprite = meleeSpriteDirections[1];
+            }
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if(direction.y < 0)
+        {
+            
+            spriteRenderer.sprite = meleeSpriteDirections[2];
+            if(direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+        else
+        {
+            spriteRenderer.sprite = meleeSpriteDirections[3];
+            if (direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Updates the Enemy's sprite if it is a melee enemy
+    /// </summary>
+    private void updateRangeSprite()
+    {
+        spriteRenderer.sprite = rangeSpriteDirections[((int)(Time.time * 12)) % 3];
     }
 
     /// <summary>

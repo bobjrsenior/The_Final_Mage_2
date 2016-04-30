@@ -19,6 +19,11 @@ public class Skills : MonoBehaviour {
     public bool skill3;
     public bool skill4;
 
+    public Button skill1Button;
+    public Button skill2Button;
+    public Button skill3Button;
+    public Button skill4Button;
+
     public GameObject UIPanel;
 
     public Text skillText;
@@ -30,12 +35,6 @@ public class Skills : MonoBehaviour {
     private bool up;
 
     public static Skills pSkills;
-
-    void OnGUI()
-    {
-        GUI.color = Color.yellow;
-        GUI.Box(new Rect(0, 140, 100, 25), "Skill points:" + skillPoints);
-    }
 
 	// Use this for initialization
 	void Start () {
@@ -51,8 +50,7 @@ public class Skills : MonoBehaviour {
             skillPoints = 0;
             UIDropdownCool = gameObject.AddComponent<Timer>();
             UIDropdownCool.initialize(.2f, false);
-
-            UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
+            UIPanel.SetActive(false);
             up = true;
         }
 	}
@@ -61,20 +59,41 @@ public class Skills : MonoBehaviour {
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.Space) && cooldown == false)
         {
-            if (up == true)
-            {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y - 2750);
-                skillText.text = "Select a skill button to purchase that skill.";
-                up = false;
-            }
-            else
-            {
-                UIPanel.transform.position = new Vector2(UIPanel.transform.position.x, UIPanel.transform.position.y + 2750);
-                skillText.text = "Press space bar to spend skill points.";
-                up = true;
-            }
+            swap();
         }
 	}
+
+    private void swap()
+    {
+        if (up == true)
+        {
+            UIPanel.SetActive(true);
+            skill1Button.interactable = true;
+            skill2Button.interactable = true;
+            skill3Button.interactable = true;
+            skill4Button.interactable = true;
+            up = false;
+        }
+        else
+        {
+            skill1Button.interactable = false;
+            skill2Button.interactable = false;
+            skill3Button.interactable = false;
+            skill4Button.interactable = false;
+            UIPanel.SetActive(false);
+            up = true;
+        }
+    }
+
+    public void closeSkillPanel()
+    {
+        skill1Button.interactable = false;
+        skill2Button.interactable = false;
+        skill3Button.interactable = false;
+        skill4Button.interactable = false;
+        UIPanel.SetActive(false);
+        up = true;
+    }
 
     private IEnumerable dropdownCoolTimer()
     {
@@ -95,69 +114,90 @@ public class Skills : MonoBehaviour {
     /// <param name="skillID">the ID number of the skil that we wish to obtain by spending this point.</param>
     public void spend(int skillID)
     {
-        if (skillPoints != 0)
+        if (skillID == 1)
         {
-            if (skillID == 1)
+            if (skill1 == true)
             {
-                if (skill1 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                }
-                else
-                {
-                    skillPoints--;
-                    skill1 = true;
-                    skillText.text = "Skill purchased successfully!";
-                }
-                
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
             }
-            else if (skillID == 2)
+            else if (skillPoints != 0)
             {
-                if (skill2 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                }
-                else
-                {
-                    skillPoints--;
-                    skill2 = true;
-                    skillText.text = "Skill purchased successfully!";
-                }
-            }
-            else if (skillID == 3)
-            {
-                if (skill3 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                }
-                else
-                {
-                    skillPoints--;
-                    skill3 = true;
-                    skillText.text = "Skill purchased successfully!";
-                }
-            }
-            else if (skillID == 4)
-            {
-                if (skill4 == true)
-                {
-                    skillText.text = "You have already purchased that skill!";
-                }
-                else
-                {
-                    skillPoints--;
-                    skill4 = true;
-                    skillText.text = "Skill purchased successfully!";
-                }
+                skillPoints--;
+                skill1 = true;
+                skill1Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
             }
             else
             {
-                print("SKILL SPENDING FAILED");
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+
+        }
+        else if (skillID == 2)
+        {
+            if (skill2 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if(skillPoints != 0)
+            {
+                skillPoints--;
+                skill2 = true;
+                skill2Button.GetComponent<Image>().color = new Color(0,.6f,0,1);
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
             }
         }
-        else
+        else if (skillID == 3)
         {
-            skillText.text = "You need a skill point to purchase a skill!";
+            if (skill3 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if (skillPoints != 0)
+            {
+                skillPoints--;
+                skill3 = true;
+                skill3Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+        }
+        else if (skillID == 4)
+        {
+            if (skill4 == true)
+            {
+                skillText.text = "You have already purchased that skill!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else if (skillPoints != 0)
+            {
+                skillPoints--;
+                skill4 = true;
+                skill4Button.GetComponent<Image>().color = new Color(0, .6f, 0, 1);
+                skillText.text = "Skill purchased successfully!";
+                TextBoxScript.textScript.showWarning();
+            }
+            else
+            {
+                skillText.text = "You need a skill point to purchase a skill!";
+                TextBoxScript.textScript.showWarning();
+            }
         }
     }
 }

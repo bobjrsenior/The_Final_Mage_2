@@ -43,11 +43,11 @@ public class Scoring : MonoBehaviour {
     /// </summary>
     public bool countdown;
 
+    public bool pauseDegeneration;
+
     private Timer degenerationTimer;
 
     public static Scoring scoreKeeper;
-
-    private bool degenerationSkill;
 
     // Use this for initialization
     void Start () {
@@ -70,33 +70,17 @@ public class Scoring : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Enact the degeneration skill if it is purchased.
-        if (Skills.pSkills.skill4 == true && degenerationSkill == false)
-        {
-            degenerationTimer.initialTime += .25f;
-            degenerationSkill = true;
-        }
-
-        if (degenerationCooldown == false && score != 0)
+        if (degenerationCooldown == false && score != 0 && pauseDegeneration != true)
         {
             StartCoroutine(degenerate());
         }
 	}
 
-    //Temporary means to track score.
-    void OnGUI()
-    {
-        //If the player exists
-        if (PlayerHealth.pHealth != null)
-        {
-            GUI.color = Color.yellow;
-            GUI.Box(new Rect(0, 0, 100, 20), "Score: " + score);
-        }
-    }
     private IEnumerator degenerate()
     {
         degenerationCooldown = true;
         degenerationTimer.started = true;
+        countdown = true;
         while (degenerationTimer.complete == false)
         {
             degenerationTimer.countdownUpdate();
