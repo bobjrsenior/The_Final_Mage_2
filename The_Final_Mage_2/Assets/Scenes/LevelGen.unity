@@ -1017,7 +1017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476916, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e8082a4e6d3afe43a4a2dc677753f59, type: 2}
@@ -1525,7 +1525,19 @@ MonoBehaviour:
     up.'
   - 'Dr. Evil: What should your gravestone read? Perhaps "Died fighting against the
     inevitable like a fool?"'
-  - 'Dr. Evil: Come, now. Why don''t we just talk this out?'
+  - 'Dr. Evil: Have you any clue how much all these robots cost?!'
+  - 'Dr. Evil: What do you hope to prove by defying me?'
+  - 'Dr. Evil: It is only a matter of time until you fail!'
+  - 'Dr. Evil: You are only delaying the inevitable.'
+  - 'Dr. Evil: What hope have you of destroying me? You''d sooner get blood from a
+    rock!'
+  - 'Dr. Evil: Pathetic! Simply pathetic! That is your best?'
+  - 'Dr. Evil: Even if you reach me, you will never win.'
+  - 'Dr. Evil: I am your superior in terms of skill. You have no hope!'
+  - 'Dr. Evil: How boring this is... wake me up when you get here, will you? I''m
+    taking a nap.'
+  - 'Dr. Evil: Come on, impress me already! All you do is shoot fireballs and swing
+    a sword!'
   textbox: {fileID: 792138382}
   textPanel: {fileID: 560934534}
   displaying: 0
@@ -1606,7 +1618,7 @@ RectTransform:
   m_Children:
   - {fileID: 560934537}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2436,7 +2448,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 463588, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11465426, guid: 63379099e35b66c4f94b05cf1f6be285, type: 2}
       propertyPath: audioClip.Array.data[3]
@@ -2579,7 +2591,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417594, guid: 90b90f6f4d5e85f498d9aec08e831956, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11441440, guid: 90b90f6f4d5e85f498d9aec08e831956, type: 2}
       propertyPath: degenerationTime
