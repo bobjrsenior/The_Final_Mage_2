@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11482594}
   - 114: {fileID: 11472166}
   - 82: {fileID: 8239392}
-  - 58: {fileID: 5838780}
+  - 61: {fileID: 6108498}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.4618235, y: 8.982522, z: 0}
+  m_LocalPosition: {x: 0.516, y: 0, z: 0}
   m_LocalScale: {x: 2.3370864, y: 2.2701445, z: 1}
   m_Children:
   - {fileID: 436776}
@@ -82,20 +82,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5838780
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149676}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.03}
-  serializedVersion: 2
-  m_Radius: 0.08662527
 --- !u!58 &5869022
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -110,6 +96,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
+--- !u!61 &6108498
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149676}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.05}
+  serializedVersion: 2
+  m_Size: {x: 0.125, y: 0.25}
 --- !u!82 &8239392
 AudioSource:
   m_ObjectHideFlags: 1
