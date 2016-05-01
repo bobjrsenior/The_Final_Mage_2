@@ -10,6 +10,12 @@ public class IntroText : MonoBehaviour {
     /// </summary>
     public float scrollSpeed = 50.0f;
 
+    /// <summary>
+    /// Transform indicating the top of the window
+    /// </summary>
+    [SerializeField]
+    private Transform top;
+
 	// Use this for initialization
 	void Start () {
         print(transform.position);
@@ -25,7 +31,7 @@ public class IntroText : MonoBehaviour {
         transform.Translate(0, scrollSpeed * Time.deltaTime, 0);
 
         //If it is off the screen, load next scene (3050 was found by moving the text up and finding it's y position)
-        if(transform.position.y > 3200)
+        if(transform.position.y > top.position.y)
         {
             SceneManager.LoadScene("Menu_Test");
         }
