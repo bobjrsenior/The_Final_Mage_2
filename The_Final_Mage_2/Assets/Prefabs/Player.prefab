@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeDelay: 0.4
   rangeDelay: 0.4
-  meleeCool: 0.1
+  meleeCool: 0.4
   canMelee: 0
   canRange: 0
   meleeType: 1
@@ -282,6 +282,7 @@ MonoBehaviour:
   delayTime: 1
   healthRegenTime: 15
   manaRegenTime: 5
+  flashTimer: {fileID: 0}
   manaRegenAmount: 5
   manaCost: 5
   healthRegenCooldown: 0

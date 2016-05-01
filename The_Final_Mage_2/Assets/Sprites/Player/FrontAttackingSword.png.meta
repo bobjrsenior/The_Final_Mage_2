@@ -1,0 +1,498 @@
+fileFormatVersion: 2
+guid: d1580026156013c4cad4223150860df0
+timeCreated: 1462120926
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: FrontAttackingSword_0
+    21300002: FrontAttackingSword_1
+    21300004: FrontAttackingSword_2
+    21300006: FrontAttackingSword_3
+    21300008: FrontAttackingSword_4
+    21300010: FrontAttackingSword_5
+    21300012: FrontAttackingSword_6
+    21300014: FrontAttackingSword_7
+    21300016: FrontAttackingSword_8
+    21300018: FrontAttackingSword_9
+    21300020: FrontAttackingSword_10
+    21300022: FrontAttackingSword_11
+    21300024: FrontAttackingSword_12
+    21300026: FrontAttackingSword_13
+    21300028: FrontAttackingSword_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 800
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FrontAttackingSword_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 926
+        width: 288
+        height: 375
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: -111.5}
+        - {x: -36, y: -111.5}
+        - {x: -33, y: -115.5}
+        - {x: -33, y: -123.5}
+        - {x: -32, y: -176.5}
+        - {x: -24, y: -186.5}
+        - {x: -1, y: -186.5}
+        - {x: 2, y: -184.5}
+        - {x: 5, y: -172.5}
+        - {x: 144, y: -38.5}
+        - {x: 144, y: 77.5}
+        - {x: 55, y: 150.5}
+        - {x: -31, y: 187.5}
+        - {x: -53, y: 187.5}
+        - {x: -144, y: 82.5}
+        - {x: -144, y: 48.5}
+        - {x: -87, y: -113.5}
+        - {x: -72, y: -113.5}
+        - {x: -62, y: -106.5}
+        - {x: -64, y: -85.5}
+        - {x: -59, y: -85.5}
+        - {x: -63, y: -119.5}
+        - {x: -76, y: -165.5}
+        - {x: -67, y: -187.5}
+        - {x: -41, y: -187.5}
+        - {x: -34, y: -179.5}
+        - {x: -35, y: -155.5}
+        - {x: -36, y: -125.5}
+    - name: FrontAttackingSword_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 929
+        width: 308
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: -113.5}
+        - {x: -46, y: -112.5}
+        - {x: -43, y: -116.5}
+        - {x: -43, y: -164.5}
+        - {x: -42, y: -178.5}
+        - {x: -35, y: -186.5}
+        - {x: 15, y: -186.5}
+        - {x: 154, y: -58.5}
+        - {x: 154, y: 30.5}
+        - {x: -44, y: 186.5}
+        - {x: -56, y: 186.5}
+        - {x: -154, y: 79.5}
+        - {x: -154, y: 26.5}
+        - {x: -80, y: -184.5}
+        - {x: -74, y: -186.5}
+        - {x: -51, y: -186.5}
+        - {x: -43, y: -176.5}
+        - {x: -44, y: -157.5}
+        - {x: -46, y: -127.5}
+    - name: FrontAttackingSword_2
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 929
+        width: 313
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 156.5, y: -80.5}
+        - {x: 89.5, y: 61.5}
+        - {x: -45.5, y: 186.5}
+        - {x: -75.5, y: 186.5}
+        - {x: -156.5, y: 90.5}
+        - {x: -156.5, y: 56.5}
+        - {x: -153.5, y: 52.5}
+        - {x: -82.5, y: -183.5}
+        - {x: -67.5, y: -186.5}
+        - {x: -51.5, y: -186.5}
+        - {x: -45.5, y: -177.5}
+        - {x: -45.5, y: -154.5}
+        - {x: -48.5, y: -132.5}
+        - {x: -47.5, y: -112.5}
+        - {x: -48.5, y: -112.5}
+        - {x: -45.5, y: -116.5}
+        - {x: -46.5, y: -125.5}
+        - {x: -43.5, y: -179.5}
+        - {x: -36.5, y: -186.5}
+        - {x: -10.5, y: -186.5}
+        - {x: -4.5, y: -182.5}
+        - {x: 156.5, y: -119.5}
+    - name: FrontAttackingSword_3
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 903
+        width: 232
+        height: 399
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -116, y: 86.5}
+        - {x: -116, y: 49.5}
+        - {x: -115, y: 46.5}
+        - {x: -69, y: -156.5}
+        - {x: -37, y: -173.5}
+        - {x: -15, y: -171.5}
+        - {x: -6, y: -164.5}
+        - {x: -5, y: -160.5}
+        - {x: -6, y: -138.5}
+        - {x: -4, y: -165.5}
+        - {x: 4, y: -175.5}
+        - {x: 67, y: -199.5}
+        - {x: 116, y: -199.5}
+        - {x: 116, y: 22.5}
+        - {x: 108, y: 104.5}
+        - {x: -5, y: 199.5}
+        - {x: -38, y: 199.5}
+        - {x: -115, y: 89.5}
+    - name: FrontAttackingSword_4
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 889
+        width: 221
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 207}
+        - {x: -37.5, y: 207}
+        - {x: -110.5, y: 123}
+        - {x: -110.5, y: 37}
+        - {x: -61.5, y: -173}
+        - {x: -9.5, y: -167}
+        - {x: 1.5, y: -157}
+        - {x: 0.5, y: -135}
+        - {x: 1.5, y: -159}
+        - {x: 7.5, y: -172}
+        - {x: 38.5, y: -169}
+        - {x: 38.5, y: -155}
+        - {x: 73.5, y: -201}
+        - {x: 96.5, y: -207}
+        - {x: 110.5, y: -207}
+        - {x: 110.5, y: 104}
+        - {x: 68.5, y: 146}
+    - name: FrontAttackingSword_5
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 442
+        width: 210
+        height: 426
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -60, y: -164}
+        - {x: -25, y: -165}
+        - {x: 4, y: -159}
+        - {x: 6, y: -148}
+        - {x: 6, y: -131}
+        - {x: 5, y: -128}
+        - {x: 3, y: -108}
+        - {x: 4, y: -86}
+        - {x: 3, y: -86}
+        - {x: 6, y: -90}
+        - {x: 6, y: -153}
+        - {x: 13, y: -167}
+        - {x: 44, y: -163}
+        - {x: 43, y: -150}
+        - {x: 39, y: -134}
+        - {x: 36, y: -112}
+        - {x: 53, y: -197}
+        - {x: 67, y: -213}
+        - {x: 88, y: -213}
+        - {x: 105, y: -202}
+        - {x: 105, y: 179}
+        - {x: 92, y: 213}
+        - {x: -41, y: 213}
+        - {x: -105, y: 131}
+        - {x: -105, y: 40}
+    - name: FrontAttackingSword_6
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 436
+        width: 210
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49, y: 216}
+        - {x: -31, y: 216}
+        - {x: -105, y: 155}
+        - {x: -105, y: -4}
+        - {x: -20, y: -181}
+        - {x: 5, y: -149}
+        - {x: 7, y: -145}
+        - {x: 6, y: -123}
+        - {x: 9, y: -162}
+        - {x: 5, y: -194}
+        - {x: 22, y: -216}
+        - {x: 44, y: -216}
+        - {x: 94, y: -77}
+        - {x: 105, y: 18}
+        - {x: 105, y: 124}
+    - name: FrontAttackingSword_7
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 438
+        width: 210
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 215.5}
+        - {x: -4, y: 215.5}
+        - {x: -23, y: 163.5}
+        - {x: -105, y: 104.5}
+        - {x: -105, y: 89.5}
+        - {x: -98, y: 84.5}
+        - {x: -72, y: -34.5}
+        - {x: -15, y: -215.5}
+        - {x: 31, y: -215.5}
+        - {x: 39, y: -212.5}
+        - {x: 85, y: -33.5}
+        - {x: 105, y: 55.5}
+        - {x: 105, y: 113.5}
+    - name: FrontAttackingSword_8
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 441
+        width: 210
+        height: 428
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 62}
+        - {x: 105, y: 138}
+        - {x: 52, y: 214}
+        - {x: -15, y: 214}
+        - {x: -70, y: 158}
+        - {x: -105, y: 139}
+        - {x: -105, y: 65}
+        - {x: -86, y: 34}
+        - {x: -38, y: -73}
+        - {x: -42, y: -202}
+        - {x: -24, y: -214}
+        - {x: 27, y: -214}
+        - {x: 89, y: -109}
+        - {x: 62, y: 43}
+    - name: FrontAttackingSword_9
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 449
+        width: 210
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 100}
+        - {x: 104, y: 101}
+        - {x: 5, y: 210}
+        - {x: -8, y: 210}
+        - {x: -67, y: 128}
+        - {x: -105, y: 102}
+        - {x: -105, y: 32}
+        - {x: -65, y: -26}
+        - {x: -53, y: -210}
+        - {x: -17, y: -210}
+        - {x: -12, y: -209}
+        - {x: 53, y: -171}
+        - {x: 77, y: 36}
+        - {x: 105, y: 81}
+    - name: FrontAttackingSword_10
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 38
+        width: 210
+        height: 397
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 89.5}
+        - {x: 5, y: 198.5}
+        - {x: -5, y: 198.5}
+        - {x: -36, y: 163.5}
+        - {x: -105, y: 90.5}
+        - {x: -105, y: 25.5}
+        - {x: -46, y: -95.5}
+        - {x: -80, y: -198.5}
+        - {x: 15, y: -198.5}
+        - {x: 45, y: -194.5}
+        - {x: 61, y: -113.5}
+        - {x: 58, y: 32.5}
+        - {x: 105, y: 71.5}
+    - name: FrontAttackingSword_11
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 59
+        width: 210
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 188}
+        - {x: -23, y: 188}
+        - {x: -105, y: 79}
+        - {x: -105, y: -188}
+        - {x: -3, y: -188}
+        - {x: 5, y: -180}
+        - {x: 5, y: -156}
+        - {x: 8, y: -181}
+        - {x: 15, y: -188}
+        - {x: 54, y: -188}
+        - {x: 79, y: -84}
+        - {x: 105, y: 32}
+        - {x: 105, y: 101}
+    - name: FrontAttackingSword_12
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 59
+        width: 224
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: 188}
+        - {x: -10, y: 154}
+        - {x: -103, y: 73}
+        - {x: -97, y: 59}
+        - {x: -79, y: 55}
+        - {x: -112, y: -52}
+        - {x: -112, y: -140}
+        - {x: -82, y: -168}
+        - {x: -31, y: -188}
+        - {x: 13, y: -188}
+        - {x: 15, y: -180}
+        - {x: 13, y: -153}
+        - {x: 15, y: -181}
+        - {x: 22, y: -188}
+        - {x: 72, y: -188}
+        - {x: 112, y: -82}
+        - {x: 112, y: 116}
+        - {x: 48, y: 188}
+    - name: FrontAttackingSword_13
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 59
+        width: 223
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: -188}
+        - {x: 80.5, y: -188}
+        - {x: 111.5, y: -62}
+        - {x: 111.5, y: 92}
+        - {x: 9.5, y: 188}
+        - {x: 2.5, y: 188}
+        - {x: 0.5, y: 183}
+        - {x: -21.5, y: 121}
+        - {x: -100.5, y: 79}
+        - {x: -107.5, y: 62}
+        - {x: -111.5, y: 37}
+        - {x: -111.5, y: -120}
+        - {x: -19.5, y: -188}
+        - {x: 4.5, y: -188}
+        - {x: 6.5, y: -187}
+        - {x: 12.5, y: -178}
+        - {x: 11.5, y: -159}
+        - {x: 14.5, y: -180}
+    - name: FrontAttackingSword_14
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 58
+        width: 239
+        height: 375
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.5, y: -187.5}
+        - {x: 58.5, y: -187.5}
+        - {x: 78.5, y: -178.5}
+        - {x: 119.5, y: 6.5}
+        - {x: 119.5, y: 123.5}
+        - {x: 66.5, y: 187.5}
+        - {x: -17.5, y: 187.5}
+        - {x: -119.5, y: 104.5}
+        - {x: -119.5, y: -117.5}
+        - {x: -54.5, y: -187.5}
+        - {x: 15.5, y: -187.5}
+        - {x: 21.5, y: -177.5}
+        - {x: 19.5, y: -159.5}
+        - {x: 22.5, y: -178.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
