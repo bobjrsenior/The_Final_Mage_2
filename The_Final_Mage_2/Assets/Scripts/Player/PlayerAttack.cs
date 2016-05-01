@@ -137,7 +137,7 @@ public class PlayerAttack : MonoBehaviour {
                 }
 
                 //Draws a ray in the form of a circle from the player in the direction we are attacking, extending at a distance of .5f units, shifting the layer's bit from layer 9.
-                rayHit = Physics2D.CircleCastAll(transform.position, .1f, attack_vector, .4f, 1 << 9);
+                rayHit = Physics2D.CircleCastAll(transform.position, .1f, attack_vector, .6f, 1 << 9);
                 //If our ray has collided
                 for (int x = 0; x < rayHit.Length; x++)
                 {
