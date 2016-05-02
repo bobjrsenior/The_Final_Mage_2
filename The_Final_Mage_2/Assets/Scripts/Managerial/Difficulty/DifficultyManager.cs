@@ -156,9 +156,12 @@ public class DifficultyManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu_Test");
+        }
 
-
-	}
+    }
 
     /// <summary>
     /// Setup the current floor
